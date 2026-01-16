@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://6c3pngmo45gk"]
+
+[ext_resource type="Texture2D" uid="uid://b2cpg8prhtuc" path="res://blackholeshader/examplebg.png" id="1_y1pvw"]
+[ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="2_o581p"]
+[ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="3_giod0"]
+[ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="5_3bfw0"]
+
+[sub_resource type="Curve" id="Curve_y1pvw"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.0014533997), 0.0, 0.0, 0, 0, Vector2(0.19434628, -0.64389527), 0.0, 0.0, 0, 0, Vector2(0.28268552, 0.5465117), 0.0, 0.0, 0, 0, Vector2(0.38162544, -0.0959301), 0.0, 0.0, 0, 0, Vector2(0.4310954, 0.055232644), 0.0, 0.0, 0, 0, Vector2(0.48763248, -0.0014533997), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_o581p"]
+curve = SubResource("Curve_y1pvw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3bfw0"]
+shader = ExtResource("2_o581p")
+shader_parameter/curve = SubResource("CurveTexture_o581p")
+shader_parameter/strength = 0.70000008075
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2DBG" type="Sprite2D" parent="."]
+scale = Vector2(100, 100)
+texture = ExtResource("1_y1pvw")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3bfw0")
+position = Vector2(-88832, -9.998047)
+scale = Vector2(1000, 1000)
+texture = ExtResource("3_giod0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D2"]
+scale = Vector2(0.003, 0.003)
+texture = ExtResource("5_3bfw0")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
