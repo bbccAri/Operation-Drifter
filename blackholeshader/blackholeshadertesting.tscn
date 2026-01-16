@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=20 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_p41qd"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="2_o581p"]
@@ -28,6 +28,13 @@ curve = SubResource("Curve_y1pvw")
 shader = ExtResource("2_o581p")
 shader_parameter/curve = SubResource("CurveTexture_o581p")
 shader_parameter/strength = 0.70000008075
+
+[sub_resource type="Environment" id="Environment_p41qd"]
+background_mode = 1
+glow_enabled = true
+glow_intensity = 2.0
+glow_bloom = 0.25
+glow_hdr_threshold = 0.8
 
 [node name="Node2D" type="Node2D"]
 
@@ -156,3 +163,6 @@ texture = ExtResource("5_3bfw0")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p41qd")
