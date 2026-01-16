@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b2cpg8prhtuc" path="res://blackholeshader/examplebg.png" id="1_y1pvw"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="2_o581p"]
 [ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="3_giod0"]
-[ext_resource type="Texture2D" uid="uid://dkksk6scxy3vt" path="res://blackholeshader/blackcircle.svg" id="4_o581p"]
+[ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="5_3bfw0"]
 
 [sub_resource type="Curve" id="Curve_y1pvw"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -21,17 +21,18 @@ shader_parameter/strength = 0.70000008075
 [node name="Node2D" type="Node2D"]
 
 [node name="Sprite2DBG" type="Sprite2D" parent="."]
-scale = Vector2(3, 3)
+scale = Vector2(100, 100)
 texture = ExtResource("1_y1pvw")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3bfw0")
-scale = Vector2(7.375, 7.375)
+position = Vector2(-88832, -9.998047)
+scale = Vector2(1000, 1000)
 texture = ExtResource("3_giod0")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite2D2"]
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("4_o581p")
+scale = Vector2(0.003, 0.003)
+texture = ExtResource("5_3bfw0")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
