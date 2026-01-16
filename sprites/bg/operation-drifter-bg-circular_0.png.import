@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://7yfn8nioslwd"
-path="res://.godot/imported/operation-drifter-bg_4.png-ec35743e5618f029269658eb83c68d5e.ctex"
+uid="uid://lmjfhpaul4gl"
+path="res://.godot/imported/operation-drifter-bg-circular_0.png-cf3e1534f69f93ffe5b1cacc4373d720.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/operation-drifter-bg_4.png"
-dest_files=["res://.godot/imported/operation-drifter-bg_4.png-ec35743e5618f029269658eb83c68d5e.ctex"]
+source_file="res://sprites/bg/operation-drifter-bg-circular_0.png"
+dest_files=["res://.godot/imported/operation-drifter-bg-circular_0.png-cf3e1534f69f93ffe5b1cacc4373d720.ctex"]
 
 [params]
 

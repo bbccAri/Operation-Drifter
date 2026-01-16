@@ -1,18 +1,18 @@
 [gd_scene load_steps=19 format=3 uid="uid://6c3pngmo45gk"]
 
+[ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_p41qd"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="2_o581p"]
-[ext_resource type="Texture2D" uid="uid://sm5758mcject" path="res://sprites/operation-drifter-bg_0.png" id="2_p41qd"]
-[ext_resource type="Texture2D" uid="uid://ddaoduvosg7u5" path="res://sprites/operation-drifter-bg_1.png" id="3_qmf0x"]
-[ext_resource type="Texture2D" uid="uid://eho0tcfvqowx" path="res://sprites/operation-drifter-bg_2.png" id="4_gg4xk"]
-[ext_resource type="Texture2D" uid="uid://1udtlucmuk4k" path="res://sprites/operation-drifter-bg_3.png" id="5_2wx60"]
+[ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_qmf0x"]
+[ext_resource type="Texture2D" uid="uid://dky3qed3f2rvj" path="res://sprites/bg/operation-drifter-bg-circular_2.png" id="3_gg4xk"]
+[ext_resource type="Texture2D" uid="uid://dwapaeycb7m4q" path="res://sprites/bg/operation-drifter-bg-circular_3.png" id="4_2wx60"]
+[ext_resource type="Texture2D" uid="uid://s6hcvrljd1g4" path="res://sprites/bg/operation-drifter-bg-circular_4.png" id="5_1pgei"]
 [ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="5_3bfw0"]
 [ext_resource type="PackedScene" uid="uid://clni45duunkys" path="res://player.tscn" id="5_giod0"]
-[ext_resource type="Texture2D" uid="uid://7yfn8nioslwd" path="res://sprites/operation-drifter-bg_4.png" id="6_1pgei"]
-[ext_resource type="Texture2D" uid="uid://ctptnueq746bw" path="res://sprites/operation-drifter-bg_5.png" id="7_wixvh"]
-[ext_resource type="Texture2D" uid="uid://dfocilhe36cun" path="res://sprites/operation-drifter-bg_6.png" id="8_hs51i"]
-[ext_resource type="Texture2D" uid="uid://bvu5fwp40bd65" path="res://sprites/operation-drifter-bg_7.png" id="9_aro7i"]
-[ext_resource type="Texture2D" uid="uid://dis5revxqtceu" path="res://sprites/operation-drifter-bg_8.png" id="10_i8u5f"]
-[ext_resource type="Texture2D" uid="uid://hk6on3t14t77" path="res://sprites/operation-drifter-bg_9.png" id="11_78tym"]
+[ext_resource type="Texture2D" uid="uid://cuj0ujpf0wj4y" path="res://sprites/bg/operation-drifter-bg-circular_5.png" id="6_wixvh"]
+[ext_resource type="Texture2D" uid="uid://c3dt17h7fw6jn" path="res://sprites/bg/operation-drifter-bg-circular_6.png" id="7_hs51i"]
+[ext_resource type="Texture2D" uid="uid://drqhtnejmyo8k" path="res://sprites/bg/operation-drifter-bg-circular_7.png" id="8_aro7i"]
+[ext_resource type="Texture2D" uid="uid://bjtegpwu2b8c" path="res://sprites/bg/operation-drifter-bg-circular_8.png" id="9_i8u5f"]
+[ext_resource type="Texture2D" uid="uid://cjp1pbbsvg6tm" path="res://sprites/bg/operation-drifter-bg-circular_9.png" id="10_78tym"]
 [ext_resource type="Texture2D" uid="uid://bh1fdpsy3fq3w" path="res://blackholeshader/7frj09nru4zu.webp" id="12_p41qd"]
 [ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="14_p41qd"]
 
@@ -41,7 +41,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_p41qd")
+texture = ExtResource("1_p41qd")
 
 [node name="Parallax2D2" type="Parallax2D" parent="BG"]
 texture_filter = 1
@@ -51,7 +51,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D2"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_qmf0x")
+texture = ExtResource("2_qmf0x")
 
 [node name="Parallax2D3" type="Parallax2D" parent="BG"]
 texture_filter = 1
@@ -61,7 +61,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D3"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("4_gg4xk")
+texture = ExtResource("3_gg4xk")
 
 [node name="Parallax2D4" type="Parallax2D" parent="BG"]
 texture_filter = 1
@@ -72,7 +72,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D4"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("5_2wx60")
+texture = ExtResource("4_2wx60")
 
 [node name="Parallax2D5" type="Parallax2D" parent="BG"]
 texture_filter = 1
@@ -82,7 +82,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D5"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_1pgei")
+texture = ExtResource("5_1pgei")
 
 [node name="Parallax2D6" type="Parallax2D" parent="BG"]
 texture_filter = 1
@@ -92,7 +92,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D6"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("7_wixvh")
+texture = ExtResource("6_wixvh")
 
 [node name="Parallax2D7" type="Parallax2D" parent="BG"]
 texture_filter = 1
@@ -102,7 +102,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D7"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("8_hs51i")
+texture = ExtResource("7_hs51i")
 
 [node name="Parallax2D8" type="Parallax2D" parent="BG"]
 texture_filter = 1
@@ -112,7 +112,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D8"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("9_aro7i")
+texture = ExtResource("8_aro7i")
 
 [node name="Parallax2D9" type="Parallax2D" parent="BG"]
 texture_filter = 1
@@ -122,7 +122,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D9"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("10_i8u5f")
+texture = ExtResource("9_i8u5f")
 
 [node name="Parallax2D10" type="Parallax2D" parent="BG"]
 texture_filter = 1
@@ -132,7 +132,7 @@ repeat_times = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D10"]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("11_78tym")
+texture = ExtResource("10_78tym")
 
 [node name="Player" parent="." instance=ExtResource("5_giod0")]
 
