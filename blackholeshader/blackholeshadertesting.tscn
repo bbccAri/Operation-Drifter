@@ -134,16 +134,18 @@ repeat_times = 10
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_78tym")
 
-[node name="Player" parent="." instance=ExtResource("5_giod0")]
+[node name="Player" parent="." node_paths=PackedStringArray("black_hole") instance=ExtResource("5_giod0")]
+black_hole = NodePath("../black hole")
 
 [node name="UVChecker" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(-9728, 0)
 scale = Vector2(100, 100)
 texture = ExtResource("12_p41qd")
 
 [node name="black hole" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_3bfw0")
-position = Vector2(-67072.01, 0)
+position = Vector2(-67000, 0)
 scale = Vector2(1000, 1000)
 texture = ExtResource("14_p41qd")
 

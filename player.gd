@@ -6,11 +6,14 @@ enum CharState {
 	GRAB
 }
 
-@export var speed = 1000
-@export var rotation_speed = 100
-@export var acceleration = 5
+@export var speed: float = 800
+@export var rotation_speed: float = 200
+@export var acceleration: float = 5
 var current_state: CharState = CharState.IDLE
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@export var black_hole: Node2D
+@onready var cam: Camera2D = $Camera2D
+@export var zoom_speed: float = 10
 
 func get_movement_input():
 	var input = Vector2()
@@ -30,7 +33,10 @@ func _physics_process(delta):
 	velocity = lerp(velocity, Vector2(0, direction.normalized().y).rotated(rotation) * speed, delta * acceleration)
 	move_and_slide()
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	var bh_distance = global_position.distance_to(black_hole.global_position)
+	black_hole_slow(bh_distance)
+	black_hole_zoom(bh_distance, delta)
 	var input = get_movement_input()
 	if Input.is_action_just_pressed("Interact"):
 		if current_state != CharState.GRAB:
@@ -42,6 +48,24 @@ func _process(_delta: float) -> void:
 	elif current_state != CharState.GRAB:
 		current_state = CharState.IDLE
 	play_anim()
+	
+func black_hole_slow(bh_distance: float):
+	if bh_distance <= 16500:
+		Engine.time_scale = 1.0/60.0
+	elif bh_distance <= 32000:
+		Engine.time_scale = (bh_distance - 16000) / 32000
+	elif bh_distance <= 64000:
+		Engine.time_scale = bh_distance / 64000
+	else:
+		Engine.time_scale = 1.0
+		
+func black_hole_zoom(bh_distance: float, delta: float):
+	if bh_distance <= 25000:
+		cam.zoom = cam.zoom.lerp(Vector2(0.78125, 0.78125), delta * zoom_speed)
+	elif bh_distance <= 64000:
+		cam.zoom = cam.zoom.lerp(Vector2(bh_distance/32000, bh_distance/32000), delta * zoom_speed)
+	else:
+		cam.zoom = cam.zoom.lerp(Vector2(2.0, 2.0), delta * zoom_speed)
 	
 func play_anim():
 	var anim_name = ""
