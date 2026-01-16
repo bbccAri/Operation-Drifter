@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2cpg8prhtuc"
-path="res://.godot/imported/examplebg.png-e99e136b9d13e864b0f4a9725a93e70d.ctex"
+uid="uid://1unbswk0h85i"
+path="res://.godot/imported/operation-drifter-testwarp.png-56b6ca2b7ab658733d0377a8c5934737.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://blackholeshader/examplebg.png"
-dest_files=["res://.godot/imported/examplebg.png-e99e136b9d13e864b0f4a9725a93e70d.ctex"]
+source_file="res://sprites/operation-drifter-testwarp.png"
+dest_files=["res://.godot/imported/operation-drifter-testwarp.png-56b6ca2b7ab658733d0377a8c5934737.ctex"]
 
 [params]
 

@@ -1,0 +1,151 @@
+[gd_scene load_steps=19 format=3 uid="uid://blo7d441h5ijg"]
+
+[ext_resource type="Texture2D" uid="uid://sm5758mcject" path="res://sprites/operation-drifter-bg_0.png" id="1_tpjx5"]
+[ext_resource type="Texture2D" uid="uid://ddaoduvosg7u5" path="res://sprites/operation-drifter-bg_1.png" id="2_sl503"]
+[ext_resource type="Texture2D" uid="uid://eho0tcfvqowx" path="res://sprites/operation-drifter-bg_2.png" id="3_cgm6w"]
+[ext_resource type="Texture2D" uid="uid://1udtlucmuk4k" path="res://sprites/operation-drifter-bg_3.png" id="4_c7gcf"]
+[ext_resource type="Texture2D" uid="uid://7yfn8nioslwd" path="res://sprites/operation-drifter-bg_4.png" id="5_47rrs"]
+[ext_resource type="Texture2D" uid="uid://ctptnueq746bw" path="res://sprites/operation-drifter-bg_5.png" id="6_lwnsd"]
+[ext_resource type="Texture2D" uid="uid://dfocilhe36cun" path="res://sprites/operation-drifter-bg_6.png" id="7_ft087"]
+[ext_resource type="Texture2D" uid="uid://bvu5fwp40bd65" path="res://sprites/operation-drifter-bg_7.png" id="8_qxqej"]
+[ext_resource type="Texture2D" uid="uid://dis5revxqtceu" path="res://sprites/operation-drifter-bg_8.png" id="9_f831m"]
+[ext_resource type="Texture2D" uid="uid://hk6on3t14t77" path="res://sprites/operation-drifter-bg_9.png" id="10_hne5m"]
+[ext_resource type="PackedScene" uid="uid://clni45duunkys" path="res://player.tscn" id="11_765q6"]
+[ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="12_gc6te"]
+[ext_resource type="Curve" uid="uid://wv6yu4fyjyns" path="res://blackholeshader/blackholeshadercurveoriginal.tres" id="13_8el20"]
+[ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="14_2yoa6"]
+[ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="15_5yv6o"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_o581p"]
+curve = ExtResource("13_8el20")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3bfw0"]
+shader = ExtResource("12_gc6te")
+shader_parameter/curve = SubResource("CurveTexture_o581p")
+shader_parameter/strength = 0.70000008075
+
+[sub_resource type="Environment" id="Environment_6f28u"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="BG" type="Node2D" parent="."]
+z_index = -5
+
+[node name="Parallax2D" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(960, 540)
+repeat_times = 1000
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tpjx5")
+
+[node name="Parallax2D2" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.001, 0.001)
+repeat_size = Vector2(960, 540)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_sl503")
+
+[node name="Parallax2D3" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.002, 0.002)
+repeat_size = Vector2(960, 540)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D3"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_cgm6w")
+
+[node name="Parallax2D4" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.004, 0.004)
+repeat_size = Vector2(960, 540)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D4"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_c7gcf")
+
+[node name="Parallax2D5" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.006, 0.006)
+repeat_size = Vector2(960, 540)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D5"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_47rrs")
+
+[node name="Parallax2D6" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.008, 0.008)
+repeat_size = Vector2(960, 540)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D6"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_lwnsd")
+
+[node name="Parallax2D7" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.01, 0.01)
+repeat_size = Vector2(960, 540)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D7"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_ft087")
+
+[node name="Parallax2D8" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.013, 0.013)
+repeat_size = Vector2(960, 540)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D8"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_qxqej")
+
+[node name="Parallax2D9" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.016, 0.016)
+repeat_size = Vector2(960, 540)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D9"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_f831m")
+
+[node name="Parallax2D10" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.02, 0.02)
+repeat_size = Vector2(960, 540)
+repeat_times = 100
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D10"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_hne5m")
+
+[node name="Player" parent="." instance=ExtResource("11_765q6")]
+
+[node name="black hole" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3bfw0")
+position = Vector2(-67072.01, -9.998047)
+scale = Vector2(1000, 1000)
+texture = ExtResource("14_2yoa6")
+
+[node name="Sprite2D" type="Sprite2D" parent="black hole"]
+z_index = 1
+scale = Vector2(0.003, 0.003)
+texture = ExtResource("15_5yv6o")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_6f28u")
