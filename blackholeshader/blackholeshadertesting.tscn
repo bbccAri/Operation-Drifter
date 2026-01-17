@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=21 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_p41qd"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="2_o581p"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://cjp1pbbsvg6tm" path="res://sprites/bg/operation-drifter-bg-circular_9.png" id="10_78tym"]
 [ext_resource type="Texture2D" uid="uid://bh1fdpsy3fq3w" path="res://blackholeshader/7frj09nru4zu.webp" id="12_p41qd"]
 [ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="14_p41qd"]
+[ext_resource type="PackedScene" uid="uid://i4rr4y2x4uq7" path="res://debris.tscn" id="16_qmf0x"]
 
 [sub_resource type="Curve" id="Curve_y1pvw"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -166,3 +167,8 @@ copy_mode = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_p41qd")
+
+[node name="Debris" parent="." node_paths=PackedStringArray("target") instance=ExtResource("16_qmf0x")]
+position = Vector2(-45, 7)
+target = NodePath("../black hole")
+speed = 0.01

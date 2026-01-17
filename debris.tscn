@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://i4rr4y2x4uq7"]
+
+[ext_resource type="Texture2D" uid="uid://b5yiyb6nl8av0" path="res://sprites/debris1.png" id="1_e8eya"]
+[ext_resource type="Script" uid="uid://b2m6e5q0pouec" path="res://orbit.gd" id="1_ov8td"]
+
+[node name="Debris" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_ov8td")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_e8eya")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-19, -25, -27, -9, -26, -1, -21, 13, -8, 28, 15, 14, 27, 23, 30, 21, 29, 6, 22, -12, 2, -7, 0, -25, -6, -29)
