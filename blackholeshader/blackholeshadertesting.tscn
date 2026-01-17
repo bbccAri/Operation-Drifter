@@ -146,7 +146,6 @@ texture = ExtResource("10_78tym")
 black_hole = NodePath("../black hole")
 
 [node name="UVChecker" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-9728, 0)
 scale = Vector2(100, 100)
 texture = ExtResource("12_p41qd")
@@ -158,7 +157,7 @@ scale = Vector2(1000, 1000)
 texture = ExtResource("14_p41qd")
 
 [node name="Sprite2D" type="Sprite2D" parent="black hole"]
-z_index = 1
+z_index = 5
 scale = Vector2(0.003, 0.003)
 texture = ExtResource("5_3bfw0")
 

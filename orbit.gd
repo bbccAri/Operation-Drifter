@@ -8,7 +8,7 @@ var distance: float
 var current_angle: float = 0.0
 
 func _ready() -> void:
-	current_angle = deg_to_rad(randf_range(0.0, 360.0))
+	#current_angle = deg_to_rad(randf_range(0.0, 360.0))
 	distance = position.distance_to(target.position)
 
 func _process(delta: float) -> void:
