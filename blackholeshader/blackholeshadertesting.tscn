@@ -255,5 +255,25 @@ position = Vector2(-5537, 7)
 mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
+[node name="Debris14" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
+position = Vector2(-8424, 7)
+mass = 0.2
+orbit_target = NodePath("../BlackHole/Warp")
+
+[node name="Debris15" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
+position = Vector2(-16187, 7)
+mass = 0.2
+orbit_target = NodePath("../BlackHole/Warp")
+
+[node name="Debris16" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
+position = Vector2(-25598, 7)
+mass = 0.2
+orbit_target = NodePath("../BlackHole/Warp")
+
+[node name="Debris17" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
+position = Vector2(-32468, 7)
+mass = 0.2
+orbit_target = NodePath("../BlackHole/Warp")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_1pgei")
