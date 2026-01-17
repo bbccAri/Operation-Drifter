@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=24 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_p41qd"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="2_o581p"]
@@ -16,6 +16,14 @@
 [ext_resource type="Texture2D" uid="uid://bh1fdpsy3fq3w" path="res://blackholeshader/7frj09nru4zu.webp" id="12_p41qd"]
 [ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="14_p41qd"]
 [ext_resource type="PackedScene" uid="uid://i4rr4y2x4uq7" path="res://debris.tscn" id="16_qmf0x"]
+[ext_resource type="Shader" uid="uid://c1qi8pde6kj6u" path="res://blackholeshader/raymarching.gdshader" id="17_gg4xk"]
+
+[sub_resource type="Environment" id="Environment_p41qd"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 2.0
+glow_bloom = 0.25
+glow_hdr_threshold = 0.8
 
 [sub_resource type="Curve" id="Curve_y1pvw"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -30,14 +38,17 @@ shader = ExtResource("2_o581p")
 shader_parameter/curve = SubResource("CurveTexture_xdfst")
 shader_parameter/strength = 0.70000008075
 
-[sub_resource type="Environment" id="Environment_p41qd"]
-background_mode = 1
-glow_enabled = true
-glow_intensity = 2.0
-glow_bloom = 0.25
-glow_hdr_threshold = 0.8
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2wx60"]
+render_priority = 0
+shader = ExtResource("17_gg4xk")
+
+[sub_resource type="BoxMesh" id="BoxMesh_1pgei"]
+material = SubResource("ShaderMaterial_2wx60")
 
 [node name="Node2D" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p41qd")
 
 [node name="BG" type="Node2D" parent="."]
 
@@ -165,10 +176,10 @@ texture = ExtResource("5_3bfw0")
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_p41qd")
-
 [node name="Debris" parent="." node_paths=PackedStringArray("target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-45, 7)
 target = NodePath("../black hole")
 speed = 0.01
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_1pgei")
