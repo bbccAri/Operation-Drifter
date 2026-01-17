@@ -14,6 +14,8 @@ var current_state: CharState = CharState.IDLE
 @export var black_hole: Node2D
 @onready var cam: Camera2D = $Camera2D
 @export var zoom_speed: float = 10
+@export var gravity_resistance: float = 1.0
+@onready var particle_trail: GPUParticles2D = $TrailParticles
 
 func get_movement_input():
 	var input = Vector2()
@@ -31,6 +33,7 @@ func _physics_process(delta):
 	var direction = get_movement_input()
 	rotation_degrees += direction.x * rotation_speed * delta
 	velocity = lerp(velocity, Vector2(0, direction.normalized().y).rotated(rotation) * speed, delta * acceleration)
+	velocity += get_gravity() * gravity_resistance
 	move_and_slide()
 	
 func _process(delta: float) -> void:
@@ -48,6 +51,10 @@ func _process(delta: float) -> void:
 	elif current_state != CharState.GRAB:
 		current_state = CharState.IDLE
 	play_anim()
+	if input != Vector2.ZERO:
+		particle_trail.amount_ratio = 1.0
+	else:
+		particle_trail.amount_ratio = 0.0
 	
 func black_hole_slow(bh_distance: float):
 	if bh_distance <= 16500:

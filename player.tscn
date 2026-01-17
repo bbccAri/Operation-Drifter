@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://clni45duunkys"]
+[gd_scene load_steps=20 format=3 uid="uid://clni45duunkys"]
 
 [ext_resource type="Script" uid="uid://cfylhqiv2lhq4" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bbj8bnfa2hfo5" path="res://sprites/operation-drifter-player-placeholder.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://dt21jtdpy7hrm" path="res://sprites/operation-drifter_particletrailspritesheet.png" id="3_hqtel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 16.0
@@ -49,7 +50,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"grab",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -66,7 +67,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -77,8 +78,50 @@ animations = [{
 }],
 "loop": true,
 "name": &"move",
-"speed": 5.0
+"speed": 12.0
 }]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i3pqv"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_hqtel"]
+offsets = PackedFloat32Array(0.6745283, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sweqy"]
+gradient = SubResource("Gradient_hqtel")
+
+[sub_resource type="Curve" id="Curve_i3pqv"]
+_data = [Vector2(0.026315778, 0), 0.0, -0.022369564, 0, 0, Vector2(0.052631572, 0), 0.031850107, 0.031850107, 0, 0, Vector2(0.34962404, 1), -0.33619872, -0.33619872, 0, 0, Vector2(0.7443609, 0.82398456), -1.5242704, -1.5242704, 0, 0, Vector2(1, 0), -2.8083508, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_hqtel"]
+curve = SubResource("Curve_i3pqv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sweqy"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+orbit_velocity_min = -0.019999906
+orbit_velocity_max = 0.020000096
+gravity = Vector3(0, 0, 0)
+damping_max = 2.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_hqtel")
+color_ramp = SubResource("GradientTexture1D_sweqy")
+anim_offset_max = 1.0
 
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
@@ -94,3 +137,12 @@ sprite_frames = SubResource("SpriteFrames_i3pqv")
 animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TrailParticles" type="GPUParticles2D" parent="."]
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_i3pqv")
+amount = 32
+texture = ExtResource("3_hqtel")
+randomness = 0.1
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_sweqy")

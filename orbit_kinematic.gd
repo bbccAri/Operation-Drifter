@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var target: Node2D
-@export var speed: float = 50.0
+@export var speed: float = 0.01
 var distance: float
 @export var start_angle: float = 0.0
 
