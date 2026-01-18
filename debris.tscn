@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_fake_physics.gd" id="1_ov8td"]
 
 [node name="Debris" type="RigidBody2D"]
+freeze_mode = 1
 script = ExtResource("1_ov8td")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

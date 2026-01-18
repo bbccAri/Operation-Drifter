@@ -1,4 +1,5 @@
 extends RigidBody2D
+class_name Debris
 
 @export var orbit_target: Node2D
 var speed: float = 200
@@ -6,6 +7,7 @@ var speed: float = 200
 var distance: float
 var perpendicular_direction: Vector2
 var undisturbed: bool = true
+@export var gravity_factor: float = 0.025
 
 func PerpendicularClockwise(vector2: Vector2) -> Vector2:
 	return Vector2(vector2.y, -vector2.x)
@@ -14,19 +16,23 @@ func PerpendicularCounterClockwise(vector2: Vector2) -> Vector2:
 	return Vector2(-vector2.y, vector2.x)
 
 func _ready() -> void:
-	gravity_scale = 0.025
+	gravity_scale = gravity_factor
 
 func _physics_process(delta: float) -> void:
-	distance = global_position.distance_to(orbit_target.global_position)
-	var dir_to_target = global_position.direction_to(orbit_target.global_position)
-	perpendicular_direction = PerpendicularCounterClockwise(dir_to_target)
-	speed = speed_factor * distance/10000
-	#linear_velocity = perpendicular_direction * starting_speed
-	apply_force(perpendicular_direction * speed * delta)
+	if undisturbed:
+		distance = global_position.distance_to(orbit_target.global_position)
+		var dir_to_target = global_position.direction_to(orbit_target.global_position)
+		perpendicular_direction = PerpendicularCounterClockwise(dir_to_target)
+		speed = speed_factor * distance/10000
+		#linear_velocity = perpendicular_direction * starting_speed
+		apply_force(perpendicular_direction * speed * delta)
 
 func grab():
 	undisturbed = false
 	gravity_scale = 0.0
+	linear_velocity = Vector2.ZERO
+	freeze = true
 	
 func ungrab():
-	gravity_scale = 1.0
+	gravity_scale = gravity_factor
+	freeze = false

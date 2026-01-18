@@ -1,11 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://clni45duunkys"]
+[gd_scene load_steps=21 format=3 uid="uid://clni45duunkys"]
 
 [ext_resource type="Script" uid="uid://cfylhqiv2lhq4" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://bbj8bnfa2hfo5" path="res://sprites/operation-drifter-player-placeholder.png" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dt21jtdpy7hrm" path="res://sprites/operation-drifter_particletrailspritesheet.png" id="3_hqtel"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
-radius = 16.0
+radius = 8.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("2_onrkg")
@@ -123,6 +123,9 @@ scale_curve = SubResource("CurveTexture_hqtel")
 color_ramp = SubResource("GradientTexture1D_sweqy")
 anim_offset_max = 1.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
+radius = 16.0
+
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_onrkg")
@@ -142,7 +145,19 @@ animation = &"idle"
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_i3pqv")
 amount = 32
+amount_ratio = 0.0
 texture = ExtResource("3_hqtel")
 randomness = 0.1
 fixed_fps = 24
 process_material = SubResource("ParticleProcessMaterial_sweqy")
+
+[node name="PickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
+shape = SubResource("CircleShape2D_i3pqv")
+
+[node name="GrabbedPosition" type="Marker2D" parent="."]
+position = Vector2(-32, 0)
+
+[connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
+[connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]
