@@ -10,6 +10,7 @@ script = ExtResource("1_ov8td")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(25, 25)
 texture = ExtResource("1_e8eya")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

@@ -9,8 +9,13 @@ var perpendicular_direction: Vector2
 var undisturbed: bool = true
 @export var gravity_factor: float = 0.025
 
-var debris_spawner: Node2D
+#var debris_spawner: Node2D
+var player: CharacterBody2D
 @export var despawn_distance: float = 128.0
+var count_up_timer: float = 0.0
+var expiration_date: float = 20.0
+var scrap_rarity: DebrisSpawner.ScrapRarity = DebrisSpawner.ScrapRarity.Materials
+@onready var sprite: Sprite2D = $Sprite2D
 
 func PerpendicularClockwise(vector2: Vector2) -> Vector2:
 	return Vector2(vector2.y, -vector2.x)
@@ -33,10 +38,16 @@ func _physics_process(delta: float) -> void:
 		#linear_velocity = perpendicular_direction * starting_speed
 		apply_force(perpendicular_direction * speed * delta)
 		
-func _process(_delta: float) -> void:
-	if debris_spawner != null:
-		if global_position.distance_squared_to(debris_spawner.global_position) >= pow(despawn_distance, 2):
-			queue_free()
+func _process(delta: float) -> void:
+	#if debris_spawner != null:
+		#if global_position.distance_squared_to(debris_spawner.global_position) >= pow(despawn_distance, 2):
+			#queue_free()
+	if player != null:
+		if count_up_timer >= expiration_date:
+			if global_position.distance_squared_to(player.global_position) >= pow(despawn_distance, 2):
+				queue_free()
+		elif player != null:
+			count_up_timer += delta
 
 func grab():
 	undisturbed = false

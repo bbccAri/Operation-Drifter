@@ -72,12 +72,13 @@ func black_hole_slow(bh_distance: float):
 		Engine.time_scale = 1.0
 		
 func black_hole_zoom(bh_distance: float, delta: float):
-	if bh_distance <= 25000:
-		cam.zoom = cam.zoom.lerp(Vector2(0.78125, 0.78125), delta * zoom_speed)
-	elif bh_distance <= 64000:
-		cam.zoom = cam.zoom.lerp(Vector2(bh_distance/32000, bh_distance/32000), delta * zoom_speed)
-	else:
-		cam.zoom = cam.zoom.lerp(Vector2(2, 2), delta * zoom_speed)
+	#if bh_distance <= 25000:
+		#cam.zoom = cam.zoom.lerp(Vector2(0.78125, 0.78125), delta * zoom_speed)
+	#elif bh_distance <= 64000:
+		#cam.zoom = cam.zoom.lerp(Vector2(bh_distance/32000, bh_distance/32000), delta * zoom_speed)
+	#else:
+		#cam.zoom = cam.zoom.lerp(Vector2(2, 2), delta * zoom_speed)
+	cam.zoom = Vector2(0.005, 0.005)
 	
 func play_anim():
 	var anim_name = ""
