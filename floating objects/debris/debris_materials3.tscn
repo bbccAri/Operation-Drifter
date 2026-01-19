@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1apn2w3wkb73"]
+
+[ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_debris.gd" id="1_nowy4"]
+[ext_resource type="Texture2D" uid="uid://qgygdqnjeyq5" path="res://sprites/debris/materials/debris4.png" id="2_nowy4"]
+
+[node name="Debris" type="RigidBody2D"]
+mass = 0.2
+freeze_mode = 1
+script = ExtResource("1_nowy4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_nowy4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -26, -22, -26, -27, -17, -27, 4, -21, 17, 16, 27, 25, 22, 28, 11, 24, 0, 9, -10)

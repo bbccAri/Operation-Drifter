@@ -20,6 +20,9 @@ var debris_in_range: Array = []
 var target_pickup_object: Node2D
 @onready var grabbed_position: Marker2D = $GrabbedPosition
 var grabbed_object: Node2D
+var money: int = 0
+var cargo_capacity: int = 50
+var cargo_carrying: int = 0
 var zoom_modifier: float = 1.0
 @export var zoom_extents_min: float = 0.5
 @export var zoom_extents_max: float = 2.0

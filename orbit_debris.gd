@@ -19,6 +19,9 @@ var scrap_rarity: DebrisSpawner.ScrapRarity = DebrisSpawner.ScrapRarity.Material
 
 @export var speedup_when_closer: bool = true
 
+var value: int = 0
+var cargo_size: int = 10
+
 func PerpendicularClockwise(vector2: Vector2) -> Vector2:
 	return Vector2(vector2.y, -vector2.x)
 
@@ -70,4 +73,9 @@ func ungrab():
 
 func despawn():
 	debris_spawner.debris_array.erase(self)
+	queue_free()
+
+func explode():
+	debris_spawner.debris_array.erase(self)
+	Engine.get_main_loop().process_frame
 	queue_free()
