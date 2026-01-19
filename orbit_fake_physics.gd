@@ -9,6 +9,9 @@ var perpendicular_direction: Vector2
 var undisturbed: bool = true
 @export var gravity_factor: float = 0.025
 
+var debris_spawner: Node2D
+@export var despawn_distance: float = 128.0
+
 func PerpendicularClockwise(vector2: Vector2) -> Vector2:
 	return Vector2(vector2.y, -vector2.x)
 
@@ -17,6 +20,9 @@ func PerpendicularCounterClockwise(vector2: Vector2) -> Vector2:
 
 func _ready() -> void:
 	gravity_scale = gravity_factor
+	var dir_to_target = global_position.direction_to(orbit_target.global_position)
+	perpendicular_direction = PerpendicularCounterClockwise(dir_to_target)
+	linear_velocity = perpendicular_direction * speed
 
 func _physics_process(delta: float) -> void:
 	if undisturbed:
@@ -26,6 +32,11 @@ func _physics_process(delta: float) -> void:
 		speed = speed_factor * distance/10000
 		#linear_velocity = perpendicular_direction * starting_speed
 		apply_force(perpendicular_direction * speed * delta)
+		
+func _process(_delta: float) -> void:
+	if debris_spawner != null:
+		if global_position.distance_squared_to(debris_spawner.global_position) >= pow(despawn_distance, 2):
+			queue_free()
 
 func grab():
 	undisturbed = false

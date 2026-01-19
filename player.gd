@@ -59,6 +59,7 @@ func _process(delta: float) -> void:
 		particle_trail.amount_ratio = 1.0
 	else:
 		particle_trail.amount_ratio = 0.0
+	#print(global_position)
 	
 func black_hole_slow(bh_distance: float):
 	if bh_distance <= 16500:
@@ -76,7 +77,7 @@ func black_hole_zoom(bh_distance: float, delta: float):
 	elif bh_distance <= 64000:
 		cam.zoom = cam.zoom.lerp(Vector2(bh_distance/32000, bh_distance/32000), delta * zoom_speed)
 	else:
-		cam.zoom = cam.zoom.lerp(Vector2(2, 2), delta * zoom_speed) #reset to 2, 2
+		cam.zoom = cam.zoom.lerp(Vector2(2, 2), delta * zoom_speed)
 	
 func play_anim():
 	var anim_name = ""
@@ -93,7 +94,7 @@ func pickup() -> void:
 	if debris_in_range.size() > 0:
 		target_pickup_object = debris_in_range[0]
 		for item in debris_in_range:
-			if global_position.distance_to(item.global_position) < global_position.distance_to(target_pickup_object.global_position):
+			if global_position.distance_squared_to(item.global_position) < global_position.distance_squared_to(target_pickup_object.global_position):
 				target_pickup_object = item
 		pickup_object(target_pickup_object)
 	

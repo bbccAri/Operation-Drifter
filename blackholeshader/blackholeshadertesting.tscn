@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=26 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_p41qd"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="2_o581p"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://drqhtnejmyo8k" path="res://sprites/bg/operation-drifter-bg-circular_7.png" id="8_aro7i"]
 [ext_resource type="Texture2D" uid="uid://bjtegpwu2b8c" path="res://sprites/bg/operation-drifter-bg-circular_8.png" id="9_i8u5f"]
 [ext_resource type="Texture2D" uid="uid://cjp1pbbsvg6tm" path="res://sprites/bg/operation-drifter-bg-circular_9.png" id="10_78tym"]
+[ext_resource type="Script" uid="uid://7uia1eayry5p" path="res://debris_spawner.gd" id="12_2wx60"]
 [ext_resource type="Texture2D" uid="uid://bh1fdpsy3fq3w" path="res://blackholeshader/7frj09nru4zu.webp" id="12_p41qd"]
 [ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="14_p41qd"]
 [ext_resource type="PackedScene" uid="uid://i4rr4y2x4uq7" path="res://debris.tscn" id="16_qmf0x"]
@@ -159,6 +160,10 @@ texture = ExtResource("10_78tym")
 [node name="Player" parent="." node_paths=PackedStringArray("black_hole") instance=ExtResource("5_giod0")]
 black_hole = NodePath("../BlackHole/Warp")
 
+[node name="DebrisSpawner" type="Node2D" parent="Player" node_paths=PackedStringArray("target")]
+script = ExtResource("12_2wx60")
+target = NodePath("../../BlackHole")
+
 [node name="UVChecker" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(-9728, 0)
@@ -192,87 +197,70 @@ copy_mode = 2
 
 [node name="Debris" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-45, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris2" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-919, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris3" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-1464, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris4" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-2060, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris5" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-2473, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris6" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-2838, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris7" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-3158, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris8" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-3383, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris9" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-3669, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris10" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-4176, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris11" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-4645, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris12" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-5143, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris13" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-5537, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris14" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-8424, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris15" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-16187, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris16" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-25598, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="Debris17" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
 position = Vector2(-32468, 7)
-mass = 0.2
 orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
