@@ -20,6 +20,13 @@ var debris_in_range: Array = []
 var target_pickup_object: Node2D
 @onready var grabbed_position: Marker2D = $GrabbedPosition
 var grabbed_object: Node2D
+var zoom_modifier: float = 1.0
+@export var zoom_extents_min: float = 0.5
+@export var zoom_extents_max: float = 2.0
+@export var zoom_scroll_amount: float = 0.1
+
+@export var zoom_debug: bool = false
+@export var zoom_debug_scale: float = 0.005
 
 func get_movement_input():
 	var input = Vector2()
@@ -33,6 +40,14 @@ func get_movement_input():
 		input.y -= 1
 	return input
 
+func get_zoom_input():
+	var input: float = 0.0
+	if Input.is_action_just_pressed("Zoom_In"):
+		input += 1.0
+	if Input.is_action_just_pressed("Zoom_Out"):
+		input -= 1.0
+	return input
+
 func _physics_process(delta):
 	var direction = get_movement_input()
 	rotation_degrees += direction.x * rotation_speed * delta
@@ -43,7 +58,7 @@ func _physics_process(delta):
 func _process(delta: float) -> void:
 	var bh_distance = global_position.distance_to(black_hole.global_position)
 	black_hole_slow(bh_distance)
-	black_hole_zoom(bh_distance, delta)
+	black_hole_zoom(bh_distance, delta, zoom_modifier)
 	var input = get_movement_input()
 	if Input.is_action_just_pressed("Interact"):
 		if current_state != CharState.GRAB:
@@ -61,6 +76,14 @@ func _process(delta: float) -> void:
 		particle_trail.amount_ratio = 0.0
 	#print(global_position)
 	
+	var zoom_input = get_zoom_input()
+	if zoom_input > 0 and (zoom_modifier <= zoom_extents_max or zoom_debug):
+		zoom_modifier += zoom_scroll_amount * zoom_input * zoom_modifier
+	elif zoom_input < 0 and (zoom_modifier >= zoom_extents_min or zoom_debug):
+		zoom_modifier += zoom_scroll_amount * zoom_input * zoom_modifier
+	if !zoom_debug:
+		zoom_modifier = clampf(zoom_modifier, zoom_extents_min, zoom_extents_max)
+	
 func black_hole_slow(bh_distance: float):
 	if bh_distance <= 16500:
 		Engine.time_scale = 1.0/60.0
@@ -71,14 +94,16 @@ func black_hole_slow(bh_distance: float):
 	else:
 		Engine.time_scale = 1.0
 		
-func black_hole_zoom(bh_distance: float, delta: float):
-	#if bh_distance <= 25000:
-		#cam.zoom = cam.zoom.lerp(Vector2(0.78125, 0.78125), delta * zoom_speed)
-	#elif bh_distance <= 64000:
-		#cam.zoom = cam.zoom.lerp(Vector2(bh_distance/32000, bh_distance/32000), delta * zoom_speed)
-	#else:
-		#cam.zoom = cam.zoom.lerp(Vector2(2, 2), delta * zoom_speed)
-	cam.zoom = Vector2(0.005, 0.005)
+func black_hole_zoom(bh_distance: float, delta: float, modifier: float = 1.0):
+	if zoom_debug:
+		cam.zoom = Vector2(zoom_debug_scale, zoom_debug_scale) * modifier
+	else:
+		if bh_distance <= 25000:
+			cam.zoom = cam.zoom.lerp(Vector2(0.78125, 0.78125) * modifier, delta * zoom_speed)
+		elif bh_distance <= 64000:
+			cam.zoom = cam.zoom.lerp(Vector2(bh_distance/32000, bh_distance/32000) * modifier, delta * zoom_speed)
+		else:
+			cam.zoom = cam.zoom.lerp(Vector2(2, 2) * modifier, delta * zoom_speed)
 	
 func play_anim():
 	var anim_name = ""

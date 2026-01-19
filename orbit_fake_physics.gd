@@ -9,13 +9,15 @@ var perpendicular_direction: Vector2
 var undisturbed: bool = true
 @export var gravity_factor: float = 0.025
 
-#var debris_spawner: Node2D
+var debris_spawner: DebrisSpawner
 var player: CharacterBody2D
 @export var despawn_distance: float = 128.0
 var count_up_timer: float = 0.0
 var expiration_date: float = 20.0
 var scrap_rarity: DebrisSpawner.ScrapRarity = DebrisSpawner.ScrapRarity.Materials
 @onready var sprite: Sprite2D = $Sprite2D
+
+@export var speedup_when_closer: bool = true
 
 func PerpendicularClockwise(vector2: Vector2) -> Vector2:
 	return Vector2(vector2.y, -vector2.x)
@@ -35,6 +37,13 @@ func _physics_process(delta: float) -> void:
 		var dir_to_target = global_position.direction_to(orbit_target.global_position)
 		perpendicular_direction = PerpendicularCounterClockwise(dir_to_target)
 		speed = speed_factor * distance/10000
+		if speedup_when_closer:
+			if distance >= 24000:
+				speed *= (96000/distance)
+				#gravity_scale *= (64000/distance)
+			else:
+				speed *= 4
+				#gravity_scale *= (8.0/3.0)
 		#linear_velocity = perpendicular_direction * starting_speed
 		apply_force(perpendicular_direction * speed * delta)
 		
@@ -45,7 +54,7 @@ func _process(delta: float) -> void:
 	if player != null:
 		if count_up_timer >= expiration_date:
 			if global_position.distance_squared_to(player.global_position) >= pow(despawn_distance, 2):
-				queue_free()
+				despawn()
 		elif player != null:
 			count_up_timer += delta
 
@@ -58,3 +67,7 @@ func grab():
 func ungrab():
 	gravity_scale = gravity_factor
 	freeze = false
+
+func despawn():
+	debris_spawner.debris_array.erase(self)
+	queue_free()

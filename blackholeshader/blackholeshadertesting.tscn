@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=28 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_p41qd"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="2_o581p"]
@@ -15,8 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://cjp1pbbsvg6tm" path="res://sprites/bg/operation-drifter-bg-circular_9.png" id="10_78tym"]
 [ext_resource type="Script" uid="uid://dydpbdus4lpu5" path="res://debris_spawner.gd" id="12_2wx60"]
 [ext_resource type="Texture2D" uid="uid://bh1fdpsy3fq3w" path="res://blackholeshader/7frj09nru4zu.webp" id="12_p41qd"]
+[ext_resource type="Texture2D" uid="uid://dayx5facta601" path="res://sprites/accretion disk/darkness_fade.png" id="14_aro7i"]
 [ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="14_p41qd"]
-[ext_resource type="PackedScene" uid="uid://i4rr4y2x4uq7" path="res://debris.tscn" id="16_qmf0x"]
+[ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://blackholeshader/accretion_disk_visual.gd" id="15_wixvh"]
+[ext_resource type="Texture2D" uid="uid://bbf138trb540f" path="res://sprites/accretion disk/accretion_disk_glow_underlay_scaledup.png" id="16_wixvh"]
 [ext_resource type="Shader" uid="uid://c1qi8pde6kj6u" path="res://blackholeshader/raymarching.gdshader" id="17_gg4xk"]
 
 [sub_resource type="Environment" id="Environment_p41qd"]
@@ -158,10 +160,10 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_78tym")
 
 [node name="Player" parent="." node_paths=PackedStringArray("black_hole") instance=ExtResource("5_giod0")]
+position = Vector2(67000, 0)
 black_hole = NodePath("../BlackHole/Warp")
 
 [node name="DebrisSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
-position = Vector2(-67000, 0)
 script = ExtResource("12_2wx60")
 target = NodePath("../BlackHole")
 player = NodePath("../Player")
@@ -173,14 +175,27 @@ scale = Vector2(100, 100)
 texture = ExtResource("12_p41qd")
 
 [node name="BlackHole" type="Node2D" parent="."]
-position = Vector2(-67000, 0)
+
+[node name="DarknessFade" type="Sprite2D" parent="BlackHole"]
+scale = Vector2(4, 4)
+texture = ExtResource("14_aro7i")
+
+[node name="Accretion Disk2" type="Node2D" parent="BlackHole"]
+scale = Vector2(34.5, 34.5)
+script = ExtResource("15_wixvh")
+
+[node name="Underglow" type="Sprite2D" parent="BlackHole/Accretion Disk2"]
+modulate = Color(1, 1, 1, 0.2509804)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("16_wixvh")
 
 [node name="Warp" type="Sprite2D" parent="BlackHole"]
+visible = false
 material = SubResource("ShaderMaterial_3bfw0")
 scale = Vector2(1000, 1000)
 texture = ExtResource("14_p41qd")
 
-[node name="Center" type="Sprite2D" parent="BlackHole"]
+[node name="Hole" type="Sprite2D" parent="BlackHole"]
 z_index = 5
 scale = Vector2(3, 3)
 texture = ExtResource("5_3bfw0")
@@ -196,74 +211,6 @@ shape = SubResource("CircleShape2D_gg4xk")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
-
-[node name="Debris" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-45, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris2" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-919, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris3" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-1464, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris4" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-2060, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris5" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-2473, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris6" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-2838, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris7" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-3158, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris8" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-3383, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris9" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-3669, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris10" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-4176, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris11" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-4645, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris12" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-5143, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris13" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-5537, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris14" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-8424, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris15" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-16187, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris16" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-25598, 7)
-orbit_target = NodePath("../BlackHole/Warp")
-
-[node name="Debris17" parent="." node_paths=PackedStringArray("orbit_target") instance=ExtResource("16_qmf0x")]
-position = Vector2(-32468, 7)
-orbit_target = NodePath("../BlackHole/Warp")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_1pgei")

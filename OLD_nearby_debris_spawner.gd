@@ -39,5 +39,5 @@ func spawn_debris():
 	obj.rotation = randf_range(0.0, TAU)
 	obj.orbit_target = target
 	obj.despawn_distance = despawn_distance
-	obj.debris_spawner = self
+	#obj.debris_spawner = self
 	get_tree().current_scene.add_child(obj)

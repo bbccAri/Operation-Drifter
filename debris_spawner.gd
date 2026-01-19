@@ -5,10 +5,10 @@ class_name DebrisSpawner
 @export var target: Node2D
 @export var player: CharacterBody2D
 @export var spawn_radius_min: float = 24000.0
-@export var spawn_radius_max: float = 64000.0
+@export var spawn_radius_max: float = 80000.0
 @export var despawn_time_min: float = 15.0
 @export var despawn_time_max: float = 25.0
-@export var max_debris: int = 500
+@export var max_debris: int = 4000
 @export var rarity_chance: float = 0.25
 var debris_array: Array = []
 @export var scraps_worthless: Array
@@ -53,11 +53,14 @@ func spawn_debris():
 		obj.scrap_rarity = ScrapRarity.Worthless
 		#obj.sprite = scraps_worthless.pick_random()
 	var pos_to_spawn: Vector2 = global_position + Vector2.from_angle(angle) * spawn_distance
-	while pos_to_spawn.distance_to(player.global_position) <= 96.0:
+	while pos_to_spawn.distance_to(player.global_position) <= 128.0:
 		pos_to_spawn = global_position + Vector2.from_angle(angle) * spawn_distance
-	obj.global_position = pos_to_spawn
+	obj.position = pos_to_spawn
 	obj.rotation = randf_range(0.0, TAU)
 	obj.orbit_target = target
 	obj.player = player
+	obj.debris_spawner = self
+	obj.expiration_date = randf_range(despawn_time_min, despawn_time_max)
+	debris_array.append(obj)
 	
 	self.add_child(obj)
