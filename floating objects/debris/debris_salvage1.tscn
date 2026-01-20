@@ -18,7 +18,7 @@ script = ExtResource("1_mm3o5")
 texture_filter = 1
 texture = ExtResource("2_ej2vo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k4psp")
 
 [node name="DebrisExplodeParticles" parent="." instance=ExtResource("3_3o47q")]

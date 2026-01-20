@@ -15,7 +15,7 @@ script = ExtResource("1_nowy4")
 texture_filter = 1
 texture = ExtResource("2_nowy4")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+[node name="Collision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -26, -22, -26, -27, -17, -27, 4, -21, 17, 16, 27, 25, 22, 28, 11, 24, 0, 9, -10)
 
 [node name="DebrisExplodeParticles" parent="." instance=ExtResource("3_ovtvf")]
