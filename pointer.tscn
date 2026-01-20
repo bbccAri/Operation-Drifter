@@ -1,0 +1,167 @@
+[gd_scene load_steps=18 format=3 uid="uid://dij712yywgc02"]
+
+[ext_resource type="Script" uid="uid://bn6qr4172tscm" path="res://pointer.gd" id="1_asalp"]
+[ext_resource type="Texture2D" uid="uid://bg81g5u47fqb1" path="res://sprites/operation-drifter_arrow.png" id="2_d5mmh"]
+[ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="3_rvxbq"]
+[ext_resource type="Texture2D" uid="uid://bixsutfg112tf" path="res://sprites/accretion disk/accretion_disk_glow_underlay.png" id="4_a1g42"]
+[ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://blackholeshader/accretion_disk_visual.gd" id="5_6uqvk"]
+[ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="5_b1ag5"]
+[ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="6_radl4"]
+[ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="7_6uqvk"]
+[ext_resource type="Texture2D" uid="uid://w3noudyqddnb" path="res://sprites/operation-drifter_shopicon.png" id="8_b1ag5"]
+[ext_resource type="Texture2D" uid="uid://x2mqryb73hsm" path="res://sprites/operation-drifter_warning.png" id="8_radl4"]
+
+[sub_resource type="Animation" id="Animation_2hs0m"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-128, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_sweqy"]
+resource_name = "arrow_bob"
+length = 4.0000043
+loop_mode = 1
+step = 0.041666668
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(),
+"points": PackedFloat32Array(),
+"times": PackedFloat32Array()
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(-128, -1, 0, 1, 0, -147.5, -1, 0, 1, 0, -128, -1, 0, 1, 0),
+"times": PackedFloat32Array(0, 2, 4.0000043)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1jxqw"]
+_data = {
+&"RESET": SubResource("Animation_2hs0m"),
+&"arrow_bob": SubResource("Animation_sweqy")
+}
+
+[sub_resource type="Curve" id="Curve_radl4"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.0014533997), 0.0, 0.0, 0, 0, Vector2(0.1796875, -0.6130115), 0.0, 0.0, 0, 0, Vector2(0.24028268, 0.14970934), 0.0, 0.0, 0, 0, Vector2(0.33984375, -0.2032193), 0.0, 0.0, 0, 0, Vector2(0.48763248, -0.0014533997), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_6uqvk"]
+curve = SubResource("Curve_radl4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qoutw"]
+shader = ExtResource("5_b1ag5")
+shader_parameter/curve = SubResource("CurveTexture_6uqvk")
+shader_parameter/strength = 0.10000005224999997
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6uqvk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_radl4")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Pointer" type="Node2D"]
+z_index = 5
+script = ExtResource("1_asalp")
+
+[node name="Arrow" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Arrow"]
+texture_filter = 1
+position = Vector2(0, -128)
+texture = ExtResource("2_d5mmh")
+
+[node name="LabelLocation" type="Marker2D" parent="Arrow/Sprite2D"]
+position = Vector2(0, 48)
+gizmo_extents = 0.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Arrow"]
+libraries = {
+&"": SubResource("AnimationLibrary_1jxqw")
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = -32.0
+offset_top = -112.0
+offset_right = 608.0
+offset_bottom = 528.0
+scale = Vector2(0.1, 0.1)
+theme = ExtResource("3_rvxbq")
+bbcode_enabled = true
+text = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff40 ease=-2.0][/pulse][/wave][/center]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Icons" type="Node2D" parent="."]
+position = Vector2(0, -96)
+
+[node name="BH icon" type="Node2D" parent="Icons"]
+visible = false
+scale = Vector2(0.5, 0.5)
+
+[node name="SpriteUnderglow" type="Sprite2D" parent="Icons/BH icon"]
+scale = Vector2(0.01, 0.01)
+texture = ExtResource("4_a1g42")
+script = ExtResource("5_6uqvk")
+
+[node name="Warp" type="Sprite2D" parent="Icons/BH icon"]
+visible = false
+material = SubResource("ShaderMaterial_qoutw")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_radl4")
+
+[node name="SpriteHole" type="Sprite2D" parent="Icons/BH icon"]
+scale = Vector2(0.001, 0.001)
+texture = ExtResource("7_6uqvk")
+
+[node name="SpriteWarning" type="AnimatedSprite2D" parent="Icons/BH icon"]
+visible = false
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_6uqvk")
+offset = Vector2(0, -4)
+
+[node name="Shop icon" type="Node2D" parent="Icons"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Icons/Shop icon"]
+texture_filter = 1
+texture = ExtResource("8_b1ag5")

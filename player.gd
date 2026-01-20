@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 enum CharState {
 	IDLE,
@@ -23,6 +24,7 @@ var grabbed_object: Node2D
 var money: int = 0
 var cargo_capacity: int = 50
 var cargo_carrying: int = 0
+var warning_distance: float = 56000.0
 
 var in_ship: bool = false
 @export var ship_zoom_multiplier: float = 0.8
@@ -49,9 +51,9 @@ func get_movement_input():
 
 func get_zoom_input():
 	var input: float = 0.0
-	if Input.is_action_just_pressed("Zoom_In"):
+	if Input.is_action_pressed("Zoom_In"):
 		input += 1.0
-	if Input.is_action_just_pressed("Zoom_Out"):
+	if Input.is_action_pressed("Zoom_Out"):
 		input -= 1.0
 	return input
 

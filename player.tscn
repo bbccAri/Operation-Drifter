@@ -4,6 +4,48 @@
 [ext_resource type="Texture2D" uid="uid://bbj8bnfa2hfo5" path="res://sprites/operation-drifter-player-placeholder.png" id="2_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dt21jtdpy7hrm" path="res://sprites/operation-drifter_particletrailspritesheet.png" id="3_hqtel"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i3pqv"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_hqtel"]
+offsets = PackedFloat32Array(0.6745283, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_sweqy"]
+gradient = SubResource("Gradient_hqtel")
+
+[sub_resource type="Curve" id="Curve_i3pqv"]
+_data = [Vector2(0.026315778, 0), 0.0, -0.022369564, 0, 0, Vector2(0.052631572, 0), 0.031850107, 0.031850107, 0, 0, Vector2(0.34962404, 1), -0.33619872, -0.33619872, 0, 0, Vector2(0.7443609, 0.82398456), -1.5242704, -1.5242704, 0, 0, Vector2(1, 0), -2.8083508, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_hqtel"]
+curve = SubResource("Curve_i3pqv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sweqy"]
+lifetime_randomness = 0.1
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 8.0
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, 1, 0)
+spread = 5.0
+initial_velocity_min = 5.0
+initial_velocity_max = 15.0
+angular_velocity_min = -180.00002
+angular_velocity_max = 179.99998
+orbit_velocity_min = -0.019999906
+orbit_velocity_max = 0.020000096
+gravity = Vector3(0, 0, 0)
+damping_max = 2.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_hqtel")
+color_ramp = SubResource("GradientTexture1D_sweqy")
+anim_offset_max = 1.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
 atlas = ExtResource("2_onrkg")
 region = Rect2(0, 64, 32, 32)
@@ -81,48 +123,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 8.0
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i3pqv"]
-particles_animation = true
-particles_anim_h_frames = 8
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Gradient" id="Gradient_hqtel"]
-offsets = PackedFloat32Array(0.6745283, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_sweqy"]
-gradient = SubResource("Gradient_hqtel")
-
-[sub_resource type="Curve" id="Curve_i3pqv"]
-_data = [Vector2(0.026315778, 0), 0.0, -0.022369564, 0, 0, Vector2(0.052631572, 0), 0.031850107, 0.031850107, 0, 0, Vector2(0.34962404, 1), -0.33619872, -0.33619872, 0, 0, Vector2(0.7443609, 0.82398456), -1.5242704, -1.5242704, 0, 0, Vector2(1, 0), -2.8083508, 0.0, 0, 0]
-point_count = 5
-
-[sub_resource type="CurveTexture" id="CurveTexture_hqtel"]
-curve = SubResource("Curve_i3pqv")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sweqy"]
-lifetime_randomness = 0.1
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 8.0
-angle_min = -720.0
-angle_max = 720.0
-direction = Vector3(0, 1, 0)
-spread = 5.0
-initial_velocity_min = 5.0
-initial_velocity_max = 15.0
-angular_velocity_min = -180.00002
-angular_velocity_max = 179.99998
-orbit_velocity_min = -0.019999906
-orbit_velocity_max = 0.020000096
-gravity = Vector3(0, 0, 0)
-damping_max = 2.0
-scale_min = 0.5
-scale_curve = SubResource("CurveTexture_hqtel")
-color_ramp = SubResource("GradientTexture1D_sweqy")
-anim_offset_max = 1.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_i3pqv"]
 radius = 16.0
 
@@ -131,17 +131,9 @@ z_index = 4
 motion_mode = 1
 script = ExtResource("1_onrkg")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 4
-texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_i3pqv")
-animation = &"idle"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="GrabbedPosition" type="Marker2D" parent="."]
 z_index = 1
-shape = SubResource("CircleShape2D_onrkg")
-
-[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-32, 0)
 
 [node name="TrailParticles" type="GPUParticles2D" parent="."]
 z_index = 1
@@ -154,15 +146,23 @@ randomness = 0.1
 fixed_fps = 24
 process_material = SubResource("ParticleProcessMaterial_sweqy")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 4
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_i3pqv")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CircleShape2D_onrkg")
+
 [node name="PickupArea" type="Area2D" parent="."]
 z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea"]
 shape = SubResource("CircleShape2D_i3pqv")
 
-[node name="GrabbedPosition" type="Marker2D" parent="."]
-z_index = 1
-position = Vector2(-32, 0)
+[node name="Camera2D" type="Camera2D" parent="."]
 
 [connection signal="body_entered" from="PickupArea" to="." method="_on_pickup_area_body_entered"]
 [connection signal="body_exited" from="PickupArea" to="." method="_on_pickup_area_body_exited"]

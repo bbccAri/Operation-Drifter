@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=44 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://dh8wyqjrh47nj" path="res://floating objects/debris/debris_materials1.tscn" id="14_dhpj7"]
 [ext_resource type="PackedScene" uid="uid://dnrq87p5mmoxs" path="res://floating objects/asteroids/asteroid_1.tscn" id="14_x5p1p"]
 [ext_resource type="PackedScene" uid="uid://dkhbfsa12446g" path="res://floating objects/debris/debris_materials2.tscn" id="15_7knny"]
+[ext_resource type="PackedScene" uid="uid://dij712yywgc02" path="res://pointer.tscn" id="15_aa0lp"]
 [ext_resource type="Texture2D" uid="uid://dayx5facta601" path="res://sprites/accretion disk/darkness_fade.png" id="15_xex6t"]
 [ext_resource type="PackedScene" uid="uid://c1apn2w3wkb73" path="res://floating objects/debris/debris_materials3.tscn" id="16_082n1"]
 [ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://blackholeshader/accretion_disk_visual.gd" id="16_aa0lp"]
@@ -48,12 +49,12 @@ _limits = [-1.0, 1.0, 0.0, 1.0]
 _data = [Vector2(0, -0.0014533997), 0.0, 0.0, 0, 0, Vector2(0.19434628, -0.64389527), 0.0, 0.0, 0, 0, Vector2(0.24028268, 0.14970934), 0.0, 0.0, 0, 0, Vector2(0.38162544, -0.0959301), 0.0, 0.0, 0, 0, Vector2(0.4310954, 0.055232644), 0.0, 0.0, 0, 0, Vector2(0.48763248, -0.0014533997), 0.0, 0.0, 0, 0]
 point_count = 6
 
-[sub_resource type="CurveTexture" id="CurveTexture_xdfst"]
+[sub_resource type="CurveTexture" id="CurveTexture_aa0lp"]
 curve = SubResource("Curve_y1pvw")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3bfw0"]
 shader = ExtResource("18_4v2jo")
-shader_parameter/curve = SubResource("CurveTexture_xdfst")
+shader_parameter/curve = SubResource("CurveTexture_aa0lp")
 shader_parameter/strength = 0.70000008075
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gg4xk"]
@@ -188,9 +189,28 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_iu0sx")
 
 [node name="Player" parent="." node_paths=PackedStringArray("black_hole") instance=ExtResource("11_xfvwf")]
-position = Vector2(67000, 0)
+position = Vector2(70000, 0)
 black_hole = NodePath("../BlackHole")
 zoom_debug_scale = 0.312
+
+[node name="BHPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
+z_index = 9
+position = Vector2(70000, 0)
+target = NodePath("../BlackHole")
+player = NodePath("../Player")
+label_text = "Black Hole"
+icon_type = 1
+
+[node name="ShopPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
+z_index = 9
+position = Vector2(70000, 0)
+target = NodePath("../Shop")
+player = NodePath("../Player")
+label_text = "Shop"
+icon_type = 2
+
+[node name="Shop" type="Node2D" parent="."]
+position = Vector2(71500, 0)
 
 [node name="DebrisSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
 script = ExtResource("12_dhpj7")
@@ -236,6 +256,7 @@ gravity = 245.0
 shape = SubResource("CircleShape2D_gg4xk")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+visible = false
 copy_mode = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
