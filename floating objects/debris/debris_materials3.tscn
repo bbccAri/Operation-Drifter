@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1apn2w3wkb73"]
+[gd_scene load_steps=4 format=3 uid="uid://c1apn2w3wkb73"]
 
 [ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_debris.gd" id="1_nowy4"]
 [ext_resource type="Texture2D" uid="uid://qgygdqnjeyq5" path="res://sprites/debris/materials/debris4.png" id="2_nowy4"]
+[ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="3_ovtvf"]
 
 [node name="Debris" type="RigidBody2D"]
 mass = 0.2
@@ -14,3 +15,5 @@ texture = ExtResource("2_nowy4")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -26, -22, -26, -27, -17, -27, 4, -21, 17, 16, 27, 25, 22, 28, 11, 24, 0, 9, -10)
+
+[node name="DebrisExplodeParticles" parent="." instance=ExtResource("3_ovtvf")]

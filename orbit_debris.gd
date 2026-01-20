@@ -16,6 +16,9 @@ var count_up_timer: float = 0.0
 var expiration_date: float = 20.0
 var scrap_rarity: DebrisSpawner.ScrapRarity = DebrisSpawner.ScrapRarity.Materials
 @onready var sprite: Sprite2D = $Sprite2D
+var grabbed: bool = false
+var exploding: bool = false
+@onready var explode_particles: GPUParticles2D = $DebrisExplodeParticles
 
 @export var speedup_when_closer: bool = true
 
@@ -66,16 +69,24 @@ func grab():
 	gravity_scale = 0.0
 	linear_velocity = Vector2.ZERO
 	freeze = true
+	grabbed = true
 	
 func ungrab():
 	gravity_scale = gravity_factor
 	freeze = false
+	grabbed = false
 
 func despawn():
 	debris_spawner.debris_array.erase(self)
 	queue_free()
 
 func explode():
-	debris_spawner.debris_array.erase(self)
-	Engine.get_main_loop().process_frame
-	queue_free()
+	if not exploding:
+		exploding = true
+		sprite.visible = false
+		if grabbed:
+			player.drop_object()
+		explode_particles.restart()
+		await get_tree().create_timer(4, false, false, false).timeout
+		debris_spawner.debris_array.erase(self)
+		queue_free()

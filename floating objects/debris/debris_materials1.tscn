@@ -1,51 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dh8wyqjrh47nj"]
+[gd_scene load_steps=4 format=3 uid="uid://dh8wyqjrh47nj"]
 
 [ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_debris.gd" id="1_pv11m"]
 [ext_resource type="Texture2D" uid="uid://c1xpw45087jqx" path="res://sprites/debris/materials/debris2.png" id="2_pv11m"]
-[ext_resource type="Texture2D" uid="uid://8jxhqlu3wdmy" path="res://sprites/debris/mini/operation-drifter-miniscraps.png" id="3_i5d1y"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_78brk"]
-particles_animation = true
-particles_anim_h_frames = 5
-particles_anim_v_frames = 1
-particles_anim_loop = false
-
-[sub_resource type="Gradient" id="Gradient_22pom"]
-offsets = PackedFloat32Array(0.5470852, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_k64ru"]
-gradient = SubResource("Gradient_22pom")
-
-[sub_resource type="Curve" id="Curve_g8hla"]
-_data = [Vector2(0.49799195, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.01327855, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_upn70"]
-curve = SubResource("Curve_g8hla")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7hgs8"]
-lifetime_randomness = 0.2
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 32.0
-angle_min = -720.0
-angle_max = 720.0
-inherit_velocity_ratio = 0.5
-direction = Vector3(0, 0, 0)
-initial_velocity_min = 5.0
-initial_velocity_max = 15.0
-angular_velocity_min = -180.00002
-angular_velocity_max = 179.99998
-orbit_velocity_min = -0.019999906
-orbit_velocity_max = 0.020000096
-gravity = Vector3(0, 0, 0)
-damping_max = 2.0
-scale_min = 0.9
-scale_max = 1.1
-scale_curve = SubResource("CurveTexture_upn70")
-color_ramp = SubResource("GradientTexture1D_k64ru")
-anim_offset_max = 1.0
+[ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="3_i5d1y"]
 
 [node name="Debris" type="RigidBody2D"]
 mass = 0.2
@@ -59,12 +16,4 @@ texture = ExtResource("2_pv11m")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -29, -13, -18, -26, 3, -31, 21, -30, 27, -17, 18, -11, 16, 5, -1, 14, 4, 23, 6, 30, -9, 14, -23)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-texture_filter = 1
-material = SubResource("CanvasItemMaterial_78brk")
-amount = 16
-texture = ExtResource("3_i5d1y")
-lifetime = 2.0
-randomness = 0.1
-fixed_fps = 24
-process_material = SubResource("ParticleProcessMaterial_7hgs8")
+[node name="DebrisExplodeParticles" parent="." instance=ExtResource("3_i5d1y")]

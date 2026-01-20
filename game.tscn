@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=39 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -14,14 +14,22 @@
 [ext_resource type="Script" uid="uid://dydpbdus4lpu5" path="res://debris_spawner.gd" id="12_dhpj7"]
 [ext_resource type="Script" uid="uid://b6vvg2fyy45fj" path="res://asteroid_spawner.gd" id="13_7knny"]
 [ext_resource type="PackedScene" uid="uid://i4rr4y2x4uq7" path="res://floating objects/debris/debris_valuable1.tscn" id="13_qhcbd"]
+[ext_resource type="PackedScene" uid="uid://cdqdwv1b4akcc" path="res://floating objects/debris/debris_worthless1.tscn" id="13_xfvwf"]
 [ext_resource type="Texture2D" uid="uid://bh1fdpsy3fq3w" path="res://blackholeshader/7frj09nru4zu.webp" id="14_082n1"]
+[ext_resource type="PackedScene" uid="uid://dh8wyqjrh47nj" path="res://floating objects/debris/debris_materials1.tscn" id="14_dhpj7"]
 [ext_resource type="PackedScene" uid="uid://dnrq87p5mmoxs" path="res://floating objects/asteroids/asteroid_1.tscn" id="14_x5p1p"]
+[ext_resource type="PackedScene" uid="uid://dkhbfsa12446g" path="res://floating objects/debris/debris_materials2.tscn" id="15_7knny"]
 [ext_resource type="Texture2D" uid="uid://dayx5facta601" path="res://sprites/accretion disk/darkness_fade.png" id="15_xex6t"]
+[ext_resource type="PackedScene" uid="uid://c1apn2w3wkb73" path="res://floating objects/debris/debris_materials3.tscn" id="16_082n1"]
 [ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://blackholeshader/accretion_disk_visual.gd" id="16_aa0lp"]
 [ext_resource type="Texture2D" uid="uid://bbf138trb540f" path="res://sprites/accretion disk/accretion_disk_glow_underlay_scaledup.png" id="17_iu0sx"]
+[ext_resource type="PackedScene" uid="uid://4wekasc3f5fr" path="res://floating objects/debris/debris_materials4.tscn" id="17_xex6t"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="18_4v2jo"]
+[ext_resource type="PackedScene" uid="uid://cf03kt3jxa6bd" path="res://floating objects/debris/debris_salvage1.tscn" id="18_aa0lp"]
+[ext_resource type="PackedScene" uid="uid://c50rrai6cjq6d" path="res://floating objects/debris/debris_salvage2.tscn" id="19_iu0sx"]
 [ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="19_l1i01"]
 [ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="20_r62pu"]
+[ext_resource type="PackedScene" uid="uid://bwgxy04ljps7j" path="res://floating objects/debris/debris_priceless1.tscn" id="21_4v2jo"]
 [ext_resource type="Shader" uid="uid://c1qi8pde6kj6u" path="res://blackholeshader/raymarching.gdshader" id="21_klri6"]
 
 [sub_resource type="Environment" id="Environment_p41qd"]
@@ -171,11 +179,11 @@ zoom_debug = true
 script = ExtResource("12_dhpj7")
 target = NodePath("../BlackHole")
 player = NodePath("../Player")
-scraps_worthless = Array[PackedScene]([ExtResource("13_qhcbd")])
-scraps_materials = Array[PackedScene]([null])
-scraps_salvage = Array[PackedScene]([null])
-scraps_valuable = Array[PackedScene]([null])
-scraps_priceless = Array[PackedScene]([null])
+scraps_worthless = Array[PackedScene]([ExtResource("13_xfvwf")])
+scraps_materials = Array[PackedScene]([ExtResource("14_dhpj7"), ExtResource("15_7knny"), ExtResource("16_082n1"), ExtResource("17_xex6t")])
+scraps_salvage = Array[PackedScene]([ExtResource("18_aa0lp"), ExtResource("19_iu0sx")])
+scraps_valuable = Array[PackedScene]([ExtResource("13_qhcbd")])
+scraps_priceless = Array[PackedScene]([ExtResource("21_4v2jo")])
 
 [node name="AsteroidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
 script = ExtResource("13_7knny")

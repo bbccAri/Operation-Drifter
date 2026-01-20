@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf03kt3jxa6bd"]
+[gd_scene load_steps=5 format=3 uid="uid://cf03kt3jxa6bd"]
 
 [ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_debris.gd" id="1_mm3o5"]
 [ext_resource type="Texture2D" uid="uid://6hlemro4oem5" path="res://sprites/debris/salvage/debris5.png" id="2_ej2vo"]
+[ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="3_3o47q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k4psp"]
 size = Vector2(62, 62)
@@ -17,3 +18,5 @@ texture = ExtResource("2_ej2vo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_k4psp")
+
+[node name="DebrisExplodeParticles" parent="." instance=ExtResource("3_3o47q")]
