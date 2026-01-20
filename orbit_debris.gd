@@ -11,7 +11,7 @@ var undisturbed: bool = true
 
 var debris_spawner: DebrisSpawner
 var player: CharacterBody2D
-@export var despawn_distance: float = 128.0
+@export var despawn_distance: float = 7168.0
 var count_up_timer: float = 0.0
 var expiration_date: float = 20.0
 var scrap_rarity: DebrisSpawner.ScrapRarity = DebrisSpawner.ScrapRarity.Materials
@@ -73,7 +73,7 @@ func grab():
 	
 func ungrab():
 	gravity_scale = gravity_factor
-	freeze = false
+	set_deferred("freeze", false)
 	grabbed = false
 
 func despawn():

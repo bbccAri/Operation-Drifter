@@ -8,9 +8,9 @@ class_name DebrisSpawner
 @export var spawn_radius_max: float = 80000.0
 @export var despawn_time_min: float = 15.0
 @export var despawn_time_max: float = 25.0
-@export var min_distance_from_player: float = 128.0
+@export var min_distance_from_player: float = 4096.0
 @export var max_distance_from_player: float = 32000.0
-@export var angle_towards_player_width: float = PI/4
+@export var angle_towards_player_width: float = PI/2
 @export var max_debris: int = 500
 @export var rarity_chance: float = 0.25
 var debris_array: Array = []
@@ -29,6 +29,7 @@ var debris_array: Array = []
 @export var salvage_sizerange: Vector2i = Vector2i(15, 40)
 @export var valuable_sizerange: Vector2i = Vector2i(30, 60)
 @export var priceless_sizerange: Vector2i = Vector2i(50, 100)
+@export var rarity_limiter: float = 16000.0
 
 enum ScrapRarity {
 	Worthless,
@@ -44,11 +45,24 @@ func _process(_delta: float) -> void:
 
 func spawn_debris():
 	var obj: Debris
-	var rarity = (spawn_radius_min * rarity_chance)/(randfn(0, spawn_radius_max-spawn_radius_min/4) + spawn_radius_min)
-	if randf() <= rarity * 12:
+	var angle_to_player = target.get_angle_to(player.global_position)
+	var angle = randf_range(angle_to_player - angle_towards_player_width, angle_to_player + angle_towards_player_width)#randf_range(0.0, TAU)
+	var spawn_distance = abs(randfn(0, (spawn_radius_max-spawn_radius_min)/2)) + spawn_radius_min
+	var pos_to_spawn: Vector2 = global_position + Vector2.from_angle(angle) * spawn_distance
+	var attempt = 1
+	while (pos_to_spawn.distance_to(player.global_position) <= min_distance_from_player or pos_to_spawn.distance_to(player.global_position) > max_distance_from_player) and attempt < 100:
+		angle = randf_range(angle_to_player - angle_towards_player_width, angle_to_player + angle_towards_player_width)
+		spawn_distance = abs(randfn(0, (spawn_radius_max-spawn_radius_min)/2)) + spawn_radius_min
+		pos_to_spawn = global_position + Vector2.from_angle(angle) * spawn_distance
+		attempt += 1
+	if attempt >= 100:
+		print("Canceling spawn...")
+		return
+	var rarity = (spawn_radius_min * rarity_chance)/(randfn(0, spawn_radius_max-spawn_radius_min/4) + spawn_radius_min) * (32000 / spawn_distance)
+	if randf() <= rarity * 30:
 		if randf() <= rarity:
-			if randf() <= rarity:
-				if randf() <= rarity:
+			if randf() <= rarity and spawn_distance < rarity_limiter * 2 + spawn_radius_min:
+				if randf() <= rarity and spawn_distance < rarity_limiter + spawn_radius_min:
 					obj = scraps_priceless.pick_random().instantiate()
 					obj.scrap_rarity = ScrapRarity.Priceless
 					obj.value = randi_range(priceless_pricerange.x, priceless_pricerange.y)
@@ -68,12 +82,6 @@ func spawn_debris():
 		obj = scraps_worthless.pick_random().instantiate()
 		obj.scrap_rarity = ScrapRarity.Worthless
 		obj.value = randi_range(worthless_pricerange.x, worthless_pricerange.y)
-	var angle_to_player = target.get_angle_to(player.global_position)
-	var angle = randf_range(angle_to_player - angle_towards_player_width, angle_to_player + angle_towards_player_width)#randf_range(0.0, TAU)
-	var spawn_distance = abs(randfn(0, (spawn_radius_max-spawn_radius_min)/2)) + spawn_radius_min
-	var pos_to_spawn: Vector2 = global_position + Vector2.from_angle(angle) * spawn_distance
-	while pos_to_spawn.distance_to(player.global_position) <= 128.0:
-		pos_to_spawn = global_position + Vector2.from_angle(angle) * spawn_distance
 	obj.position = pos_to_spawn
 	obj.rotation = randf_range(0.0, TAU)
 	obj.orbit_target = target

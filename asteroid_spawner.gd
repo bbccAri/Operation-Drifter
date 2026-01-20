@@ -9,9 +9,9 @@ class_name AsteroidSpawner
 @export var spawn_radius_max: float = 80000.0
 @export var despawn_time_min: float = 15.0
 @export var despawn_time_max: float = 25.0
-@export var min_distance_from_player: float = 128.0
+@export var min_distance_from_player: float = 4096.0
 @export var max_distance_from_player: float = 32000.0
-@export var angle_towards_player_width: float = PI/4
+@export var angle_towards_player_width: float = PI/2
 @export var max_asteroid: int = 500
 @export var rarity_chance: float = 0.25
 var asteroid_array: Array = []
@@ -26,8 +26,15 @@ func spawn_asteroid():
 	var angle = randf_range(angle_to_player - angle_towards_player_width, angle_to_player + angle_towards_player_width)#randf_range(0.0, TAU)
 	var spawn_distance = abs(randfn(0, (spawn_radius_max-spawn_radius_min)/2)) + spawn_radius_min
 	var pos_to_spawn: Vector2 = global_position + Vector2.from_angle(angle) * spawn_distance
-	while pos_to_spawn.distance_to(player.global_position) <= 128.0:
+	var attempt = 1
+	while (pos_to_spawn.distance_to(player.global_position) <= min_distance_from_player or pos_to_spawn.distance_to(player.global_position) > max_distance_from_player) and attempt < 100:
+		angle = randf_range(angle_to_player - angle_towards_player_width, angle_to_player + angle_towards_player_width)
+		spawn_distance = abs(randfn(0, (spawn_radius_max-spawn_radius_min)/2)) + spawn_radius_min
 		pos_to_spawn = global_position + Vector2.from_angle(angle) * spawn_distance
+		attempt += 1
+	if attempt >= 100:
+		print("Canceling spawn...")
+		return
 	obj.position = pos_to_spawn
 	obj.rotation = randf_range(0.0, TAU)
 	obj.orbit_target = target

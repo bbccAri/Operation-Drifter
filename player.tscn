@@ -127,11 +127,12 @@ anim_offset_max = 1.0
 radius = 16.0
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 4
 motion_mode = 1
 script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 2
+z_index = 4
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_i3pqv")
 animation = &"idle"
@@ -143,6 +144,7 @@ shape = SubResource("CircleShape2D_onrkg")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="TrailParticles" type="GPUParticles2D" parent="."]
+z_index = 1
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_i3pqv")
 amount = 32

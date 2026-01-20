@@ -4,6 +4,7 @@ class_name Asteroid
 @export var orbit_target: Node2D
 var speed: float = 200
 @export var speed_factor: float = 64
+@export var damage: int = 1
 var distance: float
 var perpendicular_direction: Vector2
 var undisturbed: bool = true
@@ -11,7 +12,7 @@ var undisturbed: bool = true
 
 var asteroid_spawner: AsteroidSpawner
 var player: CharacterBody2D
-@export var despawn_distance: float = 128.0
+@export var despawn_distance: float = 7168.0
 var count_up_timer: float = 0.0
 var expiration_date: float = 20.0
 @onready var sprite: Sprite2D = $Sprite2D
@@ -69,5 +70,5 @@ func despawn():
 	queue_free()
 
 func _on_body_entered(body: Node) -> void:
-	if body is Debris:
+	if body is Debris and damage >= 1:
 		body.explode()

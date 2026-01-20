@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=43 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -31,6 +31,10 @@
 [ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="20_r62pu"]
 [ext_resource type="PackedScene" uid="uid://bwgxy04ljps7j" path="res://floating objects/debris/debris_priceless1.tscn" id="21_4v2jo"]
 [ext_resource type="Shader" uid="uid://c1qi8pde6kj6u" path="res://blackholeshader/raymarching.gdshader" id="21_klri6"]
+[ext_resource type="PackedScene" uid="uid://bqvbbuo1pnq3s" path="res://floating objects/asteroids/asteroid_2.tscn" id="27_xex6t"]
+[ext_resource type="PackedScene" uid="uid://idbrkrdjbat2" path="res://floating objects/asteroids/asteroid_3.tscn" id="28_aa0lp"]
+[ext_resource type="PackedScene" uid="uid://cmpty04q6al38" path="res://floating objects/asteroids/asteroid_4.tscn" id="29_iu0sx"]
+[ext_resource type="PackedScene" uid="uid://b6hongd133i01" path="res://floating objects/asteroids/asteroid_5.tscn" id="30_4v2jo"]
 
 [sub_resource type="Environment" id="Environment_p41qd"]
 background_mode = 3
@@ -170,10 +174,23 @@ repeat_times = 10
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_36jdj")
 
+[node name="DarknessFade" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("15_xex6t")
+
+[node name="Accretion Disk2" type="Node2D" parent="."]
+scale = Vector2(34.5, 34.5)
+script = ExtResource("16_aa0lp")
+
+[node name="Underglow" type="Sprite2D" parent="Accretion Disk2"]
+modulate = Color(1, 1, 1, 0.2509804)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("17_iu0sx")
+
 [node name="Player" parent="." node_paths=PackedStringArray("black_hole") instance=ExtResource("11_xfvwf")]
 position = Vector2(67000, 0)
-black_hole = NodePath("../BlackHole/Warp")
-zoom_debug = true
+black_hole = NodePath("../BlackHole")
+zoom_debug_scale = 0.312
 
 [node name="DebrisSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
 script = ExtResource("12_dhpj7")
@@ -187,39 +204,25 @@ scraps_priceless = Array[PackedScene]([ExtResource("21_4v2jo")])
 
 [node name="AsteroidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
 script = ExtResource("13_7knny")
-asteroid_variants = Array[PackedScene]([ExtResource("14_x5p1p")])
+asteroid_variants = Array[PackedScene]([ExtResource("14_x5p1p"), ExtResource("27_xex6t"), ExtResource("28_aa0lp"), ExtResource("29_iu0sx"), ExtResource("30_4v2jo")])
 target = NodePath("../BlackHole")
 player = NodePath("../Player")
 
 [node name="UVChecker" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-9728, 0)
+position = Vector2(34048, 0)
 scale = Vector2(100, 100)
 texture = ExtResource("14_082n1")
 
 [node name="BlackHole" type="Node2D" parent="."]
 
-[node name="DarknessFade" type="Sprite2D" parent="BlackHole"]
-scale = Vector2(4, 4)
-texture = ExtResource("15_xex6t")
-
-[node name="Accretion Disk2" type="Node2D" parent="BlackHole"]
-scale = Vector2(34.5, 34.5)
-script = ExtResource("16_aa0lp")
-
-[node name="Underglow" type="Sprite2D" parent="BlackHole/Accretion Disk2"]
-modulate = Color(1, 1, 1, 0.2509804)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("17_iu0sx")
-
 [node name="Warp" type="Sprite2D" parent="BlackHole"]
-visible = false
 material = SubResource("ShaderMaterial_3bfw0")
 scale = Vector2(1000, 1000)
 texture = ExtResource("19_l1i01")
 
 [node name="Hole" type="Sprite2D" parent="BlackHole"]
-z_index = 5
+z_index = 10
 scale = Vector2(3, 3)
 texture = ExtResource("20_r62pu")
 

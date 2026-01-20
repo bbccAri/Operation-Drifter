@@ -4,21 +4,19 @@
 [ext_resource type="Texture2D" uid="uid://cv482hrv62cmr" path="res://sprites/asteroids/asteroid1.png" id="2_u6lb3"]
 
 [node name="Asteroid" type="RigidBody2D"]
+z_index = 1
 mass = 0.2
 freeze_mode = 1
 contact_monitor = true
 max_contacts_reported = 2
 script = ExtResource("1_qvln4")
-speed_factor = null
-gravity_factor = null
-despawn_distance = null
-speedup_when_closer = null
+speed_factor = 96.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("2_u6lb3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-5, -25, -12, -21, -19, -15, -23, -2, -21, 4, -13, 14, 1, 17, 15, 21, 22, 21, 25, 17, 29, 3, 28, -5, 23, -15, 16, -23, 9, -27, 2, -27)
+polygon = PackedVector2Array(-10, -19, -17, -13, -21, -1, -13, 11, 15, 19, 22, 19, 27, 4, 26, -5, 22, -13, 13, -24, 2, -25)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -23,6 +23,10 @@ var grabbed_object: Node2D
 var money: int = 0
 var cargo_capacity: int = 50
 var cargo_carrying: int = 0
+
+var in_ship: bool = false
+@export var ship_zoom_multiplier: float = 0.8
+
 var zoom_modifier: float = 1.0
 @export var zoom_extents_min: float = 0.5
 @export var zoom_extents_max: float = 2.0
@@ -102,11 +106,11 @@ func black_hole_zoom(bh_distance: float, delta: float, modifier: float = 1.0):
 		cam.zoom = Vector2(zoom_debug_scale, zoom_debug_scale) * modifier
 	else:
 		if bh_distance <= 25000:
-			cam.zoom = cam.zoom.lerp(Vector2(0.78125, 0.78125) * modifier, delta * zoom_speed)
+			cam.zoom = cam.zoom.lerp(Vector2(0.78125, 0.78125) * modifier * (ship_zoom_multiplier if in_ship else 1.0), delta * zoom_speed)
 		elif bh_distance <= 64000:
-			cam.zoom = cam.zoom.lerp(Vector2(bh_distance/32000, bh_distance/32000) * modifier, delta * zoom_speed)
+			cam.zoom = cam.zoom.lerp(Vector2(bh_distance/32000, bh_distance/32000) * modifier * (ship_zoom_multiplier if in_ship else 1.0), delta * zoom_speed)
 		else:
-			cam.zoom = cam.zoom.lerp(Vector2(2, 2) * modifier, delta * zoom_speed)
+			cam.zoom = cam.zoom.lerp(Vector2(2, 2) * modifier * (ship_zoom_multiplier if in_ship else 1.0), delta * zoom_speed)
 	
 func play_anim():
 	var anim_name = ""
@@ -135,11 +139,13 @@ func pickup_object(body: Debris) -> void:
 	grabbed_object = body
 	#TODO: figure out which direction the grab is in and display correct grab sprite
 	current_state = CharState.GRAB
+	add_collision_exception_with(body)
 	
 func drop_object() -> void:
-	grabbed_object.reparent(get_tree().current_scene)
+	grabbed_object.call_deferred("reparent", get_tree().current_scene)
 	if grabbed_object is Debris:
 		grabbed_object.ungrab()
+	remove_collision_exception_with(grabbed_object)
 	current_state = CharState.IDLE
 
 func _on_pickup_area_body_entered(body: Node2D) -> void:
