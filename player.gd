@@ -51,9 +51,9 @@ func get_movement_input():
 
 func get_zoom_input():
 	var input: float = 0.0
-	if Input.is_action_pressed("Zoom_In"):
+	if Input.is_action_pressed("Zoom_In") or Input.is_action_just_pressed("Zoom_In_Scroll"):
 		input += 1.0
-	if Input.is_action_pressed("Zoom_Out"):
+	if Input.is_action_pressed("Zoom_Out") or Input.is_action_just_pressed("Zoom_Out_Scroll"):
 		input -= 1.0
 	return input
 

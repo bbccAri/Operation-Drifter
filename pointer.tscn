@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bg81g5u47fqb1" path="res://sprites/operation-drifter_arrow.png" id="2_d5mmh"]
 [ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="3_rvxbq"]
 [ext_resource type="Texture2D" uid="uid://bixsutfg112tf" path="res://sprites/accretion disk/accretion_disk_glow_underlay.png" id="4_a1g42"]
-[ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://blackholeshader/accretion_disk_visual.gd" id="5_6uqvk"]
+[ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://rotatingvisual.gd" id="5_6uqvk"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="5_b1ag5"]
 [ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="6_radl4"]
 [ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="7_6uqvk"]
@@ -81,7 +81,7 @@ curve = SubResource("Curve_radl4")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qoutw"]
 shader = ExtResource("5_b1ag5")
 shader_parameter/curve = SubResource("CurveTexture_6uqvk")
-shader_parameter/strength = 0.10000005224999997
+shader_parameter/strength = 0.10000005224999996
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6uqvk"]
 animations = [{

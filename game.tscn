@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=51 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -22,16 +22,21 @@
 [ext_resource type="PackedScene" uid="uid://dij712yywgc02" path="res://pointer.tscn" id="15_aa0lp"]
 [ext_resource type="Texture2D" uid="uid://dayx5facta601" path="res://sprites/accretion disk/darkness_fade.png" id="15_xex6t"]
 [ext_resource type="PackedScene" uid="uid://c1apn2w3wkb73" path="res://floating objects/debris/debris_materials3.tscn" id="16_082n1"]
-[ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://blackholeshader/accretion_disk_visual.gd" id="16_aa0lp"]
+[ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://rotatingvisual.gd" id="16_aa0lp"]
+[ext_resource type="PackedScene" uid="uid://0vcab2vhmiij" path="res://identifier.tscn" id="16_iu0sx"]
 [ext_resource type="Texture2D" uid="uid://bbf138trb540f" path="res://sprites/accretion disk/accretion_disk_glow_underlay_scaledup.png" id="17_iu0sx"]
 [ext_resource type="PackedScene" uid="uid://4wekasc3f5fr" path="res://floating objects/debris/debris_materials4.tscn" id="17_xex6t"]
 [ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="18_4v2jo"]
-[ext_resource type="PackedScene" uid="uid://cf03kt3jxa6bd" path="res://floating objects/debris/debris_salvage1.tscn" id="18_aa0lp"]
+[ext_resource type="PackedScene" uid="uid://ch44bsforeidb" path="res://floating objects/debris/debris_salvage1.tscn" id="18_aa0lp"]
 [ext_resource type="PackedScene" uid="uid://c50rrai6cjq6d" path="res://floating objects/debris/debris_salvage2.tscn" id="19_iu0sx"]
 [ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="19_l1i01"]
 [ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="20_r62pu"]
 [ext_resource type="PackedScene" uid="uid://bwgxy04ljps7j" path="res://floating objects/debris/debris_priceless1.tscn" id="21_4v2jo"]
 [ext_resource type="Shader" uid="uid://c1qi8pde6kj6u" path="res://blackholeshader/raymarching.gdshader" id="21_klri6"]
+[ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_debris.gd" id="23_r62pu"]
+[ext_resource type="Texture2D" uid="uid://6hlemro4oem5" path="res://sprites/debris/salvage/debris5.png" id="24_klri6"]
+[ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="25_eu6ph"]
+[ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="26_edr7y"]
 [ext_resource type="PackedScene" uid="uid://bqvbbuo1pnq3s" path="res://floating objects/asteroids/asteroid_2.tscn" id="27_xex6t"]
 [ext_resource type="PackedScene" uid="uid://idbrkrdjbat2" path="res://floating objects/asteroids/asteroid_3.tscn" id="28_aa0lp"]
 [ext_resource type="PackedScene" uid="uid://cmpty04q6al38" path="res://floating objects/asteroids/asteroid_4.tscn" id="29_iu0sx"]
@@ -43,6 +48,22 @@ glow_enabled = true
 glow_intensity = 2.0
 glow_bloom = 0.25
 glow_hdr_threshold = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4psp"]
+size = Vector2(62, 62)
+
+[sub_resource type="PackedScene" id="PackedScene_kq12w"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Debris", "RigidBody2D", "z_index", "mass", "freeze_mode", "script", "Sprite2D", "Sprite2D", "texture_filter", "texture", "Collision", "CollisionShape2D", "shape", "DebrisExplodeParticles", "Sprite2D2", "Sprite2D", "visible", "modulate", "scale", "texture"),
+"node_count": 5,
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 1073741824, 0, 7, 6, -1, 2, 8, 4, 9, 5, 0, 1073741825, 0, 11, 10, -1, 1, 12, 6, 0, 1073741826, 0, 2147483647, 13, 7, 0, 0, 1073741827, 0, 15, 14, -1, 4, 16, 8, 17, 9, 18, 10, 19, 11, 0),
+"variants": [1, 0.2, 1, ExtResource("23_r62pu"), 1, ExtResource("24_klri6"), SubResource("RectangleShape2D_k4psp"), ExtResource("25_eu6ph"), false, Color(1, 0.49803922, 0, 1), Vector2(10, 10), ExtResource("26_edr7y")],
+"version": 3
+}
 
 [sub_resource type="Curve" id="Curve_y1pvw"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -209,6 +230,10 @@ player = NodePath("../Player")
 label_text = "Shop"
 icon_type = 2
 
+[node name="Identifier" parent="." node_paths=PackedStringArray("player") instance=ExtResource("16_iu0sx")]
+position = Vector2(70000, 0)
+player = NodePath("../Player")
+
 [node name="Shop" type="Node2D" parent="."]
 position = Vector2(71500, 0)
 
@@ -218,7 +243,7 @@ target = NodePath("../BlackHole")
 player = NodePath("../Player")
 scraps_worthless = Array[PackedScene]([ExtResource("13_xfvwf")])
 scraps_materials = Array[PackedScene]([ExtResource("14_dhpj7"), ExtResource("15_7knny"), ExtResource("16_082n1"), ExtResource("17_xex6t")])
-scraps_salvage = Array[PackedScene]([ExtResource("18_aa0lp"), ExtResource("19_iu0sx")])
+scraps_salvage = Array[PackedScene]([SubResource("PackedScene_kq12w"), ExtResource("18_aa0lp"), ExtResource("19_iu0sx")])
 scraps_valuable = Array[PackedScene]([ExtResource("13_qhcbd")])
 scraps_priceless = Array[PackedScene]([ExtResource("21_4v2jo")])
 

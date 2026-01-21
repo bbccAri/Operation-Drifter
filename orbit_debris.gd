@@ -16,7 +16,7 @@ var count_up_timer: float = 0.0
 var expiration_date: float = 20.0
 var scrap_rarity: DebrisSpawner.ScrapRarity = DebrisSpawner.ScrapRarity.Materials
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var collision: CollisionObject2D = $Collision
+@onready var collision: Node2D = $Collision
 var grabbed: bool = false
 var exploding: bool = false
 @onready var explode_particles: GPUParticles2D = $DebrisExplodeParticles
@@ -85,7 +85,6 @@ func explode():
 	if not exploding:
 		exploding = true
 		sprite.visible = false
-		collision.disable_mode = CollisionObject2D.DISABLE_MODE_REMOVE
 		collision.process_mode = Node.PROCESS_MODE_DISABLED
 		if grabbed:
 			player.drop_object()
