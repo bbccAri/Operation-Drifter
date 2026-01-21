@@ -7,7 +7,7 @@ extends Node2D
 @export var player: Player
 @onready var anim: AnimationPlayer = $Arrow/AnimationPlayer
 @export var label_text: String = ""
-@export var text_tags_start: String = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff40 ease=-2.0]"
+@export var text_tags_start: String = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff80 ease=-2.0]"
 @export var text_tags_end: String = "[/pulse][/wave][/center]"
 @export var icon_type: IconType = IconType.None
 @onready var icons: Node2D = $Icons

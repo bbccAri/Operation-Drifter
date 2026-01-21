@@ -84,10 +84,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kajg0"]
-radius = 1024.0
+radius = 512.0
 
 [node name="Identifier" type="Node2D"]
-z_index = 6
+z_index = 9
 script = ExtResource("1_akte3")
 
 [node name="Indicator" type="Node2D" parent="."]

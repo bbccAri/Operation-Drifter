@@ -148,6 +148,7 @@ func drop_object() -> void:
 	if grabbed_object is Debris:
 		grabbed_object.ungrab()
 	remove_collision_exception_with(grabbed_object)
+	grabbed_object = null
 	current_state = CharState.IDLE
 
 func _on_pickup_area_body_entered(body: Node2D) -> void:

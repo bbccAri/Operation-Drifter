@@ -6,16 +6,17 @@ var overlapping: Array[Debris]
 var target: Debris
 @onready var indicator: Node2D = $Indicator
 @onready var label: RichTextLabel = $Indicator/RichTextLabel
-@export var text_tags_start: String = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff40 ease=-2.0]"
+@export var text_tags_start: String = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff80 ease=-2.0]"
 @export var text_tags_end: String = "[/pulse][/wave][/center]"
 @onready var anim: AnimatedSprite2D = $Indicator/AnimatedSprite2D
 @export var player: Player
+@export var targeting_speed: float = 10.0
 
 func _ready() -> void:
 	anim.play("default")
 
-func _process(_delta: float) -> void:
-	global_position = player.global_position
+func _process(delta: float) -> void:
+	global_position = lerp(global_position, player.global_position, targeting_speed * delta)
 	if Input.is_action_pressed("Scan") and !overlapping.is_empty() and target != null:
 		update_target()
 		visible = true
