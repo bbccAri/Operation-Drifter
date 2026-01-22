@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cd826ddn1rboo"]
+
+[ext_resource type="Shader" uid="uid://c1qi8pde6kj6u" path="res://blackholeshader/raymarching.gdshader" id="1_gkax0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2wx60"]
+render_priority = 0
+shader = ExtResource("1_gkax0")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ji155"]
+material = SubResource("ShaderMaterial_2wx60")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ji155")

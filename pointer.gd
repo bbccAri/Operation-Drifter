@@ -61,7 +61,7 @@ func _process(_delta: float) -> void:
 		icons.global_position = label_follow_pos.global_position + Vector2(0, -16)
 	if distance <= player.warning_distance and icon_type == IconType.BlackHole:
 		warning_icon.visible = true
-		warning_icon.speed_scale = player.warning_distance / distance
+		warning_icon.speed_scale = pow(player.warning_distance, 2) / pow(distance, 2)
 	else:
 		warning_icon.visible = false
 
