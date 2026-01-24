@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=49 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dnrq87p5mmoxs" path="res://floating objects/asteroids/asteroid_1.tscn" id="14_x5p1p"]
 [ext_resource type="PackedScene" uid="uid://dkhbfsa12446g" path="res://floating objects/debris/debris_materials2.tscn" id="15_7knny"]
 [ext_resource type="PackedScene" uid="uid://dij712yywgc02" path="res://pointer.tscn" id="15_aa0lp"]
+[ext_resource type="PackedScene" uid="uid://cmfafxveywsoj" path="res://ship.tscn" id="15_klri6"]
 [ext_resource type="Texture2D" uid="uid://dayx5facta601" path="res://sprites/accretion disk/darkness_fade.png" id="15_xex6t"]
 [ext_resource type="PackedScene" uid="uid://c1apn2w3wkb73" path="res://floating objects/debris/debris_materials3.tscn" id="16_082n1"]
 [ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://rotatingvisual.gd" id="16_aa0lp"]
@@ -205,6 +206,10 @@ texture = ExtResource("17_iu0sx")
 position = Vector2(70000, 0)
 black_hole = NodePath("../BlackHole")
 zoom_debug_scale = 0.312
+
+[node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_klri6")]
+position = Vector2(70200, 0)
+player = NodePath("../Player")
 
 [node name="BHPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
 z_index = 9

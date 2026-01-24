@@ -92,3 +92,7 @@ func explode():
 		await get_tree().create_timer(4, false, false, false).timeout
 		debris_spawner.debris_array.erase(self)
 		queue_free()
+
+func store():
+	debris_spawner.debris_array.erase(self)
+	queue_free()
