@@ -13,12 +13,15 @@ extends Node2D
 @onready var icons: Node2D = $Icons
 @onready var bh_icon: Node2D = $"Icons/BH icon"
 @onready var shop_icon: Node2D = $"Icons/Shop icon"
+@onready var ship_icon: Node2D = $"Icons/Ship icon"
 @onready var warning_icon: AnimatedSprite2D = $"Icons/BH icon/SpriteWarning"
+@export var close_enough_distance: float = 256.0
 
 enum IconType {
 	None,
 	BlackHole,
-	Shop
+	Shop,
+	Ship
 }
 
 enum DisplayMode {
@@ -43,11 +46,13 @@ func _ready() -> void:
 			warning_icon.play("default")
 		elif icon_type == IconType.Shop:
 			shop_icon.visible = true
+		elif icon_type == IconType.Ship:
+			ship_icon.visible = true
 	anim.play("arrow_bob")
 
 func _process(_delta: float) -> void:
 	var distance = global_position.distance_to(target.global_position)
-	if Input.is_action_pressed("Scan") or (icon_type == IconType.BlackHole and distance <= player.warning_distance):
+	if (Input.is_action_pressed("Scan") and distance > close_enough_distance) or (icon_type == IconType.BlackHole and distance <= player.warning_distance):
 		visible = true
 	else:
 		visible = false

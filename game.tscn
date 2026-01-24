@@ -223,7 +223,7 @@ black_hole = NodePath("../BlackHole")
 zoom_debug_scale = 0.312
 
 [node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_klri6")]
-position = Vector2(70200, 0)
+position = Vector2(70000, -256)
 player = NodePath("../Player")
 
 [node name="BHPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
@@ -241,6 +241,14 @@ target = NodePath("../Shop")
 player = NodePath("../Player")
 label_text = "Shop"
 icon_type = 2
+
+[node name="ShipPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
+z_index = 9
+position = Vector2(70000, 0)
+target = NodePath("../Ship")
+player = NodePath("../Player")
+label_text = "Ship"
+icon_type = 3
 
 [node name="Identifier" parent="." node_paths=PackedStringArray("player") instance=ExtResource("16_iu0sx")]
 position = Vector2(70000, 0)

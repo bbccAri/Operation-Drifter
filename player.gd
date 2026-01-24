@@ -17,7 +17,7 @@ var current_state: CharState = CharState.IDLE
 @export var zoom_speed: float = 10
 @export var gravity_resistance: float = 1.0
 @onready var particle_trail: GPUParticles2D = $TrailParticles
-var debris_in_range: Array = []
+var debris_in_range: Array[Debris] = []
 var target_pickup_object: Node2D
 @onready var grabbed_position: Marker2D = $GrabbedPosition
 var grabbed_object: Debris
@@ -139,9 +139,10 @@ func play_anim():
 func pickup() -> void:
 	if debris_in_range.size() > 0:
 		target_pickup_object = debris_in_range[0]
-		for item in debris_in_range:
+		for item: Debris in debris_in_range:
 			if global_position.distance_squared_to(item.global_position) < global_position.distance_squared_to(target_pickup_object.global_position):
-				target_pickup_object = item
+				if !item.exploding:
+					target_pickup_object = item
 		pickup_object(target_pickup_object)
 	
 func pickup_object(body: Debris) -> void:
@@ -162,10 +163,11 @@ func store_object():
 	current_state = CharState.IDLE
 
 func drop_object() -> void:
-	grabbed_object.call_deferred("reparent", get_tree().current_scene)
-	if grabbed_object is Debris:
-		grabbed_object.ungrab()
-	remove_collision_exception_with(grabbed_object)
+	if is_instance_valid(grabbed_object):
+		grabbed_object.call_deferred("reparent", get_tree().current_scene)
+		if grabbed_object is Debris:
+			grabbed_object.ungrab()
+		remove_collision_exception_with(grabbed_object)
 	grabbed_object = null
 	current_state = CharState.IDLE
 

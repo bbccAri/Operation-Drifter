@@ -165,3 +165,10 @@ visible = false
 [node name="Sprite2D" type="Sprite2D" parent="Icons/Shop icon"]
 texture_filter = 1
 texture = ExtResource("8_b1ag5")
+
+[node name="Ship icon" type="Node2D" parent="Icons"]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Icons/Ship icon"]
+texture_filter = 1
+texture = ExtResource("8_b1ag5")
