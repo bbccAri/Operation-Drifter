@@ -66,22 +66,27 @@ func spawn_debris():
 					obj = scraps_priceless.pick_random().instantiate()
 					obj.scrap_rarity = ScrapRarity.Priceless
 					obj.value = randi_range(priceless_pricerange.x, priceless_pricerange.y)
+					obj.cargo_size = randi_range(priceless_sizerange.x, priceless_sizerange.y)
 				else:
 					obj = scraps_valuable.pick_random().instantiate()
 					obj.scrap_rarity = ScrapRarity.Valuable
 					obj.value = randi_range(valuable_pricerange.x, valuable_pricerange.y)
+					obj.cargo_size = randi_range(valuable_sizerange.x, valuable_sizerange.y)
 			else:
 				obj = scraps_salvage.pick_random().instantiate()
 				obj.scrap_rarity = ScrapRarity.Salvage
 				obj.value = randi_range(salvage_pricerange.x, salvage_pricerange.y)
+				obj.cargo_size = randi_range(salvage_sizerange.x, salvage_sizerange.y)
 		else:
 			obj = scraps_materials.pick_random().instantiate()
 			obj.scrap_rarity = ScrapRarity.Materials
 			obj.value = randi_range(materials_pricerange.x, materials_pricerange.y)
+			obj.cargo_size = randi_range(materials_sizerange.x, materials_sizerange.y)
 	else:
 		obj = scraps_worthless.pick_random().instantiate()
 		obj.scrap_rarity = ScrapRarity.Worthless
 		obj.value = randi_range(worthless_pricerange.x, worthless_pricerange.y)
+		obj.cargo_size = randi_range(worthless_sizerange.x, worthless_sizerange.y)
 	obj.position = pos_to_spawn
 	obj.rotation = randf_range(0.0, TAU)
 	obj.orbit_target = target

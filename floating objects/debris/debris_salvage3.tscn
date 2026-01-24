@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://etcxia3h80ri"]
+
+[ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_debris.gd" id="1_60mpf"]
+[ext_resource type="Texture2D" uid="uid://c5m67qp3rg8m5" path="res://sprites/debris/salvage/debris16.png" id="2_60mpf"]
+[ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="3_aleuy"]
+[ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="4_mgk77"]
+
+[node name="Debris" type="RigidBody2D"]
+z_index = 1
+mass = 0.2
+freeze_mode = 1
+script = ExtResource("1_60mpf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_60mpf")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-11, -28, -15, -16, -26, -2, -26, 18, -18, 25, 19, 25, 22, 23, 24, 0, 16, -8, 13, -23, 7, -28)
+
+[node name="DebrisExplodeParticles" parent="." instance=ExtResource("3_aleuy")]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0.49803922, 0, 1)
+scale = Vector2(10, 10)
+texture = ExtResource("4_mgk77")

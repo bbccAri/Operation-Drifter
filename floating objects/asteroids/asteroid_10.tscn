@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bea6ldqhdke43"]
+
+[ext_resource type="Script" uid="uid://bashwvuphm15w" path="res://orbit_asteroid.gd" id="1_loggn"]
+[ext_resource type="Texture2D" uid="uid://kjmajk6mp0lo" path="res://sprites/asteroids/asteroid10.png" id="2_6gnte"]
+
+[node name="Asteroid" type="RigidBody2D"]
+z_index = 1
+mass = 0.2
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 2
+script = ExtResource("1_loggn")
+speed_factor = 96.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_6gnte")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(14, -23, -11, -20, -22, -15, -28, -3, -26, 12, -14, 25, 6, 22, 22, 11, 18, -4, 22, -15)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
