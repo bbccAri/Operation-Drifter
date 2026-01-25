@@ -133,7 +133,17 @@ func play_anim():
 		CharState.MOVE:
 			anim_name = "move"
 		CharState.GRAB:
-			anim_name = "grab"
+			if grabbed_position.x <= 0 and abs(grabbed_position.x) > abs(grabbed_position.y):
+				anim_name = "grab_left"
+			elif grabbed_position.x > 0 and abs(grabbed_position.x) > abs(grabbed_position.y):
+				anim_name = "grab_right"
+			elif grabbed_position.y >= 0 and abs(grabbed_position.x) <= abs(grabbed_position.y):
+				anim_name = "grab_down"
+			elif grabbed_position.y < 0 and abs(grabbed_position.x) <= abs(grabbed_position.y):
+				anim_name = "grab_up"
+			else:
+				anim_name = "grab_down"
+				push_warning("unexpected grab position!")
 	animated_sprite.play(anim_name)
 
 func pickup() -> void:
@@ -150,7 +160,6 @@ func pickup_object(body: Debris) -> void:
 	body.reparent(grabbed_position)
 	body.grab()
 	grabbed_object = body
-	#TODO: figure out which direction the grab is in and display correct grab sprite
 	current_state = CharState.GRAB
 	add_collision_exception_with(body)
 
