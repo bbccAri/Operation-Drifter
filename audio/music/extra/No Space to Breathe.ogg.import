@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bj02lbosfrt15"
+path="res://.godot/imported/No Space to Breathe.ogg-2ef5dae3041b4a95e3735de7cd6cc3cb.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/extra/No Space to Breathe.ogg"
+dest_files=["res://.godot/imported/No Space to Breathe.ogg-2ef5dae3041b4a95e3735de7cd6cc3cb.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
