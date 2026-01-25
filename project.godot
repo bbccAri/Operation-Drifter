@@ -20,7 +20,9 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 
 [dialogic]
 
-directories/dch_directory={}
+directories/dch_directory={
+"R3Y6-1N41D": "res://Dialogue/Characters/R3Y6-1N41D.dch"
+}
 directories/dtl_directory={}
 layout/style_directory={}
 
