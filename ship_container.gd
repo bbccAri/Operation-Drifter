@@ -25,8 +25,18 @@ var health: int = 5
 @export var maxHealth: int = 5
 var exploding: bool = false
 
+@export var normalSprite: Texture2D = preload("res://sprites/playership.png")
+@export var batteredSprite: Texture2D
+@export var brokenSprite: Texture2D
+
 var damage_resistance_level: int = 0
 @export var damage_resistance_max_level: int = 2
+@export var damage_resistance_price: int = 1000
+var ship_thruster_power_level: int = 0
+@export var ship_thruster_power_max_level: int = 5
+@export var ship_thruster_power_price: int = 2000
+@export var ship_thruster_power_amount: float = 0.2
+@export var repair_price: int = 2500
 
 func _ready() -> void:
 	DialogicToPlayer.ship = self
@@ -48,14 +58,14 @@ func _physics_process(delta: float) -> void:
 	
 	var direction = get_movement_input()
 	ship_body.rotation_degrees += direction.x * rotation_speed * delta
-	ship_body.velocity = lerp(ship_body.velocity, Vector2(0, direction.normalized().y).rotated(ship_body.rotation) * speed, delta * acceleration)
+	ship_body.velocity = lerp(ship_body.velocity, Vector2(0, direction.normalized().y).rotated(ship_body.rotation) * (speed * (1 + ship_thruster_power_level * ship_thruster_power_amount)), delta * acceleration)
 	ship_body.velocity += ship_body.get_gravity() * (1.0 - gravity_resistance_amount * gravity_resistance_level)
 	ship_body.move_and_slide()
 	player.global_position = ship_body.global_position
 
 func _process(_delta: float) -> void:
 	if playerClose and !playerInside:
-		if Input.is_action_just_pressed("Interact"):
+		if Input.is_action_just_pressed("Interact") and !player.near_shop:
 			enter_ship()
 		if Input.is_action_just_pressed("Confirm"):
 			if player.cargo_capacity - player.cargo_carrying >= player.grabbed_object.cargo_size:
@@ -70,7 +80,7 @@ func _process(_delta: float) -> void:
 		if playerInside:
 			var input = get_movement_input()
 			particle_trail.amount_ratio = max(abs(input.x), abs(input.y))
-			if Input.is_action_just_pressed("Interact"):
+			if Input.is_action_just_pressed("Interact") and !player.near_shop:
 				exit_ship()
 		else:
 			particle_trail.amount_ratio = 0.0
@@ -103,8 +113,25 @@ func upgrade_damage_resistance():
 	if damage_resistance_level < damage_resistance_max_level:
 		damage_resistance_level += 1
 
+func upgrade_thruster_power():
+	if ship_thruster_power_level < ship_thruster_power_max_level:
+		ship_thruster_power_level += 1
+
+func repair():
+	health = maxHealth
+	update_sprite()
+
+func update_sprite():
+	if health <= 1:
+		sprite.texture = brokenSprite
+	elif health < maxHealth:
+		sprite.texture = batteredSprite
+	else:
+		sprite.texture = normalSprite
+
 func take_damage(amount: int):
 	health -= (amount - damage_resistance_level)
+	update_sprite()
 	if health <= 0:
 		health = 0
 		explode()

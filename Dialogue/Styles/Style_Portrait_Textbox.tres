@@ -29,6 +29,7 @@ scene = ExtResource("5_tkmdg")
 overrides = {
 "box_modulate_custom_color": "Color(0.28627452, 0.3019608, 0.49411765, 1)",
 "box_size": "Vector2(800, 200)",
+"custom_normal_font": "\"res://fonts/Calculator.ttf\"",
 "portrait_stretch_factor": "0.4",
 "text_custom_size": "64.0"
 }

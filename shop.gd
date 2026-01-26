@@ -9,6 +9,7 @@ var player_in_range: bool = false
 @export var sell_hint: String = "[F] Sell"
 var done_tutorial: bool = false
 @onready var money_particles: GPUParticles2D = $GPUParticles2D
+var in_shop: bool = false
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("default")
@@ -26,10 +27,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if player == null:
 			player = body
 		player_in_range = true
+		player.near_shop = true
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player:
 		player_in_range = false
+		player.near_shop = false
 
 func _process(_delta: float) -> void:
 	if player_in_range:
@@ -46,10 +49,20 @@ func _process(_delta: float) -> void:
 		label.visible = false
 
 func open_shop():
+	if in_shop:
+		return
+	
+	in_shop = true
+	
+	done_tutorial = true #TEMP!!!!!
+	
 	if !done_tutorial:
 		enter_tutorial()
 	else:
-		pass
+		run_dialogue("shopNormal")
+
+func run_dialogue(dialogue_name: String):
+	Dialogic.start(dialogue_name)
 
 func sell():
 	money_particles.emitting = true
@@ -57,3 +70,10 @@ func sell():
 		player.money += player.cargo_value
 		player.cargo_value = 0
 		player.cargo_carrying = 0
+
+
+func _on_area_2d_2_body_entered(body: Node2D) -> void:
+	if body is Player:
+		if player == null:
+			player = body
+		player.in_safe_zone = true

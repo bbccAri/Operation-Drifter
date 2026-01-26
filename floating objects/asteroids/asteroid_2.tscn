@@ -5,6 +5,7 @@
 
 [node name="Asteroid" type="RigidBody2D"]
 z_index = 1
+collision_mask = 3
 mass = 0.2
 freeze_mode = 1
 contact_monitor = true
