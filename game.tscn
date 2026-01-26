@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=74 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -66,6 +66,7 @@
 [ext_resource type="PackedScene" uid="uid://d1hksnkcssuvi" path="res://floating objects/asteroids/asteroid_big1.tscn" id="60_5628o"]
 [ext_resource type="PackedScene" uid="uid://uej0cvmysp1c" path="res://floating objects/asteroids/asteroid_big2.tscn" id="61_fuuk6"]
 [ext_resource type="PackedScene" uid="uid://b0wrhkieoilrn" path="res://floating objects/asteroids/asteroid_big3.tscn" id="62_cwgap"]
+[ext_resource type="Script" uid="uid://dgergvwokjrre" path="res://black_hole.gd" id="64_avmo2"]
 
 [sub_resource type="Environment" id="Environment_p41qd"]
 background_mode = 3
@@ -89,6 +90,9 @@ shader_parameter/strength = 0.70000008075
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gg4xk"]
 radius = 64000.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vyqle"]
+radius = 16000.0
 
 [node name="Node2D" type="Node2D"]
 
@@ -274,6 +278,7 @@ scale = Vector2(100, 100)
 texture = ExtResource("14_082n1")
 
 [node name="BlackHole" type="Node2D" parent="."]
+script = ExtResource("64_avmo2")
 
 [node name="Warp" type="Sprite2D" parent="BlackHole"]
 material = SubResource("ShaderMaterial_3bfw0")
@@ -294,7 +299,14 @@ gravity = 245.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BlackHole/Area2D"]
 shape = SubResource("CircleShape2D_gg4xk")
 
+[node name="DeathArea" type="Area2D" parent="BlackHole"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlackHole/DeathArea"]
+shape = SubResource("CircleShape2D_vyqle")
+
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
+
+[connection signal="body_entered" from="BlackHole/DeathArea" to="BlackHole" method="_on_death_area_body_entered"]
 
 [editable path="Ship"]

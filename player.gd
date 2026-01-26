@@ -15,7 +15,10 @@ var current_state: CharState = CharState.IDLE
 @export var black_hole: Node2D
 @onready var cam: Camera2D = $Camera2D
 @export var zoom_speed: float = 10
-@export var gravity_resistance: float = 1.0
+@export var gravity_resistance_amount: float = 0.25
+@export var gravity_resistance_max_level: int = 3
+var gravity_resistance_level: int = 0
+@export var gravity_resistance_price: int = 3000
 @onready var particle_trail: GPUParticles2D = $TrailParticles
 var debris_in_range: Array[Debris] = []
 var target_pickup_object: Node2D
@@ -26,6 +29,21 @@ var cargo_capacity: int = 50
 var cargo_carrying: int = 0
 var cargo_value: int = 0
 var warning_distance: float = 56000.0
+var health: int = 2
+@export var max_health: int = 2
+
+var suit_resilience_level: int = 0
+@export var suit_resilience_max_level: int = 5
+@export var suit_resilience_price: int = 4000
+var suit_thruster_power_level: int = 0
+@export var suit_thruster_power_max_level: int = 5
+@export var suit_thruster_power_price: int = 2000
+@export var suit_thruster_power_amount: float = 0.2
+var o2_left: float = 20.0
+var o2_tank_size_level: int = 2
+@export var o2_tank_size_max_level: int = 10
+@export var o2_tank_size_price: int = 1000
+@export var o2_tank_size_amount: float = 10.0
 
 var in_ship: bool = false
 @export var ship_zoom_multiplier: float = 0.8
@@ -37,6 +55,10 @@ var zoom_modifier: float = 1.0
 
 @export var zoom_debug: bool = false
 @export var zoom_debug_scale: float = 0.005
+
+func _ready() -> void:
+	DialogicToPlayer.player = self
+	health = max_health
 
 func get_movement_input():
 	var input = Vector2()
@@ -62,8 +84,8 @@ func _physics_process(delta):
 	if in_ship: return
 	var direction = get_movement_input()
 	rotation_degrees += direction.x * rotation_speed * delta
-	velocity = lerp(velocity, Vector2(0, direction.normalized().y).rotated(rotation) * speed, delta * acceleration)
-	velocity += get_gravity() * gravity_resistance
+	velocity = lerp(velocity, Vector2(0, direction.normalized().y).rotated(rotation) * (speed * (1 + suit_thruster_power_level * suit_thruster_power_amount)), delta * acceleration)
+	velocity += get_gravity() * (1.0 - gravity_resistance_level * gravity_resistance_amount)
 	move_and_slide()
 	
 func _process(delta: float) -> void:
@@ -83,8 +105,18 @@ func _process(delta: float) -> void:
 	play_anim()
 	if !in_ship:
 		particle_trail.amount_ratio = max(abs(input.x), abs(input.y))
+		var max_o2: float = o2_tank_size_amount * o2_tank_size_level
+		if o2_left < max_o2:
+			o2_left += delta
+			if o2_left > max_o2:
+				o2_left = max_o2
 	else:
 		particle_trail.amount_ratio = 0.0
+		if o2_left > 0.0:
+			o2_left -= delta
+			if o2_left <= 0:
+				o2_left = 0.0
+				die()
 	#print(global_position)
 	
 	var zoom_input = get_zoom_input()
@@ -194,3 +226,27 @@ func _on_pickup_area_body_exited(body: Node2D) -> void:
 		debris_in_range.erase(body)
 		if debris_in_range.is_empty():
 			target_pickup_object = null
+
+func upgrade_gravity_resistance():
+	if gravity_resistance_level < gravity_resistance_max_level:
+		gravity_resistance_level += 1
+
+func upgrade_suit_resilience():
+	if suit_resilience_level < suit_resilience_max_level:
+		max_health += 1
+		health += 1
+		
+func take_damage(amount: int):
+	health -= amount
+	if health <= 0:
+		health = 0
+		die()
+	elif health <= roundi(max_health / 2.0):
+		pass #enable damaged effect on HUD
+	
+func repair_suit():
+	health = max_health
+	#disable damaged effect on HUD
+
+func die():
+	get_tree().quit() #TEMP!!! TODO: actual death

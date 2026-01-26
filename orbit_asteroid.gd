@@ -72,3 +72,5 @@ func despawn():
 func _on_body_entered(body: Node) -> void:
 	if body is Debris and damage >= 1:
 		body.explode()
+	elif (body is Player or body is Ship) and damage >= 1:
+		body.take_damage(damage)

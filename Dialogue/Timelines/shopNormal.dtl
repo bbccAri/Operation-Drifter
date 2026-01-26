@@ -1,37 +1,41 @@
-R3Y6-1N41D (Talk): Hai!
+R3Y6-1N41D (Talk): [mood=Bot]Hai!
 if range(0, 10).pick_random() < 3:
-	R3Y6-1N41D (Default): Welcome to your local [Black Hole]'s wecycwing center.
+	R3Y6-1N41D (Default): [mood=Bot]Welcome to your local [mood=System][Black Hole][mood=Bot]'s wecycwing center.
 if range(0, 10).pick_random() < 5:
-	R3Y6-1N41D (Default): Would you wike to sell some scwap?
+	R3Y6-1N41D (Default): [mood=Bot]Would you wike to sell some scwap?
 label ShopStart
-R3Y6-1N41D (Default): What can I hewp you with?
-- Sell
+R3Y6-1N41D (Default): [mood=Bot]What can I hewp you with?
+- Sell | [if {DialogicToPlayer.get_player_carrying()} > 0.0] [else="disable"]
+	R3Y6-1N41D (Loading): [mood=System][Calculating Payment...][mood=Bot]
 	[signal arg="sell"]
+	R3Y6-1N41D (Talk): [mood=Bot]Thank you!
+	jump ShopStart
 - Upgrades
-	R3Y6-1N41D (Talk): We have many upgwades useful for getting even more scwap!
+	R3Y6-1N41D (Talk): [mood=Bot]We have many upgwades useful for getting even more scwap!
 	if range(0, 10).pick_random() < 1.0:
-		R3Y6-1N41D (Talk): You awe twapped in a cycwical heww of [Company Name Redacted]'s design!
-		R3Y6-1N41D (What): Oops.
-		R3Y6-1N41D (Blank): [Malfunction Logged For Review]
-		R3Y6-1N41D (Loading): [Rebooting...]
-		R3Y6-1N41D (Talk): Hai!
-	R3Y6-1N41D (Default): What kind of upgwade would you like?
+		R3Y6-1N41D (Talk): [mood=Bot]You awe twapped in a cycwical heww of [mood=System][Company Name Redacted][mood=Bot]'s design!
+		R3Y6-1N41D (What): [mood=Bot]Oops.
+		R3Y6-1N41D (Blank): [mood=System][Malfunction Logged For Review]
+		R3Y6-1N41D (Loading): [mood=System][Rebooting...][mood=Bot]
+		R3Y6-1N41D (Talk): [mood=Bot]Hai!
+	R3Y6-1N41D (Default): [mood=Bot]What kind of upgwade would you like?
 	- Suit
-		- Suit Resilience
-		- Suit Gravity Resistance
-		- Suit Thruster Power
-		- O2 Tank Size
-		- Repair Suit Damage
+		- Suit Resilience | [if {DialogicToPlayer.can_upgrade("suit_resilience")}] [else="disable"]
+		- Suit Gravity Resistance | [if {DialogicToPlayer.can_upgrade("suit_gravity_resistance")}] [else="disable"]
+		- Suit Thruster Power | [if {DialogicToPlayer.can_upgrade("suit_thruster_power")}] [else="disable"]
+		- O2 Tank Size | [if {DialogicToPlayer.can_upgrade("o2_tank_size")}] [else="disable"]
+		- Repair Suit Damage | [if {DialogicToPlayer.can_upgrade("suit_repair")}] [else="disable"]
 	- Ship
-		- Damage Resistance
-		- Ship Gravity Resistance
-		- Ship Thruster Power
-		- Cargo Space
-		- Repair Ship Damage
+		- Ship Shields | [if {DialogicToPlayer.can_upgrade("ship_damage_resistance")}] [else="disable"]
+		- Ship Gravity Resistance | [if {DialogicToPlayer.can_upgrade("ship_gravity_resistance")}] [else="disable"]
+		- Ship Thruster Power | [if {DialogicToPlayer.can_upgrade("ship_thruster_power")}] [else="disable"]
+		- Cargo Space | [if {DialogicToPlayer.can_upgrade("cargo_space")}] [else="disable"]
+		- Repair Ship Damage | [if {DialogicToPlayer.can_upgrade("ship_repair")] [else="disable"]
 - Exit
 	if range(0, 10).pick_random() < 3.0:
-		R3Y6-1N41D (Sad): Oh...
-		R3Y6-1N41D (Talk): Come back soon with more scwap!
-		R3Y6-1N41D (Default): Pwease.
+		R3Y6-1N41D (Sad): [mood=Bot]Oh...
+		R3Y6-1N41D (Talk): [mood=Bot]Come back soon with more scwap!
+		R3Y6-1N41D (Default): [mood=Bot]Pwease.
 	else:
-		R3Y6-1N41D (Talk): Bai! Come back soon with more scwap!
+		R3Y6-1N41D (Talk): [mood=Bot]Bai! Come back soon with more scwap!
+		[end_timeline]

@@ -7,13 +7,23 @@
 "prefix": "",
 "sound_mood_default": "",
 "sound_moods": {
-"BotTalk": {
+"Bot": {
 "mode": 0,
-"name": "BotTalk",
+"name": "Bot",
 "pitch_base": 1.0,
 "pitch_variance": 0.0,
 "skip_characters": 1.0,
 "sound_path": "res://audio/dialogue/dialogue_3 AH mediumsoft.wav",
+"volume_base": 0.0,
+"volume_variance": 0.0
+},
+"System": {
+"mode": 0,
+"name": "System",
+"pitch_base": 1.1,
+"pitch_variance": 0.1,
+"skip_characters": 0.0,
+"sound_path": "res://audio/dialogue/dialogue_2 mediumsoft short.wav",
 "volume_base": 0.0,
 "volume_variance": 0.0
 }
