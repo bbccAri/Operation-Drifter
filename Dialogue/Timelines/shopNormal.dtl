@@ -1,0 +1,37 @@
+R3Y6-1N41D (Talk): Hai!
+if range(0, 10).pick_random() < 3:
+	R3Y6-1N41D (Default): Welcome to your local [Black Hole]'s wecycwing center.
+if range(0, 10).pick_random() < 5:
+	R3Y6-1N41D (Default): Would you wike to sell some scwap?
+label ShopStart
+R3Y6-1N41D (Default): What can I hewp you with?
+- Sell
+	[signal arg="sell"]
+- Upgrades
+	R3Y6-1N41D (Talk): We have many upgwades useful for getting even more scwap!
+	if range(0, 10).pick_random() < 1.0:
+		R3Y6-1N41D (Talk): You awe twapped in a cycwical heww of [Company Name Redacted]'s design!
+		R3Y6-1N41D (What): Oops.
+		R3Y6-1N41D (Blank): [Malfunction Logged For Review]
+		R3Y6-1N41D (Loading): [Rebooting...]
+		R3Y6-1N41D (Talk): Hai!
+	R3Y6-1N41D (Default): What kind of upgwade would you like?
+	- Suit
+		- Suit Resilience
+		- Suit Gravity Resistance
+		- Suit Thruster Power
+		- O2 Tank Size
+		- Repair Suit Damage
+	- Ship
+		- Damage Resistance
+		- Ship Gravity Resistance
+		- Ship Thruster Power
+		- Cargo Space
+		- Repair Ship Damage
+- Exit
+	if range(0, 10).pick_random() < 3.0:
+		R3Y6-1N41D (Sad): Oh...
+		R3Y6-1N41D (Talk): Come back soon with more scwap!
+		R3Y6-1N41D (Default): Pwease.
+	else:
+		R3Y6-1N41D (Talk): Bai! Come back soon with more scwap!

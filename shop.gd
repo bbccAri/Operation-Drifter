@@ -3,10 +3,20 @@ extends Node2D
 var player: Player
 var player_in_range: bool = false
 @onready var label: RichTextLabel = $RichTextLabel
+@export var text_tags_start: String = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff80 ease=-2.0]"
+@export var text_tags_end: String = "[/pulse][/wave][/center]"
+@export var shop_hint: String = "[E] Interact"
+@export var sell_hint: String = "[F] Sell"
 var done_tutorial: bool = false
+@onready var money_particles: GPUParticles2D = $GPUParticles2D
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("default")
+	Dialogic.signal_event.connect(_on_dialogic_signal)
+
+func _on_dialogic_signal(arg):
+	if arg == "sell":
+		sell()
 
 func enter_tutorial():
 	pass
@@ -23,9 +33,15 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _process(_delta: float) -> void:
 	if player_in_range:
+		if player.cargo_carrying > 0:
+			label.text = text_tags_start + shop_hint + "\n" + sell_hint + text_tags_end
+		else:
+			label.text = text_tags_start + shop_hint + text_tags_end
 		label.visible = true
 		if Input.is_action_just_pressed("Interact"):
 			open_shop()
+		if Input.is_action_just_pressed("Confirm") and player.cargo_carrying > 0:
+			sell()
 	else:
 		label.visible = false
 
@@ -34,3 +50,10 @@ func open_shop():
 		enter_tutorial()
 	else:
 		pass
+
+func sell():
+	money_particles.emitting = true
+	if player != null:
+		player.money += player.cargo_value
+		player.cargo_value = 0
+		player.cargo_carrying = 0

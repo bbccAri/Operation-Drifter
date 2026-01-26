@@ -9,7 +9,7 @@ class_name DialogicStyle
 @export var name := "Style":
 	get:
 		if name.is_empty():
-			return "Unkown Style"
+			return "Unknown Style"
 		return name
 
 @export var inherits: DialogicStyle = null
