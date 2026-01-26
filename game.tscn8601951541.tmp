@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=65 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -37,35 +37,26 @@
 [ext_resource type="PackedScene" uid="uid://bwgxy04ljps7j" path="res://floating objects/debris/debris_priceless1.tscn" id="21_4v2jo"]
 [ext_resource type="PackedScene" uid="uid://b1bkxy16pqwdf" path="res://floating objects/debris/debris_worthless3.tscn" id="21_cfc7e"]
 [ext_resource type="PackedScene" uid="uid://e4svlyjjf6ap" path="res://floating objects/debris/debris_worthless4.tscn" id="22_gh0px"]
+[ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_debris.gd" id="23_r62pu"]
 [ext_resource type="PackedScene" uid="uid://dbkf02mu58lpd" path="res://floating objects/debris/debris_worthless5.tscn" id="23_v33yl"]
+[ext_resource type="Texture2D" uid="uid://6hlemro4oem5" path="res://sprites/debris/salvage/debris5.png" id="24_klri6"]
+[ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="25_eu6ph"]
+[ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="26_edr7y"]
 [ext_resource type="PackedScene" uid="uid://bqvbbuo1pnq3s" path="res://floating objects/asteroids/asteroid_2.tscn" id="27_xex6t"]
 [ext_resource type="PackedScene" uid="uid://idbrkrdjbat2" path="res://floating objects/asteroids/asteroid_3.tscn" id="28_aa0lp"]
-[ext_resource type="PackedScene" uid="uid://dik5gtrlmexlk" path="res://floating objects/debris/debris_materials5.tscn" id="29_56gn1"]
 [ext_resource type="PackedScene" uid="uid://cmpty04q6al38" path="res://floating objects/asteroids/asteroid_4.tscn" id="29_iu0sx"]
 [ext_resource type="PackedScene" uid="uid://b6hongd133i01" path="res://floating objects/asteroids/asteroid_5.tscn" id="30_4v2jo"]
-[ext_resource type="PackedScene" uid="uid://dhcah3x01i7dk" path="res://floating objects/debris/debris_salvage4.tscn" id="33_avmo2"]
 [ext_resource type="PackedScene" uid="uid://etcxia3h80ri" path="res://floating objects/debris/debris_salvage3.tscn" id="34_2tki7"]
-[ext_resource type="PackedScene" uid="uid://5uts2b7732f6" path="res://floating objects/debris/debris_salvage5.tscn" id="34_vyqle"]
 [ext_resource type="PackedScene" uid="uid://cv2m4la2gdpfr" path="res://floating objects/debris/debris_valuable2.tscn" id="36_ib7ph"]
 [ext_resource type="PackedScene" uid="uid://c1n4xk351t2xl" path="res://floating objects/debris/debris_valuable3.tscn" id="37_vuohh"]
 [ext_resource type="PackedScene" uid="uid://ky1y52htns2p" path="res://floating objects/debris/debris_valuable4.tscn" id="38_3gvs5"]
-[ext_resource type="PackedScene" uid="uid://djkx2eo6eqi2o" path="res://floating objects/debris/debris_valuable5.tscn" id="39_xoeau"]
-[ext_resource type="PackedScene" uid="uid://d4be2bu1xlgns" path="res://floating objects/debris/debris_priceless2.tscn" id="41_6qn5j"]
 [ext_resource type="PackedScene" uid="uid://c1o1eyx56wq26" path="res://floating objects/asteroids/asteroid_6.tscn" id="42_2tki7"]
-[ext_resource type="PackedScene" uid="uid://dqprop1uohqil" path="res://floating objects/debris/debris_priceless3.tscn" id="42_wj41c"]
-[ext_resource type="PackedScene" uid="uid://bvnxl43247h7s" path="res://floating objects/debris/debris_priceless4.tscn" id="43_baljx"]
 [ext_resource type="PackedScene" uid="uid://bar1ok426wxd8" path="res://floating objects/asteroids/asteroid_7.tscn" id="43_ib7ph"]
 [ext_resource type="PackedScene" uid="uid://o5fr6an06ycd" path="res://floating objects/asteroids/asteroid_8.tscn" id="44_vuohh"]
 [ext_resource type="PackedScene" uid="uid://b3yyhy4w467dk" path="res://floating objects/asteroids/asteroid_9.tscn" id="45_3gvs5"]
 [ext_resource type="PackedScene" uid="uid://bea6ldqhdke43" path="res://floating objects/asteroids/asteroid_10.tscn" id="46_mc3al"]
 [ext_resource type="PackedScene" uid="uid://cvcocm2yn7mc0" path="res://floating objects/asteroids/asteroid_amongus.tscn" id="47_bqa6y"]
 [ext_resource type="PackedScene" uid="uid://c5ag7yvsdyesk" path="res://floating objects/asteroids/asteroid_spengtong.tscn" id="48_du4n2"]
-[ext_resource type="PackedScene" uid="uid://drmsgejjsbmho" path="res://floating objects/asteroids/asteroid_11.tscn" id="57_t2ssd"]
-[ext_resource type="PackedScene" uid="uid://dgon82mikhltt" path="res://floating objects/asteroids/asteroid_12.tscn" id="58_7noa1"]
-[ext_resource type="PackedScene" uid="uid://kql043o84cdo" path="res://floating objects/asteroids/asteroid_13.tscn" id="59_3xib3"]
-[ext_resource type="PackedScene" uid="uid://d1hksnkcssuvi" path="res://floating objects/asteroids/asteroid_big1.tscn" id="60_5628o"]
-[ext_resource type="PackedScene" uid="uid://uej0cvmysp1c" path="res://floating objects/asteroids/asteroid_big2.tscn" id="61_fuuk6"]
-[ext_resource type="PackedScene" uid="uid://b0wrhkieoilrn" path="res://floating objects/asteroids/asteroid_big3.tscn" id="62_cwgap"]
 
 [sub_resource type="Environment" id="Environment_p41qd"]
 background_mode = 3
@@ -73,6 +64,22 @@ glow_enabled = true
 glow_intensity = 2.0
 glow_bloom = 0.25
 glow_hdr_threshold = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4psp"]
+size = Vector2(62, 62)
+
+[sub_resource type="PackedScene" id="PackedScene_kq12w"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Debris", "RigidBody2D", "z_index", "mass", "freeze_mode", "script", "Sprite2D", "Sprite2D", "texture_filter", "texture", "Collision", "CollisionShape2D", "shape", "DebrisExplodeParticles", "Sprite2D2", "Sprite2D", "visible", "modulate", "scale", "texture"),
+"node_count": 5,
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 1073741824, 0, 7, 6, -1, 2, 8, 4, 9, 5, 0, 1073741825, 0, 11, 10, -1, 1, 12, 6, 0, 1073741826, 0, 2147483647, 13, 7, 0, 0, 1073741827, 0, 15, 14, -1, 4, 16, 8, 17, 9, 18, 10, 19, 11, 0),
+"variants": [1, 0.2, 1, ExtResource("23_r62pu"), 1, ExtResource("24_klri6"), SubResource("RectangleShape2D_k4psp"), ExtResource("25_eu6ph"), false, Color(1, 0.49803922, 0, 1), Vector2(10, 10), ExtResource("26_edr7y")],
+"version": 3
+}
 
 [sub_resource type="Curve" id="Curve_y1pvw"]
 _limits = [-1.0, 1.0, 0.0, 1.0]
@@ -239,7 +246,7 @@ icon_type = 2
 [node name="ShipPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
 z_index = 9
 position = Vector2(70000, 0)
-target = NodePath("../Ship/Ship")
+target = NodePath("../Ship")
 player = NodePath("../Player")
 label_text = "Ship"
 icon_type = 3
@@ -256,14 +263,14 @@ script = ExtResource("12_dhpj7")
 target = NodePath("../BlackHole")
 player = NodePath("../Player")
 scraps_worthless = Array[PackedScene]([ExtResource("13_xfvwf"), ExtResource("20_tb2lt"), ExtResource("21_cfc7e"), ExtResource("22_gh0px"), ExtResource("23_v33yl")])
-scraps_materials = Array[PackedScene]([ExtResource("14_dhpj7"), ExtResource("15_7knny"), ExtResource("16_082n1"), ExtResource("17_xex6t"), ExtResource("29_56gn1")])
-scraps_salvage = Array[PackedScene]([ExtResource("18_aa0lp"), ExtResource("19_iu0sx"), ExtResource("34_2tki7"), ExtResource("33_avmo2"), ExtResource("34_vyqle")])
-scraps_valuable = Array[PackedScene]([ExtResource("13_qhcbd"), ExtResource("36_ib7ph"), ExtResource("37_vuohh"), ExtResource("38_3gvs5"), ExtResource("39_xoeau")])
-scraps_priceless = Array[PackedScene]([ExtResource("21_4v2jo"), ExtResource("41_6qn5j"), ExtResource("42_wj41c"), ExtResource("43_baljx")])
+scraps_materials = Array[PackedScene]([ExtResource("14_dhpj7"), ExtResource("15_7knny"), ExtResource("16_082n1"), ExtResource("17_xex6t")])
+scraps_salvage = Array[PackedScene]([SubResource("PackedScene_kq12w"), ExtResource("18_aa0lp"), ExtResource("19_iu0sx"), ExtResource("34_2tki7")])
+scraps_valuable = Array[PackedScene]([ExtResource("13_qhcbd"), ExtResource("36_ib7ph"), ExtResource("37_vuohh"), ExtResource("38_3gvs5")])
+scraps_priceless = Array[PackedScene]([ExtResource("21_4v2jo")])
 
 [node name="AsteroidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
 script = ExtResource("13_7knny")
-asteroid_variants = Array[PackedScene]([ExtResource("14_x5p1p"), ExtResource("27_xex6t"), ExtResource("28_aa0lp"), ExtResource("29_iu0sx"), ExtResource("30_4v2jo"), ExtResource("42_2tki7"), ExtResource("43_ib7ph"), ExtResource("44_vuohh"), ExtResource("45_3gvs5"), ExtResource("46_mc3al"), ExtResource("47_bqa6y"), ExtResource("48_du4n2"), ExtResource("57_t2ssd"), ExtResource("58_7noa1"), ExtResource("59_3xib3"), ExtResource("60_5628o"), ExtResource("61_fuuk6"), ExtResource("62_cwgap")])
+asteroid_variants = Array[PackedScene]([ExtResource("14_x5p1p"), ExtResource("27_xex6t"), ExtResource("28_aa0lp"), ExtResource("29_iu0sx"), ExtResource("30_4v2jo"), ExtResource("42_2tki7"), ExtResource("43_ib7ph"), ExtResource("44_vuohh"), ExtResource("45_3gvs5"), ExtResource("46_mc3al"), ExtResource("47_bqa6y"), ExtResource("48_du4n2")])
 target = NodePath("../BlackHole")
 player = NodePath("../Player")
 
@@ -296,5 +303,3 @@ shape = SubResource("CircleShape2D_gg4xk")
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
-
-[editable path="Ship"]

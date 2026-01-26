@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dij712yywgc02"]
+[gd_scene load_steps=19 format=3 uid="uid://dij712yywgc02"]
 
 [ext_resource type="Script" uid="uid://bn6qr4172tscm" path="res://pointer.gd" id="1_asalp"]
 [ext_resource type="Texture2D" uid="uid://bg81g5u47fqb1" path="res://sprites/operation-drifter_arrow.png" id="2_d5mmh"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="7_6uqvk"]
 [ext_resource type="Texture2D" uid="uid://w3noudyqddnb" path="res://sprites/operation-drifter_shopicon.png" id="8_b1ag5"]
 [ext_resource type="Texture2D" uid="uid://x2mqryb73hsm" path="res://sprites/operation-drifter_warning.png" id="8_radl4"]
+[ext_resource type="Texture2D" uid="uid://b8nlct7uenyo4" path="res://sprites/operation-drifter_shipicon.png" id="11_qoutw"]
 
 [sub_resource type="Animation" id="Animation_2hs0m"]
 length = 0.001
@@ -171,4 +172,4 @@ visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="Icons/Ship icon"]
 texture_filter = 1
-texture = ExtResource("8_b1ag5")
+texture = ExtResource("11_qoutw")

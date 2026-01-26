@@ -12,7 +12,7 @@ var playerInside: bool = false
 @export var speed: float = 1000
 @export var rotation_speed: float = 100
 @export var acceleration: float = 3
-@export var gravity_resistance: float = 1.5
+@export var gravity_resistance: float = .75
 @export var exit_distance: float = 16.0
 @onready var particle_trail: GPUParticles2D = $Ship/TrailParticles
 

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqprop1uohqil"]
+
+[ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_debris.gd" id="1_ys5we"]
+[ext_resource type="Texture2D" uid="uid://otdltr1s2o75" path="res://sprites/debris/priceless/debris21.png" id="2_ys5we"]
+[ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="3_tr2jc"]
+[ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="4_knqax"]
+
+[node name="Debris" type="RigidBody2D"]
+z_index = 1
+mass = 0.2
+freeze_mode = 1
+script = ExtResource("1_ys5we")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_ys5we")
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-9, -23, -25, -21, -29, -16, -29, -11, -20, -1, -27, 1, -31, 6, -22, 22, -11, 31, -1, 23, 11, 28, 22, 19, 31, 4, 31, -5, 21, -17, 17, -15, 12, -9, -3.609829, -19.406553)
+
+[node name="DebrisExplodeParticles" parent="." instance=ExtResource("3_tr2jc")]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 1, 1)
+scale = Vector2(10, 10)
+texture = ExtResource("4_knqax")

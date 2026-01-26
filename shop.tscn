@@ -1,14 +1,146 @@
-[gd_scene load_steps=6 format=3 uid="uid://4wtwjd3skaoc"]
+[gd_scene load_steps=27 format=3 uid="uid://4wtwjd3skaoc"]
 
 [ext_resource type="Script" uid="uid://c3l00c8wn6htr" path="res://shop.gd" id="1_blqjs"]
-[ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="2_fgaav"]
+[ext_resource type="Script" uid="uid://bx81jc7iqd6uf" path="res://bot_wander.gd" id="2_6lah5"]
+[ext_resource type="Texture2D" uid="uid://bbj8bnfa2hfo5" path="res://sprites/operation-drifter-bot.png" id="2_fgaav"]
 [ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="3_6lah5"]
+[ext_resource type="Texture2D" uid="uid://b2p1ymtjva4ww" path="res://sprites/operation-drifter_shoplocation.png" id="3_gmb2m"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8kdgp"]
+atlas = ExtResource("2_fgaav")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myf4l"]
+atlas = ExtResource("2_fgaav")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p5a0g"]
+atlas = ExtResource("2_fgaav")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqmyw"]
+atlas = ExtResource("2_fgaav")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sw5c6"]
+atlas = ExtResource("2_fgaav")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msgp6"]
+atlas = ExtResource("2_fgaav")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e23gp"]
+atlas = ExtResource("2_fgaav")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rrolr"]
+atlas = ExtResource("2_fgaav")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gldgk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8kdgp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myf4l")
+}],
+"loop": true,
+"name": &"grab",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p5a0g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqmyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sw5c6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msgp6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e23gp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rrolr")
+}],
+"loop": true,
+"name": &"move",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fgaav"]
+radius = 12.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_763b7"]
+atlas = ExtResource("3_gmb2m")
+region = Rect2(0, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jtxfs"]
+atlas = ExtResource("3_gmb2m")
+region = Rect2(128, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuxin"]
+atlas = ExtResource("3_gmb2m")
+region = Rect2(256, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lh4o"]
+atlas = ExtResource("3_gmb2m")
+region = Rect2(384, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il0eq"]
+atlas = ExtResource("3_gmb2m")
+region = Rect2(512, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_acxsc"]
+atlas = ExtResource("3_gmb2m")
+region = Rect2(640, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3iel"]
+atlas = ExtResource("3_gmb2m")
+region = Rect2(768, 0, 128, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2807j"]
+atlas = ExtResource("3_gmb2m")
+region = Rect2(896, 0, 128, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_gmb2m"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_fgaav")
+"texture": SubResource("AtlasTexture_763b7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jtxfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuxin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lh4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il0eq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_acxsc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3iel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2807j")
 }],
 "loop": true,
 "name": &"default",
@@ -18,10 +150,32 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_8kdgp"]
 radius = 96.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u7exk"]
+radius = 32.0
+height = 128.0
+
 [node name="Shop" type="Node2D"]
 script = ExtResource("1_blqjs")
 
+[node name="Bot" type="CharacterBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("2_6lah5")
+
+[node name="BotSprite" type="AnimatedSprite2D" parent="Bot"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_gldgk")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bot"]
+shape = SubResource("CircleShape2D_fgaav")
+
+[node name="RepositionTimer" type="Timer" parent="Bot"]
+wait_time = 3.0
+one_shot = true
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_gmb2m")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -30,11 +184,12 @@ sprite_frames = SubResource("SpriteFrames_gmb2m")
 shape = SubResource("CircleShape2D_8kdgp")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = 6
 texture_filter = 1
 offset_left = -32.0
-offset_top = 64.0
+offset_top = 32.0
 offset_right = 608.0
-offset_bottom = 384.0
+offset_bottom = 352.0
 scale = Vector2(0.1, 0.1)
 theme = ExtResource("3_6lah5")
 bbcode_enabled = true
@@ -43,5 +198,12 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_u7exk")
+
+[connection signal="timeout" from="Bot/RepositionTimer" to="Bot" method="_on_reposition_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

@@ -131,15 +131,18 @@ func play_anim():
 		CharState.IDLE:
 			anim_name = "idle"
 		CharState.MOVE:
-			anim_name = "move"
+			if abs(get_movement_input().y) >= 0.5:
+				anim_name = "move"
+			else:
+				anim_name = "move_light"
 		CharState.GRAB:
-			if grabbed_position.x <= 0 and abs(grabbed_position.x) > abs(grabbed_position.y):
+			if grabbed_position.position.x <= 0 and abs(grabbed_position.position.x) > abs(grabbed_position.position.y):
 				anim_name = "grab_left"
-			elif grabbed_position.x > 0 and abs(grabbed_position.x) > abs(grabbed_position.y):
+			elif grabbed_position.position.x > 0 and abs(grabbed_position.position.x) > abs(grabbed_position.position.y):
 				anim_name = "grab_right"
-			elif grabbed_position.y >= 0 and abs(grabbed_position.x) <= abs(grabbed_position.y):
+			elif grabbed_position.position.y >= 0 and abs(grabbed_position.position.x) <= abs(grabbed_position.position.y):
 				anim_name = "grab_down"
-			elif grabbed_position.y < 0 and abs(grabbed_position.x) <= abs(grabbed_position.y):
+			elif grabbed_position.position.y < 0 and abs(grabbed_position.position.x) <= abs(grabbed_position.position.y):
 				anim_name = "grab_up"
 			else:
 				anim_name = "grab_down"
