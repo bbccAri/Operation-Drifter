@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=76 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://dij712yywgc02" path="res://pointer.tscn" id="15_aa0lp"]
 [ext_resource type="PackedScene" uid="uid://cmfafxveywsoj" path="res://ship.tscn" id="15_klri6"]
 [ext_resource type="Texture2D" uid="uid://dayx5facta601" path="res://sprites/accretion disk/darkness_fade.png" id="15_xex6t"]
+[ext_resource type="AudioStream" uid="uid://c5uibfj6wknwi" path="res://audio/music/extra/From Out Here.ogg" id="15_xoeau"]
 [ext_resource type="PackedScene" uid="uid://c1apn2w3wkb73" path="res://floating objects/debris/debris_materials3.tscn" id="16_082n1"]
 [ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://rotatingvisual.gd" id="16_aa0lp"]
 [ext_resource type="PackedScene" uid="uid://0vcab2vhmiij" path="res://identifier.tscn" id="16_iu0sx"]
@@ -217,13 +218,20 @@ texture_filter = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_iu0sx")
 
-[node name="Player" parent="." node_paths=PackedStringArray("black_hole", "health_bar", "o2_bar", "money_label") instance=ExtResource("11_xfvwf")]
+[node name="Player" parent="." node_paths=PackedStringArray("black_hole", "health_bar", "o2_bar", "money_label", "HUD_image") instance=ExtResource("11_xfvwf")]
 position = Vector2(70000, 0)
 black_hole = NodePath("../BlackHole")
 health_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/HP/HealthBar")
 o2_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/RightElements/VBoxContainer2/HP/O2Bar")
 money_label = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MoneyLabel")
+HUD_image = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect")
 zoom_debug_scale = 0.312
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource("15_xoeau")
+volume_db = -5.0
+autoplay = true
+attenuation = 1e-05
 
 [node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_klri6")]
 position = Vector2(70000, -256)

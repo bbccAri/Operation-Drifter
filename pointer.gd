@@ -51,6 +51,9 @@ func _ready() -> void:
 	anim.play("arrow_bob")
 
 func _process(_delta: float) -> void:
+	if (target == null or target.is_queued_for_deletion()):
+		target = null
+		return
 	var distance = global_position.distance_to(target.global_position)
 	if (Input.is_action_pressed("Scan") and distance > close_enough_distance) or (icon_type == IconType.BlackHole and distance <= player.warning_distance):
 		visible = true

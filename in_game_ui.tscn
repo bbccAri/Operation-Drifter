@@ -34,6 +34,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="HelmetOverlay"]
+self_modulate = Color(1, 1, 1, 0.7529412)
 layout_mode = 2
 texture = ExtResource("1_kenku")
 region_rect = Rect2(80, 0, 1760, 1080)
@@ -69,7 +70,7 @@ layout_mode = 2
 size_flags_vertical = 2
 theme = ExtResource("2_cwbuu")
 theme_override_font_sizes/normal_font_size = 24
-theme_override_font_sizes/bold_font_size = 16
+theme_override_font_sizes/bold_font_size = 24
 bbcode_enabled = true
 text = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff40 ease=-2.0][b]$0[/b][/pulse][/wave][/center]"
 fit_content = true

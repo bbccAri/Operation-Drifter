@@ -40,6 +40,8 @@ var suffocating: bool = false
 @export var money_label: MoneyLabel
 @export var damage_cooldown: float = 5.0
 var iframes: float = 0.0
+@export var HUD_image: NinePatchRect
+@export var damage_hud_fade_speed: float = 5.0
 
 var suit_resilience_level: int = 0
 @export var suit_resilience_max_level: int = 5
@@ -130,6 +132,8 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("Pause"):
+		get_tree().quit() #TEMP TODO: PAUSE MENU!!!
 	if suffocating:
 		take_damage(1)
 	var bh_distance = global_position.distance_to(black_hole.global_position)
@@ -171,6 +175,11 @@ func _process(delta: float) -> void:
 		suffocating = false
 	update_o2_visuals(o2_left, prev_o2)
 	#print(global_position)
+	
+	if health <= roundi(max_health / 2.0):
+		HUD_image.self_modulate = lerp(HUD_image.self_modulate, Color(1.0, 0.0, 0.0, 129.0/255.0), delta * damage_hud_fade_speed)
+	else:
+		HUD_image.self_modulate = lerp(HUD_image.self_modulate, Color(1.0, 1.0, 1.0, 129.0/255.0), delta * damage_hud_fade_speed)
 	
 	if iframes > 0.0:
 		iframes -= delta
