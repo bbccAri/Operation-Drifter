@@ -1,10 +1,13 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://8l1lb48ylpmg"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://8l1lb48ylpmg"]
 
 [ext_resource type="FontFile" uid="uid://carogmw04mrqf" path="res://fonts/Chopsic.otf" id="1_touxu"]
+[ext_resource type="FontFile" uid="uid://7chsj3o4g1wh" path="res://fonts/Calculator.ttf" id="2_2pn01"]
 
 [resource]
 RichTextLabel/colors/default_color = Color(0, 0.7372549, 0.7372549, 1)
 RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
 RichTextLabel/constants/outline_size = 2
+RichTextLabel/font_sizes/bold_font_size = 120
 RichTextLabel/font_sizes/normal_font_size = 120
-RichTextLabel/fonts/normal_font = ExtResource("1_touxu")
+RichTextLabel/fonts/bold_font = ExtResource("1_touxu")
+RichTextLabel/fonts/normal_font = ExtResource("2_2pn01")

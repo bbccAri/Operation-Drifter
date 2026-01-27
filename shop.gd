@@ -13,6 +13,7 @@ var in_shop: bool = false
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("default")
+	$AnimatedSprite2D2.play("default")
 	Dialogic.signal_event.connect(_on_dialogic_signal)
 
 func _on_dialogic_signal(arg):

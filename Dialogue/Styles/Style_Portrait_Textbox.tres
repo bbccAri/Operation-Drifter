@@ -29,9 +29,17 @@ scene = ExtResource("5_tkmdg")
 overrides = {
 "box_modulate_custom_color": "Color(0.28627452, 0.3019608, 0.49411765, 1)",
 "box_size": "Vector2(800, 200)",
+"custom_bold_font": "\"res://fonts/Chopsic.ttf\"",
 "custom_normal_font": "\"res://fonts/Calculator.ttf\"",
+"name_label_color_mode": "1",
+"name_label_custom_color": "Color(0, 0.7372549, 0.7372549, 1)",
+"name_label_custom_size": "32.0",
+"name_label_customfont": "\"res://fonts/Chopsic.ttf\"",
+"name_label_use_global_font": "false",
+"name_label_use_global_size": "false",
 "portrait_stretch_factor": "0.4",
-"text_custom_size": "64.0"
+"text_custom_size": "32.0",
+"text_use_global_size": "false"
 }
 
 [sub_resource type="Resource" id="Resource_5e04g"]

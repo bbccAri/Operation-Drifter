@@ -66,6 +66,8 @@ var zoom_modifier: float = 1.0
 
 func _ready() -> void:
 	DialogicToPlayer.player = self
+	Dialogic.timeline_started.connect(on_dialogue_start)
+	Dialogic.timeline_ended.connect(on_dialogue_end)
 	health = max_health
 	cargo_capacity = cargo_space_level * cargo_space_amount
 
@@ -285,3 +287,9 @@ func upgrade_cargo_size():
 
 func die():
 	get_tree().quit() #TEMP!!! TODO: actual death
+
+func on_dialogue_start():
+	in_dialogue = true
+
+func on_dialogue_end():
+	in_dialogue = false

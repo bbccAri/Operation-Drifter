@@ -13,9 +13,9 @@ func get_player_money() -> int:
 func get_upgrade_amount(upgrade: String) -> String:
 	match upgrade:
 		"o2_tank_size":
-			return str(player.o2_tank_size_amount)
+			return str(player.o2_tank_size_amount * player.o2_tank_size_level)
 		"cargo_space":
-			return str(player.cargo_space_amount)
+			return str(player.cargo_space_amount * player.cargo_space_level)
 	push_warning("get_upgrade_amount called for undefined response")
 	return ""
 
@@ -76,7 +76,7 @@ func calculate_price(upgrade: String) -> int:
 		"suit_thruster_power":
 			return roundi(player.suit_thruster_power_price * (player.suit_thruster_power_level + 1) * pow(price_scaling, player.suit_thruster_power_level))
 		"o2_tank_size":
-			return roundi(player.money >= player.o2_tank_size_price * (player.o2_tank_size_level + 1) * pow(price_scaling, player.o2_tank_size_level))
+			return roundi(player.o2_tank_size_price * (player.o2_tank_size_level - 1) * pow(price_scaling, player.o2_tank_size_level - 2))
 		"suit_repair":
 			return roundi(player.repair_price)
 		
@@ -87,7 +87,7 @@ func calculate_price(upgrade: String) -> int:
 		"ship_thruster_power":
 			return roundi(ship.ship_thruster_power_price * (ship.ship_thruster_power_level + 1) * pow(price_scaling, ship.ship_thruster_power_level))
 		"cargo_space":
-			return roundi(player.cargo_space_price * (player.cargo_space_level + 1) * pow(price_scaling, player.cargo_space_level))
+			return roundi(player.cargo_space_price * (player.cargo_space_level - 1) * pow(price_scaling, player.cargo_space_level - 2))
 		"ship_repair":
 			return roundi(ship.repair_price)
 	push_warning("calculate_price called with unknown upgrade name!")

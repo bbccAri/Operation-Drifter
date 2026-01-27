@@ -57,6 +57,8 @@ func _physics_process(delta: float) -> void:
 	if !playerInside: return
 	
 	var direction = get_movement_input()
+	if player.in_dialogue:
+		direction = Vector2.ZERO
 	ship_body.rotation_degrees += direction.x * rotation_speed * delta
 	ship_body.velocity = lerp(ship_body.velocity, Vector2(0, direction.normalized().y).rotated(ship_body.rotation) * (speed * (1 + ship_thruster_power_level * ship_thruster_power_amount)), delta * acceleration)
 	ship_body.velocity += ship_body.get_gravity() * (1.0 - gravity_resistance_amount * gravity_resistance_level)
@@ -79,6 +81,8 @@ func _process(_delta: float) -> void:
 		enter_hint_label.visible = false
 		if playerInside:
 			var input = get_movement_input()
+			if player.in_dialogue:
+				input = Vector2.ZERO
 			particle_trail.amount_ratio = max(abs(input.x), abs(input.y))
 			if Input.is_action_just_pressed("Interact") and !player.near_shop:
 				exit_ship()
