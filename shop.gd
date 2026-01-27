@@ -15,10 +15,14 @@ func _ready() -> void:
 	$AnimatedSprite2D.play("default")
 	$AnimatedSprite2D2.play("default")
 	Dialogic.signal_event.connect(_on_dialogic_signal)
+	Dialogic.timeline_ended.connect(_on_timeline_ended)
 
 func _on_dialogic_signal(arg):
 	if arg == "sell":
 		sell()
+
+func _on_timeline_ended():
+	exit_shop()
 
 func enter_tutorial():
 	pass
@@ -42,6 +46,7 @@ func _process(_delta: float) -> void:
 		else:
 			label.text = text_tags_start + shop_hint + text_tags_end
 		label.visible = true
+		print("player in range")
 		if Input.is_action_just_pressed("Interact"):
 			open_shop()
 		if Input.is_action_just_pressed("Confirm") and player.cargo_carrying > 0:
@@ -61,6 +66,11 @@ func open_shop():
 		enter_tutorial()
 	else:
 		run_dialogue("shopNormal")
+
+func exit_shop():
+	await get_tree().create_timer(0.2).timeout
+	in_shop = false
+	done_tutorial = true
 
 func run_dialogue(dialogue_name: String):
 	Dialogic.start(dialogue_name)
