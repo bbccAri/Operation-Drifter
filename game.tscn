@@ -217,10 +217,12 @@ texture_filter = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_iu0sx")
 
-[node name="Player" parent="." node_paths=PackedStringArray("black_hole", "health_bar") instance=ExtResource("11_xfvwf")]
+[node name="Player" parent="." node_paths=PackedStringArray("black_hole", "health_bar", "o2_bar", "money_label") instance=ExtResource("11_xfvwf")]
 position = Vector2(70000, 0)
 black_hole = NodePath("../BlackHole")
-health_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer/HealthBar")
+health_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/HP/HealthBar")
+o2_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/RightElements/VBoxContainer2/HP/O2Bar")
+money_label = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MoneyLabel")
 zoom_debug_scale = 0.312
 
 [node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_klri6")]
@@ -319,7 +321,10 @@ layer = 2
 
 [node name="InGameUI" parent="CanvasLayer" instance=ExtResource("68_vyqle")]
 
-[node name="HealthBar" parent="CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer" index="0" node_paths=PackedStringArray("player")]
+[node name="HealthBar" parent="CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/HP" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../../../../../../../../Player")
+
+[node name="O2Bar" parent="CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/RightElements/VBoxContainer2/HP" index="0" node_paths=PackedStringArray("player")]
 player = NodePath("../../../../../../../../../Player")
 
 [connection signal="body_entered" from="BlackHole/DeathArea" to="BlackHole" method="_on_death_area_body_entered"]

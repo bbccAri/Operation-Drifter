@@ -24,7 +24,7 @@ var debris_in_range: Array[Debris] = []
 var target_pickup_object: Node2D
 @onready var grabbed_position: Marker2D = $GrabbedPosition
 var grabbed_object: Debris
-var money: int = 0
+var money: int = 0 : set = _set_money
 var cargo_capacity: int = 50
 var cargo_carrying: int = 0
 var cargo_value: int = 0
@@ -32,12 +32,14 @@ var warning_distance: float = 56000.0
 var health: int = 2 : set = _set_health
 @export var max_health: int = 2 : set = _set_max_health
 @export var health_bar: HealthBar
+@export var o2_bar: O2Bar
 var near_shop: bool = false
 var in_safe_zone: bool = false
 var in_dialogue: bool = false
 var suffocating: bool = false
-var suffocate_timer: float = 0.0
-@export var suffocate_tick: float = 1.0
+@export var money_label: MoneyLabel
+@export var damage_cooldown: float = 5.0
+var iframes: float = 0.0
 
 var suit_resilience_level: int = 0
 @export var suit_resilience_max_level: int = 5
@@ -47,7 +49,7 @@ var suit_thruster_power_level: int = 0
 @export var suit_thruster_power_price: int = 2000
 @export var suit_thruster_power_amount: float = 0.2
 var o2_left: float = 20.0
-var o2_tank_size_level: int = 2
+var o2_tank_size_level: int = 2 : set = _set_o2_tank_size_level
 @export var o2_tank_size_max_level: int = 10
 @export var o2_tank_size_price: int = 1000
 @export var o2_tank_size_amount: float = 10.0
@@ -73,6 +75,7 @@ func _ready() -> void:
 	Dialogic.timeline_started.connect(on_dialogue_start)
 	Dialogic.timeline_ended.connect(on_dialogue_end)
 	health_bar.init_health()
+	o2_bar.init_o2()
 	health = max_health
 	cargo_capacity = cargo_space_level * cargo_space_amount
 
@@ -84,6 +87,15 @@ func _set_health(new_health: int):
 func _set_max_health(new_max_health: int):
 	max_health = new_max_health
 	health_bar.update_max_health(max_health)
+
+func _set_o2_tank_size_level(new_size: int):
+	o2_tank_size_level = new_size
+	o2_bar.update_max_o2(o2_tank_size_level * o2_tank_size_amount)
+
+func _set_money(new_money: int):
+	money = new_money
+	if money_label != null:
+		money_label.update_money_label(new_money)
 
 func get_movement_input():
 	var input = Vector2()
@@ -106,7 +118,9 @@ func get_zoom_input():
 	return input
 
 func _physics_process(delta):
-	if in_ship: return
+	if in_ship: 
+		health += 1.0 * delta
+		return
 	var direction = get_movement_input()
 	if in_dialogue:
 		direction = Vector2.ZERO
@@ -116,6 +130,8 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func _process(delta: float) -> void:
+	if suffocating:
+		take_damage(1)
 	var bh_distance = global_position.distance_to(black_hole.global_position)
 	black_hole_slow(bh_distance)
 	black_hole_zoom(bh_distance, delta, zoom_modifier)
@@ -133,6 +149,7 @@ func _process(delta: float) -> void:
 		current_state = CharState.IDLE
 	play_anim()
 	var max_o2: float = o2_tank_size_amount * o2_tank_size_level
+	var prev_o2: float = o2_left
 	if !in_ship:
 		particle_trail.amount_ratio = max(abs(input.x), abs(input.y))
 		if o2_left > 0.0 and !in_safe_zone:
@@ -152,8 +169,11 @@ func _process(delta: float) -> void:
 			if o2_left > max_o2:
 				o2_left = max_o2
 		suffocating = false
-	update_o2_visuals()
+	update_o2_visuals(o2_left, prev_o2)
 	#print(global_position)
+	
+	if iframes > 0.0:
+		iframes -= delta
 	
 	var zoom_input = get_zoom_input()
 	if zoom_input > 0 and (zoom_modifier <= zoom_extents_max or zoom_debug):
@@ -282,17 +302,19 @@ func upgrade_thruster_power():
 func upgrade_o2_tank_size():
 	if o2_tank_size_level < o2_tank_size_max_level:
 		o2_tank_size_level += 1
-		#TODO: update visual max
 
-func update_o2_visuals():
-	pass #TODO
+func update_o2_visuals(new_o2: float, prev_o2: float):
+	o2_bar.update_o2(new_o2, prev_o2)
 
 func take_damage(amount: int):
+	if iframes > 0.0:
+		return
 	health -= amount
 	if health <= 0:
 		die()
 	elif health <= roundi(max_health / 2.0):
 		pass #enable damaged effect on HUD
+	iframes = damage_cooldown
 	
 func repair_suit():
 	health = max_health

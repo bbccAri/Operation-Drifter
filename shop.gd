@@ -78,3 +78,7 @@ func _on_area_2d_2_body_entered(body: Node2D) -> void:
 		if player == null:
 			player = body
 		player.in_safe_zone = true
+
+func _on_area_2d_2_body_exited(body: Node2D) -> void:
+	if body is Player:
+		player.in_safe_zone = false

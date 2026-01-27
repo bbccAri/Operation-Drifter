@@ -6,9 +6,15 @@ class_name HealthBar
 @onready var damage_bar: ProgressBar
 @onready var sprite_over: Control 
 @onready var sprite_under: Control
+var do_catchup: bool = false
+@export var catchup_speed: float = 5.0
 
 func _ready():
 	init_health()
+
+func _process(delta: float) -> void:
+	if do_catchup:
+		damage_bar.value = lerp(damage_bar.value, float(player.health), catchup_speed * delta)
 
 func init_health():
 	timer = $DamageCatchup
@@ -20,6 +26,9 @@ func init_health():
 	damage_bar.value = player.health
 	
 func update_health(new_health: int, prev_health: int):
+	if do_catchup:
+		do_catchup = false
+		damage_bar.value = prev_health
 	value = new_health
 	if new_health < prev_health:
 		timer.start()
@@ -36,4 +45,5 @@ func update_max_health(new_max_health: int):
 	#sprite_over.positon.y = -80 - 38 * new_max_health
 
 func _on_damage_catchup_timeout() -> void:
-	damage_bar.value = player.health
+	do_catchup = true
+	#damage_bar.value = player.health

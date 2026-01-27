@@ -24,6 +24,8 @@ var playerInside: bool = false
 var health: int = 5
 @export var maxHealth: int = 5
 var exploding: bool = false
+@export var damage_cooldown: float = 5.0
+var iframes: float = 0.0
 
 @export var normalSprite: Texture2D = preload("res://sprites/playership.png")
 @export var batteredSprite: Texture2D = preload("res://sprites/playershipbattered.png")
@@ -65,7 +67,9 @@ func _physics_process(delta: float) -> void:
 	ship_body.move_and_slide()
 	player.global_position = ship_body.global_position
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if iframes > 0.0:
+		iframes -= delta
 	if playerClose and !playerInside:
 		if Input.is_action_just_pressed("Interact") and !player.near_shop:
 			enter_ship()
@@ -136,11 +140,14 @@ func update_sprite():
 		sprite.texture = normalSprite
 
 func take_damage(amount: int):
+	if iframes > 0.0:
+		return
 	health -= (amount - damage_resistance_level)
 	update_sprite()
 	if health <= 0:
 		health = 0
 		explode()
+	iframes = damage_cooldown
 
 func explode():
 	if not exploding:
