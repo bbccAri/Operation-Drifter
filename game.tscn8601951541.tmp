@@ -1,0 +1,305 @@
+[gd_scene load_steps=65 format=3 uid="uid://6c3pngmo45gk"]
+
+[ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
+[ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
+[ext_resource type="Texture2D" uid="uid://dky3qed3f2rvj" path="res://sprites/bg/operation-drifter-bg-circular_2.png" id="3_qhcbd"]
+[ext_resource type="Texture2D" uid="uid://dwapaeycb7m4q" path="res://sprites/bg/operation-drifter-bg-circular_3.png" id="4_f1jbl"]
+[ext_resource type="Texture2D" uid="uid://s6hcvrljd1g4" path="res://sprites/bg/operation-drifter-bg-circular_4.png" id="5_vaj68"]
+[ext_resource type="Texture2D" uid="uid://cuj0ujpf0wj4y" path="res://sprites/bg/operation-drifter-bg-circular_5.png" id="6_i2p71"]
+[ext_resource type="Texture2D" uid="uid://c3dt17h7fw6jn" path="res://sprites/bg/operation-drifter-bg-circular_6.png" id="7_xa8c5"]
+[ext_resource type="Texture2D" uid="uid://drqhtnejmyo8k" path="res://sprites/bg/operation-drifter-bg-circular_7.png" id="8_5b14r"]
+[ext_resource type="Texture2D" uid="uid://bjtegpwu2b8c" path="res://sprites/bg/operation-drifter-bg-circular_8.png" id="9_bnpwn"]
+[ext_resource type="Texture2D" uid="uid://cjp1pbbsvg6tm" path="res://sprites/bg/operation-drifter-bg-circular_9.png" id="10_36jdj"]
+[ext_resource type="PackedScene" uid="uid://clni45duunkys" path="res://player.tscn" id="11_xfvwf"]
+[ext_resource type="Script" uid="uid://dydpbdus4lpu5" path="res://debris_spawner.gd" id="12_dhpj7"]
+[ext_resource type="Script" uid="uid://b6vvg2fyy45fj" path="res://asteroid_spawner.gd" id="13_7knny"]
+[ext_resource type="PackedScene" uid="uid://i4rr4y2x4uq7" path="res://floating objects/debris/debris_valuable1.tscn" id="13_qhcbd"]
+[ext_resource type="PackedScene" uid="uid://cdqdwv1b4akcc" path="res://floating objects/debris/debris_worthless1.tscn" id="13_xfvwf"]
+[ext_resource type="Texture2D" uid="uid://bh1fdpsy3fq3w" path="res://blackholeshader/7frj09nru4zu.webp" id="14_082n1"]
+[ext_resource type="PackedScene" uid="uid://dh8wyqjrh47nj" path="res://floating objects/debris/debris_materials1.tscn" id="14_dhpj7"]
+[ext_resource type="PackedScene" uid="uid://dnrq87p5mmoxs" path="res://floating objects/asteroids/asteroid_1.tscn" id="14_x5p1p"]
+[ext_resource type="PackedScene" uid="uid://dkhbfsa12446g" path="res://floating objects/debris/debris_materials2.tscn" id="15_7knny"]
+[ext_resource type="PackedScene" uid="uid://dij712yywgc02" path="res://pointer.tscn" id="15_aa0lp"]
+[ext_resource type="PackedScene" uid="uid://cmfafxveywsoj" path="res://ship.tscn" id="15_klri6"]
+[ext_resource type="Texture2D" uid="uid://dayx5facta601" path="res://sprites/accretion disk/darkness_fade.png" id="15_xex6t"]
+[ext_resource type="PackedScene" uid="uid://c1apn2w3wkb73" path="res://floating objects/debris/debris_materials3.tscn" id="16_082n1"]
+[ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://rotatingvisual.gd" id="16_aa0lp"]
+[ext_resource type="PackedScene" uid="uid://0vcab2vhmiij" path="res://identifier.tscn" id="16_iu0sx"]
+[ext_resource type="Texture2D" uid="uid://bbf138trb540f" path="res://sprites/accretion disk/accretion_disk_glow_underlay_scaledup.png" id="17_iu0sx"]
+[ext_resource type="PackedScene" uid="uid://4wekasc3f5fr" path="res://floating objects/debris/debris_materials4.tscn" id="17_xex6t"]
+[ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="18_4v2jo"]
+[ext_resource type="PackedScene" uid="uid://ch44bsforeidb" path="res://floating objects/debris/debris_salvage1.tscn" id="18_aa0lp"]
+[ext_resource type="PackedScene" uid="uid://4wtwjd3skaoc" path="res://shop.tscn" id="18_ib7ph"]
+[ext_resource type="PackedScene" uid="uid://c50rrai6cjq6d" path="res://floating objects/debris/debris_salvage2.tscn" id="19_iu0sx"]
+[ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="19_l1i01"]
+[ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="20_r62pu"]
+[ext_resource type="PackedScene" uid="uid://ba3ep88ey6gq8" path="res://floating objects/debris/debris_worthless2.tscn" id="20_tb2lt"]
+[ext_resource type="PackedScene" uid="uid://bwgxy04ljps7j" path="res://floating objects/debris/debris_priceless1.tscn" id="21_4v2jo"]
+[ext_resource type="PackedScene" uid="uid://b1bkxy16pqwdf" path="res://floating objects/debris/debris_worthless3.tscn" id="21_cfc7e"]
+[ext_resource type="PackedScene" uid="uid://e4svlyjjf6ap" path="res://floating objects/debris/debris_worthless4.tscn" id="22_gh0px"]
+[ext_resource type="Script" uid="uid://d26o1gfexhx2y" path="res://orbit_debris.gd" id="23_r62pu"]
+[ext_resource type="PackedScene" uid="uid://dbkf02mu58lpd" path="res://floating objects/debris/debris_worthless5.tscn" id="23_v33yl"]
+[ext_resource type="Texture2D" uid="uid://6hlemro4oem5" path="res://sprites/debris/salvage/debris5.png" id="24_klri6"]
+[ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="25_eu6ph"]
+[ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="26_edr7y"]
+[ext_resource type="PackedScene" uid="uid://bqvbbuo1pnq3s" path="res://floating objects/asteroids/asteroid_2.tscn" id="27_xex6t"]
+[ext_resource type="PackedScene" uid="uid://idbrkrdjbat2" path="res://floating objects/asteroids/asteroid_3.tscn" id="28_aa0lp"]
+[ext_resource type="PackedScene" uid="uid://cmpty04q6al38" path="res://floating objects/asteroids/asteroid_4.tscn" id="29_iu0sx"]
+[ext_resource type="PackedScene" uid="uid://b6hongd133i01" path="res://floating objects/asteroids/asteroid_5.tscn" id="30_4v2jo"]
+[ext_resource type="PackedScene" uid="uid://etcxia3h80ri" path="res://floating objects/debris/debris_salvage3.tscn" id="34_2tki7"]
+[ext_resource type="PackedScene" uid="uid://cv2m4la2gdpfr" path="res://floating objects/debris/debris_valuable2.tscn" id="36_ib7ph"]
+[ext_resource type="PackedScene" uid="uid://c1n4xk351t2xl" path="res://floating objects/debris/debris_valuable3.tscn" id="37_vuohh"]
+[ext_resource type="PackedScene" uid="uid://ky1y52htns2p" path="res://floating objects/debris/debris_valuable4.tscn" id="38_3gvs5"]
+[ext_resource type="PackedScene" uid="uid://c1o1eyx56wq26" path="res://floating objects/asteroids/asteroid_6.tscn" id="42_2tki7"]
+[ext_resource type="PackedScene" uid="uid://bar1ok426wxd8" path="res://floating objects/asteroids/asteroid_7.tscn" id="43_ib7ph"]
+[ext_resource type="PackedScene" uid="uid://o5fr6an06ycd" path="res://floating objects/asteroids/asteroid_8.tscn" id="44_vuohh"]
+[ext_resource type="PackedScene" uid="uid://b3yyhy4w467dk" path="res://floating objects/asteroids/asteroid_9.tscn" id="45_3gvs5"]
+[ext_resource type="PackedScene" uid="uid://bea6ldqhdke43" path="res://floating objects/asteroids/asteroid_10.tscn" id="46_mc3al"]
+[ext_resource type="PackedScene" uid="uid://cvcocm2yn7mc0" path="res://floating objects/asteroids/asteroid_amongus.tscn" id="47_bqa6y"]
+[ext_resource type="PackedScene" uid="uid://c5ag7yvsdyesk" path="res://floating objects/asteroids/asteroid_spengtong.tscn" id="48_du4n2"]
+
+[sub_resource type="Environment" id="Environment_p41qd"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 2.0
+glow_bloom = 0.25
+glow_hdr_threshold = 0.8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k4psp"]
+size = Vector2(62, 62)
+
+[sub_resource type="PackedScene" id="PackedScene_kq12w"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("Debris", "RigidBody2D", "z_index", "mass", "freeze_mode", "script", "Sprite2D", "Sprite2D", "texture_filter", "texture", "Collision", "CollisionShape2D", "shape", "DebrisExplodeParticles", "Sprite2D2", "Sprite2D", "visible", "modulate", "scale", "texture"),
+"node_count": 5,
+"node_paths": [NodePath("."), NodePath("."), NodePath("."), NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 4, 2, 0, 3, 1, 4, 2, 5, 3, 0, 1073741824, 0, 7, 6, -1, 2, 8, 4, 9, 5, 0, 1073741825, 0, 11, 10, -1, 1, 12, 6, 0, 1073741826, 0, 2147483647, 13, 7, 0, 0, 1073741827, 0, 15, 14, -1, 4, 16, 8, 17, 9, 18, 10, 19, 11, 0),
+"variants": [1, 0.2, 1, ExtResource("23_r62pu"), 1, ExtResource("24_klri6"), SubResource("RectangleShape2D_k4psp"), ExtResource("25_eu6ph"), false, Color(1, 0.49803922, 0, 1), Vector2(10, 10), ExtResource("26_edr7y")],
+"version": 3
+}
+
+[sub_resource type="Curve" id="Curve_y1pvw"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.0014533997), 0.0, 0.0, 0, 0, Vector2(0.19434628, -0.64389527), 0.0, 0.0, 0, 0, Vector2(0.24028268, 0.14970934), 0.0, 0.0, 0, 0, Vector2(0.38162544, -0.0959301), 0.0, 0.0, 0, 0, Vector2(0.4310954, 0.055232644), 0.0, 0.0, 0, 0, Vector2(0.48763248, -0.0014533997), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_aa0lp"]
+curve = SubResource("Curve_y1pvw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3bfw0"]
+shader = ExtResource("18_4v2jo")
+shader_parameter/curve = SubResource("CurveTexture_aa0lp")
+shader_parameter/strength = 0.70000008075
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gg4xk"]
+radius = 64000.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_p41qd")
+
+[node name="BG" type="Node2D" parent="."]
+
+[node name="Parallax2D" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_hb5m1")
+
+[node name="Parallax2D2" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.03, 0.03)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_x5p1p")
+
+[node name="Parallax2D3" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.005, 0.005)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D3"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_qhcbd")
+
+[node name="Parallax2D4" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.008, 0.008)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D4"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_f1jbl")
+
+[node name="Parallax2D5" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.01, 0.01)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D5"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_vaj68")
+
+[node name="Parallax2D6" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.014, 0.014)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D6"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_i2p71")
+
+[node name="Parallax2D7" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.019, 0.019)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D7"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_xa8c5")
+
+[node name="Parallax2D8" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.025, 0.025)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D8"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_5b14r")
+
+[node name="Parallax2D9" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.032, 0.032)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D9"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_bnpwn")
+
+[node name="Parallax2D10" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.04, 0.04)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D10"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_36jdj")
+
+[node name="DarknessFade" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("15_xex6t")
+
+[node name="Accretion Disk2" type="Node2D" parent="."]
+scale = Vector2(34.5, 34.5)
+script = ExtResource("16_aa0lp")
+
+[node name="Underglow" type="Sprite2D" parent="Accretion Disk2"]
+modulate = Color(1, 1, 1, 0.2509804)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("17_iu0sx")
+
+[node name="Player" parent="." node_paths=PackedStringArray("black_hole") instance=ExtResource("11_xfvwf")]
+position = Vector2(70000, 0)
+black_hole = NodePath("../BlackHole")
+zoom_debug_scale = 0.312
+
+[node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_klri6")]
+position = Vector2(70000, -256)
+player = NodePath("../Player")
+
+[node name="BHPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
+z_index = 9
+position = Vector2(70000, 0)
+target = NodePath("../BlackHole")
+player = NodePath("../Player")
+label_text = "Black Hole"
+icon_type = 1
+
+[node name="ShopPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
+z_index = 9
+position = Vector2(70000, 0)
+target = NodePath("../Shop")
+player = NodePath("../Player")
+label_text = "Shop"
+icon_type = 2
+
+[node name="ShipPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
+z_index = 9
+position = Vector2(70000, 0)
+target = NodePath("../Ship")
+player = NodePath("../Player")
+label_text = "Ship"
+icon_type = 3
+
+[node name="Identifier" parent="." node_paths=PackedStringArray("player") instance=ExtResource("16_iu0sx")]
+position = Vector2(70000, 0)
+player = NodePath("../Player")
+
+[node name="Shop" parent="." instance=ExtResource("18_ib7ph")]
+position = Vector2(71500, 0)
+
+[node name="DebrisSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
+script = ExtResource("12_dhpj7")
+target = NodePath("../BlackHole")
+player = NodePath("../Player")
+scraps_worthless = Array[PackedScene]([ExtResource("13_xfvwf"), ExtResource("20_tb2lt"), ExtResource("21_cfc7e"), ExtResource("22_gh0px"), ExtResource("23_v33yl")])
+scraps_materials = Array[PackedScene]([ExtResource("14_dhpj7"), ExtResource("15_7knny"), ExtResource("16_082n1"), ExtResource("17_xex6t")])
+scraps_salvage = Array[PackedScene]([SubResource("PackedScene_kq12w"), ExtResource("18_aa0lp"), ExtResource("19_iu0sx"), ExtResource("34_2tki7")])
+scraps_valuable = Array[PackedScene]([ExtResource("13_qhcbd"), ExtResource("36_ib7ph"), ExtResource("37_vuohh"), ExtResource("38_3gvs5")])
+scraps_priceless = Array[PackedScene]([ExtResource("21_4v2jo")])
+
+[node name="AsteroidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
+script = ExtResource("13_7knny")
+asteroid_variants = Array[PackedScene]([ExtResource("14_x5p1p"), ExtResource("27_xex6t"), ExtResource("28_aa0lp"), ExtResource("29_iu0sx"), ExtResource("30_4v2jo"), ExtResource("42_2tki7"), ExtResource("43_ib7ph"), ExtResource("44_vuohh"), ExtResource("45_3gvs5"), ExtResource("46_mc3al"), ExtResource("47_bqa6y"), ExtResource("48_du4n2")])
+target = NodePath("../BlackHole")
+player = NodePath("../Player")
+
+[node name="UVChecker" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(34048, 0)
+scale = Vector2(100, 100)
+texture = ExtResource("14_082n1")
+
+[node name="BlackHole" type="Node2D" parent="."]
+
+[node name="Warp" type="Sprite2D" parent="BlackHole"]
+material = SubResource("ShaderMaterial_3bfw0")
+scale = Vector2(1000, 1000)
+texture = ExtResource("19_l1i01")
+
+[node name="Hole" type="Sprite2D" parent="BlackHole"]
+z_index = 10
+scale = Vector2(3, 3)
+texture = ExtResource("20_r62pu")
+
+[node name="Area2D" type="Area2D" parent="BlackHole"]
+gravity_space_override = 3
+gravity_point = true
+gravity_point_unit_distance = 24000.0
+gravity = 245.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlackHole/Area2D"]
+shape = SubResource("CircleShape2D_gg4xk")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 2

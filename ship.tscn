@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmfafxveywsoj"]
+[gd_scene load_steps=15 format=3 uid="uid://cmfafxveywsoj"]
 
 [ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="1_4cq66"]
 [ext_resource type="Script" uid="uid://btg33v8ti76cp" path="res://ship_container.gd" id="1_v4325"]
-[ext_resource type="Texture2D" uid="uid://cseyahj7ouplq" path="res://icon.svg" id="2_c3vuw"]
 [ext_resource type="Script" uid="uid://dsrno3f2va332" path="res://follow_text.gd" id="2_v4325"]
 [ext_resource type="Texture2D" uid="uid://dt21jtdpy7hrm" path="res://sprites/operation-drifter_particletrailspritesheet.png" id="3_78o8j"]
+[ext_resource type="Texture2D" uid="uid://fii3f6bdf27j" path="res://sprites/playership.png" id="3_xpsff"]
+[ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="4_xpsff"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xpsff"]
 particles_animation = true
@@ -30,7 +31,7 @@ curve = SubResource("Curve_78o8j")
 lifetime_randomness = 0.1
 particle_flag_disable_z = true
 emission_shape = 1
-emission_sphere_radius = 8.0
+emission_sphere_radius = 12.0
 angle_min = -720.0
 angle_max = 720.0
 direction = Vector3(0, 1, 0)
@@ -43,8 +44,7 @@ orbit_velocity_min = -0.019999906
 orbit_velocity_max = 0.020000096
 gravity = Vector3(0, 0, 0)
 damping_max = 2.0
-scale_min = 0.75
-scale_max = 1.25
+scale_max = 2.0
 scale_curve = SubResource("CurveTexture_hqtel")
 color_ramp = SubResource("GradientTexture1D_sweqy")
 anim_offset_max = 1.0
@@ -54,8 +54,8 @@ radius = 32.0
 height = 128.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4cq66"]
-radius = 64.0
-height = 192.0
+radius = 96.0
+height = 256.0
 
 [node name="Ship Container" type="Node2D"]
 script = ExtResource("1_v4325")
@@ -70,7 +70,7 @@ z_index = 1
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_xpsff")
 position = Vector2(0, 64)
-amount = 32
+amount = 64
 amount_ratio = 0.0
 texture = ExtResource("3_78o8j")
 randomness = 0.1
@@ -78,8 +78,9 @@ fixed_fps = 24
 process_material = SubResource("ParticleProcessMaterial_pmrbh")
 
 [node name="Sprite2D" type="Sprite2D" parent="Ship"]
-scale = Vector2(0.5, 1)
-texture = ExtResource("2_c3vuw")
+z_index = 1
+texture_filter = 1
+texture = ExtResource("3_xpsff")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ship"]
 shape = SubResource("CapsuleShape2D_r62pu")
@@ -88,6 +89,8 @@ shape = SubResource("CapsuleShape2D_r62pu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ship/Area2D"]
 shape = SubResource("CapsuleShape2D_4cq66")
+
+[node name="DebrisExplodeParticles" parent="Ship" instance=ExtResource("4_xpsff")]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." node_paths=PackedStringArray("target")]
 texture_filter = 1

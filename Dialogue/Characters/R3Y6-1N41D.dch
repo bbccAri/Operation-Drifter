@@ -1,0 +1,97 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+&"_translation_id": "",
+&"color": Color(0, 0.7372549, 0.7372549, 1),
+&"custom_info": {
+"prefix": "",
+"sound_mood_default": "",
+"sound_moods": {
+"Bot": {
+"mode": 0,
+"name": "Bot",
+"pitch_base": 1.0,
+"pitch_variance": 0.0,
+"skip_characters": 1.0,
+"sound_path": "res://audio/dialogue/dialogue_3 AH mediumsoft.wav",
+"volume_base": 0.0,
+"volume_variance": 0.0
+},
+"System": {
+"mode": 0,
+"name": "System",
+"pitch_base": 1.1,
+"pitch_variance": 0.1,
+"skip_characters": 0.0,
+"sound_path": "res://audio/dialogue/dialogue_2 mediumsoft short.wav",
+"volume_base": 0.0,
+"volume_variance": 0.0
+}
+},
+"style": "",
+"suffix": ""
+},
+&"default_portrait": "Default",
+&"description": "A bot that facilitates the selling of scraps and purchase of upgrades",
+&"display_name": "R3Y6-1N41D",
+&"mirror": false,
+&"nicknames": ["Rey", "Reginald"],
+&"offset": Vector2(0, 0),
+&"portraits": {
+"Blank": {
+"export_overrides": {
+"image": "\"res://sprites/portraits/operation-drifter-bot-portraits_5.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "res://addons/dialogic/Modules/Character/pixel_portrait.tscn"
+},
+"Default": {
+"export_overrides": {
+"image": "\"res://sprites/portraits/operation-drifter-bot-portraits_0.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "res://addons/dialogic/Modules/Character/pixel_portrait.tscn"
+},
+"Loading": {
+"export_overrides": {
+"image": "\"res://sprites/portraits/operation-drifter-bot-portraits_4.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "res://addons/dialogic/Modules/Character/pixel_portrait.tscn"
+},
+"Sad": {
+"export_overrides": {
+"image": "\"res://sprites/portraits/operation-drifter-bot-portraits_2.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "res://addons/dialogic/Modules/Character/pixel_portrait.tscn"
+},
+"Talk": {
+"export_overrides": {
+"image": "\"res://sprites/portraits/operation-drifter-bot-portraits_1.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "res://addons/dialogic/Modules/Character/pixel_portrait.tscn"
+},
+"What": {
+"export_overrides": {
+"image": "\"res://sprites/portraits/operation-drifter-bot-portraits_3.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "res://addons/dialogic/Modules/Character/pixel_portrait.tscn"
+}
+},
+&"scale": 1.0
+}

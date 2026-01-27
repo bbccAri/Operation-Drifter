@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c5uibfj6wknwi"
+path="res://.godot/imported/From Out Here.ogg-df843cdead2f026f219679a52bc41c9d.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/music/extra/From Out Here.ogg"
+dest_files=["res://.godot/imported/From Out Here.ogg-df843cdead2f026f219679a52bc41c9d.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

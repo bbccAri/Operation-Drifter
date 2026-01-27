@@ -1,0 +1,99 @@
+R3Y6-1N41D (Talk): [mood=Bot]Hai!
+if range(0, 10).pick_random() < 3:
+	R3Y6-1N41D (Default): [mood=Bot]Welcome to your local [mood=System][Black Hole][mood=Bot]'s wecycawing center.
+if range(0, 10).pick_random() < 5:
+	R3Y6-1N41D (Default): [mood=Bot]Would you wike to sell some scwap?
+label ShopStart
+R3Y6-1N41D (Default): [mood=Bot]What can I hewp you with?
+- Sell | [if {DialogicToPlayer.get_player_carrying()} > 0.0] [else="disable"]
+	R3Y6-1N41D (Loading): [mood=System][Calculating Payment...][mood=Bot]
+	[signal arg="sell"]
+	R3Y6-1N41D (Talk): [mood=Bot]Thank you!
+	jump ShopStart
+- Upgrades
+	R3Y6-1N41D (Talk): [mood=Bot]We have many upgwades useful for getting even more scwap!
+	if range(0, 10).pick_random() < 1.0:
+		R3Y6-1N41D (Talk): [mood=Bot]You awe twapped in a cycwical heww of [mood=System][Company Name Redacted][mood=Bot]'s design!
+		R3Y6-1N41D (What): [mood=Bot]Oops.
+		R3Y6-1N41D (Blank): [mood=System][Malfunction Logged For Review]
+		R3Y6-1N41D (Loading): [mood=System][Rebooting...][mood=Bot]
+		R3Y6-1N41D (Talk): [mood=Bot]Hai!
+	label Upgrades
+	R3Y6-1N41D (Default): [mood=Bot]What kind of upgwade would you like?
+	- Suit
+		- ${DialogicToPlayer.get_price_str("suit_resilience")} -  Suit Resilience | [if {DialogicToPlayer.can_upgrade("suit_resilience")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Purchase Suit Resilience for ${DialogicToPlayer.get_price_str("suit_resilience")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("suit_resilience")
+			- Cancel
+				jump Upgrades
+		- ${DialogicToPlayer.get_price_str("suit_gravity_resistance")} -  Suit Gravity Resistance | [if {DialogicToPlayer.can_upgrade("suit_gravity_resistance")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Purchase Suit Gravity Resistance for ${DialogicToPlayer.get_price_str("suit_gravity_resistance")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("suit_gravity_resistance")
+			- Cancel
+				jump Upgrades
+		- ${DialogicToPlayer.get_price_str("suit_thruster_power")} -  Suit Thruster Power | [if {DialogicToPlayer.can_upgrade("suit_thruster_power")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Purchase Suit Thruster Power for ${DialogicToPlayer.get_price_str("suit_thruster_power")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("suit_thruster_power")
+			- Cancel
+				jump Upgrades
+		- ${DialogicToPlayer.get_price_str("o2_tank_size")} -  O2 Tank Size | [if {DialogicToPlayer.can_upgrade("o2_tank_size")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Purchase {DialogicToPlayer.get_upgrade_amount("o2_tank_size")} Seconds of Oxygen Tank Capacity for ${DialogicToPlayer.get_price_str("o2_tank_size")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("o2_tank_size")
+			- Cancel
+				jump Upgrades
+		- ${DialogicToPlayer.get_price_str("suit_repair")} -  Repair Suit Damage | [if {DialogicToPlayer.can_upgrade("suit_repair")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Repair Damage to Suit for ${DialogicToPlayer.get_price_str("suit_repair")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("suit_repair")
+			- Cancel
+				jump Upgrades
+		- Back
+			jump Upgrades
+	- Ship
+		- ${DialogicToPlayer.get_price_str("ship_damage_resistance")} -  Ship Shields | [if {DialogicToPlayer.can_upgrade("ship_damage_resistance")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Purchase Ship Damage Resistance for ${DialogicToPlayer.get_price_str("ship_damage_resistance")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("ship_damage_resistance")
+			- Cancel
+				jump Upgrades
+		- ${DialogicToPlayer.get_price_str("ship_gravity_resistance")} -  Ship Gravity Resistance | [if {DialogicToPlayer.can_upgrade("ship_gravity_resistance")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Purchase Ship Gravity Resistance for ${DialogicToPlayer.get_price_str("ship_gravity_resistance")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("ship_gravity_resistance")
+			- Cancel
+				jump Upgrades
+		- ${DialogicToPlayer.get_price_str("ship_thruster_power")} -  Ship Thruster Power | [if {DialogicToPlayer.can_upgrade("ship_thruster_power")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Purchase Ship Thruster Power for ${DialogicToPlayer.get_price_str("ship_thruster_power")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("ship_thruster_power")
+			- Cancel
+				jump Upgrades
+		- ${DialogicToPlayer.get_price_str("cargo_space")} -  Cargo Space | [if {DialogicToPlayer.can_upgrade("cargo_space")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Purchase {DialogicToPlayer.get_upgrade_amount("cargo_space")} Cargo Space for ${DialogicToPlayer.get_price_str("cargo_space")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("cargo_space")
+			- Cancel
+				jump Upgrades
+		- ${DialogicToPlayer.get_price_str("ship_repair")} -  Repair Ship Damage | [if {DialogicToPlayer.can_upgrade("ship_repair")}] [else="disable"]
+			R3Y6-1N41D (Loading): [mood=System][Repair Damage to Ship for ${DialogicToPlayer.get_price_str("ship_repair")} ?]
+			- Confirm
+				do DialogicToPlayer.perform_upgrade("ship_repair")
+			- Cancel
+				jump Upgrades
+		- Back
+			jump Upgrades
+	- Back
+		jump ShopStart
+	R3Y6-1N41D (Talk): Thank you for your purchase!
+	jump ShopStart
+- Exit
+	if range(0, 10).pick_random() < 3.0:
+		R3Y6-1N41D (Sad): [mood=Bot]Oh...
+		R3Y6-1N41D (Talk): [mood=Bot]Come back soon with more scwap!
+		R3Y6-1N41D (Default): [mood=Bot]Pwease.
+	else:
+		R3Y6-1N41D (Talk): [mood=Bot]Bai! Come back soon with more scwap!
