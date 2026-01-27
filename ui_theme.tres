@@ -1,9 +1,22 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://8l1lb48ylpmg"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://8l1lb48ylpmg"]
 
+[ext_resource type="FontFile" uid="uid://ph6urwugdeya" path="res://fonts/Chopsic.ttf" id="1_tbeor"]
 [ext_resource type="FontFile" uid="uid://carogmw04mrqf" path="res://fonts/Chopsic.otf" id="1_touxu"]
 [ext_resource type="FontFile" uid="uid://7chsj3o4g1wh" path="res://fonts/Calculator.ttf" id="2_2pn01"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mk0s6"]
+bg_color = Color(0.07058824, 0.5254902, 0.5254902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5kxjo"]
+bg_color = Color(0, 0.7372549, 0.7372549, 1)
+
 [resource]
+ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
+ProgressBar/colors/font_outline_color = Color(0.9490196, 0.827451, 0.67058825, 1)
+ProgressBar/constants/outline_size = 4
+ProgressBar/fonts/font = ExtResource("1_tbeor")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_mk0s6")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_5kxjo")
 RichTextLabel/colors/default_color = Color(0, 0.7372549, 0.7372549, 1)
 RichTextLabel/colors/font_outline_color = Color(1, 1, 1, 1)
 RichTextLabel/constants/outline_size = 2

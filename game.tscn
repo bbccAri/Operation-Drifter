@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=75 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -67,6 +67,7 @@
 [ext_resource type="PackedScene" uid="uid://uej0cvmysp1c" path="res://floating objects/asteroids/asteroid_big2.tscn" id="61_fuuk6"]
 [ext_resource type="PackedScene" uid="uid://b0wrhkieoilrn" path="res://floating objects/asteroids/asteroid_big3.tscn" id="62_cwgap"]
 [ext_resource type="Script" uid="uid://dgergvwokjrre" path="res://black_hole.gd" id="64_avmo2"]
+[ext_resource type="PackedScene" uid="uid://b4j1p0iqx26w5" path="res://in_game_ui.tscn" id="68_vyqle"]
 
 [sub_resource type="Environment" id="Environment_p41qd"]
 background_mode = 3
@@ -212,12 +213,14 @@ script = ExtResource("16_aa0lp")
 
 [node name="Underglow" type="Sprite2D" parent="Accretion Disk2"]
 modulate = Color(1, 1, 1, 0.2509804)
+texture_filter = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_iu0sx")
 
-[node name="Player" parent="." node_paths=PackedStringArray("black_hole") instance=ExtResource("11_xfvwf")]
+[node name="Player" parent="." node_paths=PackedStringArray("black_hole", "health_bar") instance=ExtResource("11_xfvwf")]
 position = Vector2(70000, 0)
 black_hole = NodePath("../BlackHole")
+health_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer/HealthBar")
 zoom_debug_scale = 0.312
 
 [node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_klri6")]
@@ -273,20 +276,24 @@ player = NodePath("../Player")
 
 [node name="UVChecker" type="Sprite2D" parent="."]
 visible = false
+texture_filter = 2
 position = Vector2(34048, 0)
 scale = Vector2(100, 100)
 texture = ExtResource("14_082n1")
 
-[node name="BlackHole" type="Node2D" parent="."]
+[node name="BlackHole" type="Node2D" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("64_avmo2")
+player = NodePath("../Player")
 
 [node name="Warp" type="Sprite2D" parent="BlackHole"]
+texture_filter = 2
 material = SubResource("ShaderMaterial_3bfw0")
 scale = Vector2(1000, 1000)
 texture = ExtResource("19_l1i01")
 
 [node name="Hole" type="Sprite2D" parent="BlackHole"]
 z_index = 10
+texture_filter = 2
 scale = Vector2(3, 3)
 texture = ExtResource("20_r62pu")
 
@@ -307,6 +314,15 @@ shape = SubResource("CircleShape2D_vyqle")
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="InGameUI" parent="CanvasLayer" instance=ExtResource("68_vyqle")]
+
+[node name="HealthBar" parent="CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../../../../../../../../Player")
+
 [connection signal="body_entered" from="BlackHole/DeathArea" to="BlackHole" method="_on_death_area_body_entered"]
 
 [editable path="Ship"]
+[editable path="CanvasLayer/InGameUI"]

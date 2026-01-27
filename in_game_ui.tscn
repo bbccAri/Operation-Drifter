@@ -1,0 +1,225 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4j1p0iqx26w5"]
+
+[ext_resource type="Texture2D" uid="uid://w0dn6ha05842" path="res://sprites/operation-drifter_HUD.png" id="1_kenku"]
+[ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="2_cwbuu"]
+[ext_resource type="Script" uid="uid://c64hmnhkw7id4" path="res://health_bar.gd" id="3_4v80v"]
+[ext_resource type="Texture2D" uid="uid://cwu828m4kt7cl" path="res://sprites/operation-drifter_slicedpanel_holographic.png" id="4_0qsvx"]
+[ext_resource type="Texture2D" uid="uid://dg4w6rki26tl4" path="res://sprites/operation-drifter_o2_metersegment_under.png" id="4_uusyb"]
+[ext_resource type="Texture2D" uid="uid://4kwxn6uslyb6" path="res://sprites/operation-drifter_o2_metersegment_over.png" id="5_ep3pr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uusyb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ep3pr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dpq86"]
+bg_color = Color(0.07058824, 0.5254902, 0.5254902, 1)
+
+[node name="InGameUI" type="Control"]
+z_index = 15
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HelmetOverlay" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="HelmetOverlay"]
+layout_mode = 2
+texture = ExtResource("1_kenku")
+region_rect = Rect2(80, 0, 1760, 1080)
+patch_margin_left = 800
+patch_margin_right = 800
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HelmetOverlay/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LeftElements" type="MarginContainer" parent="HelmetOverlay/NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(156, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="ColorRect" type="ColorRect" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements"]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="HealthBar" type="ProgressBar" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer"]
+z_index = 2
+custom_minimum_size = Vector2(70, 76)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_cwbuu")
+theme_override_styles/background = SubResource("StyleBoxEmpty_uusyb")
+max_value = 10.0
+value = 5.0
+fill_mode = 3
+script = ExtResource("3_4v80v")
+
+[node name="DamageBar" type="ProgressBar" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer/HealthBar"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_cwbuu")
+theme_override_styles/background = SubResource("StyleBoxEmpty_ep3pr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dpq86")
+max_value = 10.0
+value = 9.0
+fill_mode = 3
+show_percentage = false
+
+[node name="DamageCatchup" type="Timer" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer/HealthBar"]
+wait_time = 0.5
+one_shot = true
+
+[node name="MarginContainer" type="MarginContainer" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 38
+
+[node name="Control" type="Control" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer/MarginContainer"]
+z_index = 1
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="O2Under" type="NinePatchRect" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer/MarginContainer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -118.0
+offset_right = 101.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.1415927
+pivot_offset = Vector2(101, 118)
+texture = ExtResource("4_uusyb")
+region_rect = Rect2(0, 0, 202, 236)
+patch_margin_left = 75
+patch_margin_top = 92
+patch_margin_right = 75
+patch_margin_bottom = 92
+
+[node name="O2Over" type="NinePatchRect" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer/MarginContainer/Control"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.0
+offset_top = -118.0
+offset_right = 101.0
+offset_bottom = 118.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.1415927
+pivot_offset = Vector2(101, 118)
+texture = ExtResource("5_ep3pr")
+patch_margin_left = 75
+patch_margin_top = 92
+patch_margin_right = 75
+patch_margin_bottom = 92
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("2_cwbuu")
+theme_override_font_sizes/normal_font_size = 24
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+text = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff40 ease=-2.0][b]Suit Integrity[/b][/pulse][/wave][/center]"
+fit_content = true
+
+[node name="Center" type="MarginContainer" parent="HelmetOverlay/NinePatchRect/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="RightElements" type="MarginContainer" parent="HelmetOverlay/NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(156, 0)
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 256
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 32
+
+[node name="ColorRect" type="ColorRect" parent="HelmetOverlay/NinePatchRect/HBoxContainer/RightElements"]
+layout_mode = 2
+
+[node name="PauseMenu" type="MarginContainer" parent="."]
+visible = false
+z_index = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BaseMenuScreen" type="MarginContainer" parent="PauseMenu"]
+custom_minimum_size = Vector2(500, 200)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PauseMenu/BaseMenuScreen"]
+modulate = Color(1, 1, 1, 0.7529412)
+layout_mode = 2
+texture = ExtResource("4_0qsvx")
+patch_margin_left = 11
+patch_margin_top = 11
+patch_margin_right = 11
+patch_margin_bottom = 11
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/BaseMenuScreen/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[connection signal="timeout" from="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer/HealthBar/DamageCatchup" to="HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MarginContainer/HealthBar" method="_on_damage_catchup_timeout"]

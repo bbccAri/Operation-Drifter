@@ -26,8 +26,8 @@ var health: int = 5
 var exploding: bool = false
 
 @export var normalSprite: Texture2D = preload("res://sprites/playership.png")
-@export var batteredSprite: Texture2D
-@export var brokenSprite: Texture2D
+@export var batteredSprite: Texture2D = preload("res://sprites/playershipbattered.png")
+@export var brokenSprite: Texture2D = preload("res://sprites/playershipbroken.png")
 
 var damage_resistance_level: int = 0
 @export var damage_resistance_max_level: int = 2
@@ -93,6 +93,8 @@ func enter_ship():
 	ship_body.add_collision_exception_with(player)
 	player.enter_ship()
 	playerInside = true
+	if player.grabbed_object != null:
+		player.store_object()
 
 func exit_ship():
 	playerInside = false

@@ -29,11 +29,15 @@ var cargo_capacity: int = 50
 var cargo_carrying: int = 0
 var cargo_value: int = 0
 var warning_distance: float = 56000.0
-var health: int = 2
-@export var max_health: int = 2
+var health: int = 2 : set = _set_health
+@export var max_health: int = 2 : set = _set_max_health
+@export var health_bar: HealthBar
 var near_shop: bool = false
 var in_safe_zone: bool = false
 var in_dialogue: bool = false
+var suffocating: bool = false
+var suffocate_timer: float = 0.0
+@export var suffocate_tick: float = 1.0
 
 var suit_resilience_level: int = 0
 @export var suit_resilience_max_level: int = 5
@@ -68,8 +72,18 @@ func _ready() -> void:
 	DialogicToPlayer.player = self
 	Dialogic.timeline_started.connect(on_dialogue_start)
 	Dialogic.timeline_ended.connect(on_dialogue_end)
+	health_bar.init_health()
 	health = max_health
 	cargo_capacity = cargo_space_level * cargo_space_amount
+
+func _set_health(new_health: int):
+	var prev_health = health
+	health = clamp(new_health, 0, max_health)
+	health_bar.update_health(new_health, prev_health)
+
+func _set_max_health(new_max_health: int):
+	max_health = new_max_health
+	health_bar.update_max_health(max_health)
 
 func get_movement_input():
 	var input = Vector2()
@@ -125,17 +139,19 @@ func _process(delta: float) -> void:
 			o2_left -= delta
 			if o2_left <= 0:
 				o2_left = 0.0
-				die()
+				suffocating = true
 		elif in_safe_zone:
 			o2_left += delta
 			if o2_left > max_o2:
 				o2_left = max_o2
+			suffocating = false
 	else:
 		particle_trail.amount_ratio = 0.0
 		if o2_left < max_o2:
 			o2_left += delta
 			if o2_left > max_o2:
 				o2_left = max_o2
+		suffocating = false
 	update_o2_visuals()
 	#print(global_position)
 	
@@ -219,6 +235,9 @@ func pickup_object(body: Debris) -> void:
 	add_collision_exception_with(body)
 
 func store_object():
+	if grabbed_object == null:
+		current_state = CharState.IDLE
+		return
 	remove_collision_exception_with(grabbed_object)
 	cargo_carrying += grabbed_object.cargo_size
 	cargo_value += grabbed_object.value
@@ -271,7 +290,6 @@ func update_o2_visuals():
 func take_damage(amount: int):
 	health -= amount
 	if health <= 0:
-		health = 0
 		die()
 	elif health <= roundi(max_health / 2.0):
 		pass #enable damaged effect on HUD
