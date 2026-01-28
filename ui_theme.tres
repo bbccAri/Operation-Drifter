@@ -1,8 +1,36 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://8l1lb48ylpmg"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://8l1lb48ylpmg"]
 
 [ext_resource type="FontFile" uid="uid://ph6urwugdeya" path="res://fonts/Chopsic.ttf" id="1_tbeor"]
 [ext_resource type="FontFile" uid="uid://carogmw04mrqf" path="res://fonts/Chopsic.otf" id="1_touxu"]
 [ext_resource type="FontFile" uid="uid://7chsj3o4g1wh" path="res://fonts/Calculator.ttf" id="2_2pn01"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbeor"]
+bg_color = Color(0.7764706, 0.62352943, 0.64705884, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g7fvb"]
+bg_color = Color(0.54509807, 0.42745098, 0.6117647, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpf0h"]
+bg_color = Color(0.28627452, 0.3019608, 0.49411765, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5y56j"]
+bg_color = Color(0.15294118, 0.15294118, 0.26666668, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mk0s6"]
 bg_color = Color(0.07058824, 0.5254902, 0.5254902, 1)
@@ -11,6 +39,13 @@ bg_color = Color(0.07058824, 0.5254902, 0.5254902, 1)
 bg_color = Color(0, 0.7372549, 0.7372549, 1)
 
 [resource]
+Button/colors/font_color = Color(0, 0.7372549, 0.7372549, 1)
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_tbeor")
+Button/styles/focus = SubResource("StyleBoxFlat_tbeor")
+Button/styles/hover = SubResource("StyleBoxFlat_g7fvb")
+Button/styles/normal = SubResource("StyleBoxFlat_tpf0h")
+Button/styles/pressed = SubResource("StyleBoxFlat_5y56j")
 ProgressBar/colors/font_color = Color(0.95, 0.95, 0.95, 1)
 ProgressBar/colors/font_outline_color = Color(0.9490196, 0.827451, 0.67058825, 1)
 ProgressBar/constants/outline_size = 4

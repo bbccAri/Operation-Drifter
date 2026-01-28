@@ -1,0 +1,67 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy1042h2roocw"]
+
+[ext_resource type="Script" uid="uid://wlykhatsktbr" path="res://death_screen.gd" id="1_6bi5g"]
+[ext_resource type="Shader" uid="uid://jjpcmhem7ah3" path="res://oil.gdshader" id="1_if853"]
+[ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="2_ex68u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ex68u"]
+shader = ExtResource("1_if853")
+shader_parameter/time_scale = 0.025
+shader_parameter/resolution = Vector2(1920, 1080)
+shader_parameter/color_divisor_r = 3.0
+shader_parameter/color_divisor_g = 1.5
+shader_parameter/color_divisor_b = 1.25
+
+[node name="DeathScreen" type="Control"]
+z_index = 20
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6bi5g")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+modulate = Color(1, 1, 1, 0.7529412)
+material = SubResource("ShaderMaterial_ex68u")
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(750, 320)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_ex68u")
+theme_override_font_sizes/bold_font_size = 100
+bbcode_enabled = true
+text = "[center][wave amp=16.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff00 ease=-2.0][b]Scrapped...[/b][/pulse][/wave][/center]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 64)
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("2_ex68u")
+text = "Begin Again?"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/MarginContainer2/RetryButton" to="." method="_on_retry_button_pressed"]

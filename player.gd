@@ -42,6 +42,8 @@ var suffocating: bool = false
 var iframes: float = 0.0
 @export var HUD_image: NinePatchRect
 @export var damage_hud_fade_speed: float = 5.0
+var dead: bool = false
+@export var death_screen: Control
 
 var suit_resilience_level: int = 0
 @export var suit_resilience_max_level: int = 5
@@ -100,6 +102,8 @@ func _set_money(new_money: int):
 		money_label.update_money_label(new_money)
 
 func get_movement_input():
+	if dead:
+		return Vector2.ZERO
 	var input = Vector2()
 	if Input.is_action_pressed('Move_Right'):
 		input.x += 1
@@ -120,9 +124,9 @@ func get_zoom_input():
 	return input
 
 func _physics_process(delta):
-	if in_ship: 
-		health += 1.0 * delta
-		return
+	#if in_ship: 
+		#o2_left += 1.0 * delta
+		#return
 	var direction = get_movement_input()
 	if in_dialogue:
 		direction = Vector2.ZERO
@@ -142,19 +146,19 @@ func _process(delta: float) -> void:
 	var input = get_movement_input()
 	if in_dialogue:
 		input = Vector2.ZERO
-	if Input.is_action_just_pressed("Interact") and !in_ship and !in_dialogue:
+	if Input.is_action_just_pressed("Interact") and !in_ship and !in_dialogue and !dead:
 		if current_state != CharState.GRAB:
 			pickup()
 		else:
 			drop_object()
-	if input != Vector2.ZERO and current_state != CharState.GRAB:
+	if input != Vector2.ZERO and current_state != CharState.GRAB and !dead:
 		current_state = CharState.MOVE
 	elif current_state != CharState.GRAB:
 		current_state = CharState.IDLE
 	play_anim()
 	var max_o2: float = o2_tank_size_amount * o2_tank_size_level
 	var prev_o2: float = o2_left
-	if !in_ship:
+	if !in_ship and !dead:
 		particle_trail.amount_ratio = max(abs(input.x), abs(input.y))
 		if o2_left > 0.0 and !in_safe_zone:
 			o2_left -= delta
@@ -168,7 +172,7 @@ func _process(delta: float) -> void:
 			suffocating = false
 	else:
 		particle_trail.amount_ratio = 0.0
-		if o2_left < max_o2:
+		if o2_left < max_o2 and !dead:
 			o2_left += delta
 			if o2_left > max_o2:
 				o2_left = max_o2
@@ -335,7 +339,9 @@ func upgrade_cargo_size():
 		cargo_capacity = cargo_space_level * cargo_space_amount
 
 func die():
-	get_tree().quit() #TEMP!!! TODO: actual death
+	#get_tree().quit() #TEMP!!! TODO: actual death
+	dead = true
+	death_screen.visible = true
 
 func on_dialogue_start():
 	in_dialogue = true

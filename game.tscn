@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=91 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -83,6 +83,7 @@
 [ext_resource type="PackedScene" uid="uid://bjguaatmu4irp" path="res://floating objects/asteroids/asteroid_15.tscn" id="65_t2ssd"]
 [ext_resource type="PackedScene" uid="uid://doalft02r0vtr" path="res://floating objects/asteroids/asteroid_16.tscn" id="66_7noa1"]
 [ext_resource type="PackedScene" uid="uid://b4j1p0iqx26w5" path="res://in_game_ui.tscn" id="68_vyqle"]
+[ext_resource type="PackedScene" uid="uid://cy1042h2roocw" path="res://death_screen.tscn" id="84_w37fy"]
 
 [sub_resource type="Environment" id="Environment_p41qd"]
 background_mode = 3
@@ -232,13 +233,14 @@ texture_filter = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_iu0sx")
 
-[node name="Player" parent="." node_paths=PackedStringArray("black_hole", "health_bar", "o2_bar", "money_label", "HUD_image") instance=ExtResource("11_xfvwf")]
+[node name="Player" parent="." node_paths=PackedStringArray("black_hole", "health_bar", "o2_bar", "money_label", "HUD_image", "death_screen") instance=ExtResource("11_xfvwf")]
 position = Vector2(70000, 0)
 black_hole = NodePath("../BlackHole")
 health_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/HP/HealthBar")
 o2_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/RightElements/VBoxContainer2/HP/O2Bar")
 money_label = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MoneyLabel")
 HUD_image = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect")
+death_screen = NodePath("../CanvasLayer/DeathScreen")
 zoom_debug_scale = 0.312
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
@@ -348,6 +350,9 @@ player = NodePath("../../../../../../../../../Player")
 
 [node name="O2Bar" parent="CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/RightElements/VBoxContainer2/HP" index="0" node_paths=PackedStringArray("player")]
 player = NodePath("../../../../../../../../../Player")
+
+[node name="DeathScreen" parent="CanvasLayer" instance=ExtResource("84_w37fy")]
+visible = false
 
 [connection signal="body_entered" from="BlackHole/DeathArea" to="BlackHole" method="_on_death_area_body_entered"]
 
