@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csm8sc1iekngv"
-path="res://.godot/imported/debris27.png-5dcf8700f00ed34d25b967bed29a116a.ctex"
+uid="uid://c44hxyamw4udw"
+path="res://.godot/imported/debris31.png-55150ac0de778f6079097c68a4f7d424.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/debris27.png"
-dest_files=["res://.godot/imported/debris27.png-5dcf8700f00ed34d25b967bed29a116a.ctex"]
+source_file="res://sprites/debris/worthless/debris31.png"
+dest_files=["res://.godot/imported/debris31.png-55150ac0de778f6079097c68a4f7d424.ctex"]
 
 [params]
 

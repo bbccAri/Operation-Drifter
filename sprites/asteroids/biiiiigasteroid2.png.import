@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fslckpnilrmc"
-path="res://.godot/imported/debris25.png-a2178cd355d02809a7dc46ee800624e9.ctex"
+uid="uid://ct5bfrvrou0lf"
+path="res://.godot/imported/biiiiigasteroid2.png-cfdd79de3ddf688bedada5e0b68221f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/debris25.png"
-dest_files=["res://.godot/imported/debris25.png-a2178cd355d02809a7dc46ee800624e9.ctex"]
+source_file="res://sprites/asteroids/biiiiigasteroid2.png"
+dest_files=["res://.godot/imported/biiiiigasteroid2.png-cfdd79de3ddf688bedada5e0b68221f0.ctex"]
 
 [params]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://6c3pngmo45gk"]
+[gd_scene load_steps=90 format=3 uid="uid://6c3pngmo45gk"]
 
 [ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_hb5m1"]
 [ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_x5p1p"]
@@ -39,18 +39,29 @@
 [ext_resource type="PackedScene" uid="uid://b1bkxy16pqwdf" path="res://floating objects/debris/debris_worthless3.tscn" id="21_cfc7e"]
 [ext_resource type="PackedScene" uid="uid://e4svlyjjf6ap" path="res://floating objects/debris/debris_worthless4.tscn" id="22_gh0px"]
 [ext_resource type="PackedScene" uid="uid://dbkf02mu58lpd" path="res://floating objects/debris/debris_worthless5.tscn" id="23_v33yl"]
+[ext_resource type="PackedScene" uid="uid://nikp4le5xei6" path="res://floating objects/debris/debris_worthless6.tscn" id="26_4mai8"]
 [ext_resource type="PackedScene" uid="uid://bqvbbuo1pnq3s" path="res://floating objects/asteroids/asteroid_2.tscn" id="27_xex6t"]
 [ext_resource type="PackedScene" uid="uid://idbrkrdjbat2" path="res://floating objects/asteroids/asteroid_3.tscn" id="28_aa0lp"]
 [ext_resource type="PackedScene" uid="uid://dik5gtrlmexlk" path="res://floating objects/debris/debris_materials5.tscn" id="29_56gn1"]
 [ext_resource type="PackedScene" uid="uid://cmpty04q6al38" path="res://floating objects/asteroids/asteroid_4.tscn" id="29_iu0sx"]
 [ext_resource type="PackedScene" uid="uid://b6hongd133i01" path="res://floating objects/asteroids/asteroid_5.tscn" id="30_4v2jo"]
+[ext_resource type="PackedScene" uid="uid://lm3bnusintu1" path="res://floating objects/debris/debris_materials6.tscn" id="31_5628o"]
+[ext_resource type="PackedScene" uid="uid://dv1yae81kx4yb" path="res://floating objects/debris/debris_materials7.tscn" id="32_fuuk6"]
 [ext_resource type="PackedScene" uid="uid://dhcah3x01i7dk" path="res://floating objects/debris/debris_salvage4.tscn" id="33_avmo2"]
+[ext_resource type="PackedScene" uid="uid://cm1mk8eblxd4r" path="res://floating objects/debris/debris_materials8.tscn" id="33_cwgap"]
 [ext_resource type="PackedScene" uid="uid://etcxia3h80ri" path="res://floating objects/debris/debris_salvage3.tscn" id="34_2tki7"]
+[ext_resource type="PackedScene" uid="uid://bu8dtbimpj47o" path="res://floating objects/debris/debris_materials9.tscn" id="34_fuuk6"]
 [ext_resource type="PackedScene" uid="uid://5uts2b7732f6" path="res://floating objects/debris/debris_salvage5.tscn" id="34_vyqle"]
+[ext_resource type="PackedScene" uid="uid://bliiwmq5fe1l8" path="res://floating objects/debris/debris_materials10.tscn" id="35_cwgap"]
 [ext_resource type="PackedScene" uid="uid://cv2m4la2gdpfr" path="res://floating objects/debris/debris_valuable2.tscn" id="36_ib7ph"]
 [ext_resource type="PackedScene" uid="uid://c1n4xk351t2xl" path="res://floating objects/debris/debris_valuable3.tscn" id="37_vuohh"]
+[ext_resource type="PackedScene" uid="uid://qncg8de1fhp3" path="res://floating objects/debris/debris_materials11.tscn" id="37_w37fy"]
 [ext_resource type="PackedScene" uid="uid://ky1y52htns2p" path="res://floating objects/debris/debris_valuable4.tscn" id="38_3gvs5"]
+[ext_resource type="PackedScene" uid="uid://dwcmabp6wkkm4" path="res://floating objects/debris/debris_materials12.tscn" id="38_7x3ck"]
+[ext_resource type="PackedScene" uid="uid://1shrfy581xvu" path="res://floating objects/debris/debris_salvage6.tscn" id="39_svdf4"]
+[ext_resource type="PackedScene" uid="uid://t66j15l748j1" path="res://floating objects/debris/debris_materials13.tscn" id="39_vvpk2"]
 [ext_resource type="PackedScene" uid="uid://djkx2eo6eqi2o" path="res://floating objects/debris/debris_valuable5.tscn" id="39_xoeau"]
+[ext_resource type="PackedScene" uid="uid://bc6gafdqwc2x4" path="res://floating objects/debris/debris_materials14.tscn" id="40_o46vb"]
 [ext_resource type="PackedScene" uid="uid://d4be2bu1xlgns" path="res://floating objects/debris/debris_priceless2.tscn" id="41_6qn5j"]
 [ext_resource type="PackedScene" uid="uid://c1o1eyx56wq26" path="res://floating objects/asteroids/asteroid_6.tscn" id="42_2tki7"]
 [ext_resource type="PackedScene" uid="uid://dqprop1uohqil" path="res://floating objects/debris/debris_priceless3.tscn" id="42_wj41c"]
@@ -68,6 +79,9 @@
 [ext_resource type="PackedScene" uid="uid://uej0cvmysp1c" path="res://floating objects/asteroids/asteroid_big2.tscn" id="61_fuuk6"]
 [ext_resource type="PackedScene" uid="uid://b0wrhkieoilrn" path="res://floating objects/asteroids/asteroid_big3.tscn" id="62_cwgap"]
 [ext_resource type="Script" uid="uid://dgergvwokjrre" path="res://black_hole.gd" id="64_avmo2"]
+[ext_resource type="PackedScene" uid="uid://cfimjeq2xshev" path="res://floating objects/asteroids/asteroid_14.tscn" id="64_baljx"]
+[ext_resource type="PackedScene" uid="uid://bjguaatmu4irp" path="res://floating objects/asteroids/asteroid_15.tscn" id="65_t2ssd"]
+[ext_resource type="PackedScene" uid="uid://doalft02r0vtr" path="res://floating objects/asteroids/asteroid_16.tscn" id="66_7noa1"]
 [ext_resource type="PackedScene" uid="uid://b4j1p0iqx26w5" path="res://in_game_ui.tscn" id="68_vyqle"]
 
 [sub_resource type="Environment" id="Environment_p41qd"]
@@ -272,15 +286,15 @@ position = Vector2(71500, 0)
 script = ExtResource("12_dhpj7")
 target = NodePath("../BlackHole")
 player = NodePath("../Player")
-scraps_worthless = Array[PackedScene]([ExtResource("13_xfvwf"), ExtResource("20_tb2lt"), ExtResource("21_cfc7e"), ExtResource("22_gh0px"), ExtResource("23_v33yl")])
-scraps_materials = Array[PackedScene]([ExtResource("14_dhpj7"), ExtResource("15_7knny"), ExtResource("16_082n1"), ExtResource("17_xex6t"), ExtResource("29_56gn1")])
-scraps_salvage = Array[PackedScene]([ExtResource("18_aa0lp"), ExtResource("19_iu0sx"), ExtResource("34_2tki7"), ExtResource("33_avmo2"), ExtResource("34_vyqle")])
+scraps_worthless = Array[PackedScene]([ExtResource("13_xfvwf"), ExtResource("20_tb2lt"), ExtResource("21_cfc7e"), ExtResource("22_gh0px"), ExtResource("23_v33yl"), ExtResource("26_4mai8")])
+scraps_materials = Array[PackedScene]([ExtResource("14_dhpj7"), ExtResource("15_7knny"), ExtResource("16_082n1"), ExtResource("17_xex6t"), ExtResource("29_56gn1"), ExtResource("31_5628o"), ExtResource("32_fuuk6"), ExtResource("33_cwgap"), ExtResource("34_fuuk6"), ExtResource("35_cwgap"), ExtResource("37_w37fy"), ExtResource("38_7x3ck"), ExtResource("39_vvpk2"), ExtResource("40_o46vb")])
+scraps_salvage = Array[PackedScene]([ExtResource("18_aa0lp"), ExtResource("19_iu0sx"), ExtResource("34_2tki7"), ExtResource("33_avmo2"), ExtResource("34_vyqle"), ExtResource("39_svdf4")])
 scraps_valuable = Array[PackedScene]([ExtResource("13_qhcbd"), ExtResource("36_ib7ph"), ExtResource("37_vuohh"), ExtResource("38_3gvs5"), ExtResource("39_xoeau")])
 scraps_priceless = Array[PackedScene]([ExtResource("21_4v2jo"), ExtResource("41_6qn5j"), ExtResource("42_wj41c"), ExtResource("43_baljx")])
 
 [node name="AsteroidSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
 script = ExtResource("13_7knny")
-asteroid_variants = Array[PackedScene]([ExtResource("14_x5p1p"), ExtResource("27_xex6t"), ExtResource("28_aa0lp"), ExtResource("29_iu0sx"), ExtResource("30_4v2jo"), ExtResource("42_2tki7"), ExtResource("43_ib7ph"), ExtResource("44_vuohh"), ExtResource("45_3gvs5"), ExtResource("46_mc3al"), ExtResource("47_bqa6y"), ExtResource("48_du4n2"), ExtResource("57_t2ssd"), ExtResource("58_7noa1"), ExtResource("59_3xib3"), ExtResource("60_5628o"), ExtResource("61_fuuk6"), ExtResource("62_cwgap")])
+asteroid_variants = Array[PackedScene]([ExtResource("14_x5p1p"), ExtResource("27_xex6t"), ExtResource("28_aa0lp"), ExtResource("29_iu0sx"), ExtResource("30_4v2jo"), ExtResource("42_2tki7"), ExtResource("43_ib7ph"), ExtResource("44_vuohh"), ExtResource("45_3gvs5"), ExtResource("46_mc3al"), ExtResource("47_bqa6y"), ExtResource("48_du4n2"), ExtResource("57_t2ssd"), ExtResource("58_7noa1"), ExtResource("59_3xib3"), ExtResource("60_5628o"), ExtResource("61_fuuk6"), ExtResource("62_cwgap"), ExtResource("64_baljx"), ExtResource("65_t2ssd"), ExtResource("66_7noa1")])
 target = NodePath("../BlackHole")
 player = NodePath("../Player")
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1jlxbkj6xrne"
-path="res://.godot/imported/biiiiigasteroid3.png-4bd19403152ef6af036009f4f51c1947.ctex"
+uid="uid://qwd5qv8gkqri"
+path="res://.godot/imported/biiiiigasteroid.png-c8b97c46a397999969c4e33b33334a23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/biiiiigasteroid3.png"
-dest_files=["res://.godot/imported/biiiiigasteroid3.png-4bd19403152ef6af036009f4f51c1947.ctex"]
+source_file="res://sprites/asteroids/biiiiigasteroid.png"
+dest_files=["res://.godot/imported/biiiiigasteroid.png-c8b97c46a397999969c4e33b33334a23.ctex"]
 
 [params]
 

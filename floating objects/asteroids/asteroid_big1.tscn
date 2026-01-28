@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1hksnkcssuvi"]
 
 [ext_resource type="Script" uid="uid://bashwvuphm15w" path="res://orbit_asteroid.gd" id="1_bis4l"]
-[ext_resource type="Texture2D" uid="uid://clpty1fb3b4v4" path="res://sprites/asteroids/bigasteroid1.png" id="2_o02bs"]
+[ext_resource type="Texture2D" uid="uid://qwd5qv8gkqri" path="res://sprites/asteroids/biiiiigasteroid.png" id="2_8gkk2"]
 
 [node name="Asteroid" type="RigidBody2D"]
 z_index = 1
@@ -15,9 +15,9 @@ damage = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_o02bs")
+texture = ExtResource("2_8gkk2")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(14, -25, 1, -27, -13, -25, -27, -17, -22, 8, -23, 20, -12, 25, 23, 24, 21, 12, 14, 2, 10, -9)
+polygon = PackedVector2Array(-20, -36, -35, -18, -42, 3, -20, 25, 27, 34, 37, 26, 39, -1, 35, -37)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
