@@ -13,6 +13,7 @@ class_name Ship
 var playerClose: bool = false
 var playerInside: bool = false
 @export var speed: float = 1000
+@export var backup_multiplier: float = 0.5
 @export var rotation_speed: float = 100
 @export var acceleration: float = 3
 @export var gravity_resistance_amount: float = .2
@@ -62,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	if player.in_dialogue:
 		direction = Vector2.ZERO
 	ship_body.rotation_degrees += direction.x * rotation_speed * delta
-	ship_body.velocity = lerp(ship_body.velocity, Vector2(0, direction.normalized().y).rotated(ship_body.rotation) * (speed * (1 + ship_thruster_power_level * ship_thruster_power_amount)), delta * acceleration)
+	ship_body.velocity = lerp(ship_body.velocity, Vector2(0, (direction.normalized().y if direction.normalized().y <= 0.0 else direction.normalized().y * backup_multiplier)).rotated(ship_body.rotation) * (speed * (1 + ship_thruster_power_level * ship_thruster_power_amount)), delta * acceleration)
 	ship_body.velocity += ship_body.get_gravity() * (1.0 - gravity_resistance_amount * gravity_resistance_level)
 	ship_body.move_and_slide()
 	player.global_position = ship_body.global_position
