@@ -1,0 +1,232 @@
+[gd_scene load_steps=22 format=3 uid="uid://ccprbstt545ep"]
+
+[ext_resource type="Script" uid="uid://dqsng6mqkaddl" path="res://title_screen.gd" id="1_l4tom"]
+[ext_resource type="Texture2D" uid="uid://lmjfhpaul4gl" path="res://sprites/bg/operation-drifter-bg-circular_0.png" id="1_wot2p"]
+[ext_resource type="Texture2D" uid="uid://m14s2acju4qf" path="res://sprites/bg/operation-drifter-bg-circular_1.png" id="2_kvwfe"]
+[ext_resource type="Texture2D" uid="uid://dky3qed3f2rvj" path="res://sprites/bg/operation-drifter-bg-circular_2.png" id="3_l4tom"]
+[ext_resource type="Texture2D" uid="uid://dwapaeycb7m4q" path="res://sprites/bg/operation-drifter-bg-circular_3.png" id="4_y8ura"]
+[ext_resource type="Texture2D" uid="uid://s6hcvrljd1g4" path="res://sprites/bg/operation-drifter-bg-circular_4.png" id="5_aav61"]
+[ext_resource type="Texture2D" uid="uid://cuj0ujpf0wj4y" path="res://sprites/bg/operation-drifter-bg-circular_5.png" id="6_a64np"]
+[ext_resource type="Texture2D" uid="uid://c3dt17h7fw6jn" path="res://sprites/bg/operation-drifter-bg-circular_6.png" id="7_g2tdu"]
+[ext_resource type="Texture2D" uid="uid://drqhtnejmyo8k" path="res://sprites/bg/operation-drifter-bg-circular_7.png" id="8_7yan6"]
+[ext_resource type="Texture2D" uid="uid://bjtegpwu2b8c" path="res://sprites/bg/operation-drifter-bg-circular_8.png" id="9_4h4vs"]
+[ext_resource type="Texture2D" uid="uid://cjp1pbbsvg6tm" path="res://sprites/bg/operation-drifter-bg-circular_9.png" id="10_fd0ao"]
+[ext_resource type="Script" uid="uid://duk6vwxkp7ly8" path="res://rotatingvisual.gd" id="11_g3bb0"]
+[ext_resource type="Texture2D" uid="uid://bbf138trb540f" path="res://sprites/accretion disk/accretion_disk_glow_underlay_scaledup.png" id="12_4crdw"]
+[ext_resource type="Script" uid="uid://dgergvwokjrre" path="res://black_hole.gd" id="13_r38mt"]
+[ext_resource type="Shader" uid="uid://cs40k2hoqfprr" path="res://blackholeshader/blackholewarp.gdshader" id="14_m6xo1"]
+[ext_resource type="Texture2D" uid="uid://1unbswk0h85i" path="res://sprites/operation-drifter-testwarp.png" id="15_pxij2"]
+[ext_resource type="Texture2D" uid="uid://cea2gxv7gwl5u" path="res://blackholeshader/blackcirclebig.svg" id="16_p4s5p"]
+[ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="18_y8ura"]
+
+[sub_resource type="Curve" id="Curve_45mar"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, -0.0014533997), 0.0, 0.0, 0, 0, Vector2(0.19434628, -0.64389527), 0.0, 0.0, 0, 0, Vector2(0.24028268, 0.14970934), 0.0, 0.0, 0, 0, Vector2(0.38162544, -0.0959301), 0.0, 0.0, 0, 0, Vector2(0.4310954, 0.055232644), 0.0, 0.0, 0, 0, Vector2(0.48763248, -0.0014533997), 0.0, 0.0, 0, 0]
+point_count = 6
+
+[sub_resource type="CurveTexture" id="CurveTexture_aa0lp"]
+curve = SubResource("Curve_45mar")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_om8x3"]
+shader = ExtResource("14_m6xo1")
+shader_parameter/curve = SubResource("CurveTexture_aa0lp")
+shader_parameter/strength = 0.70000008075
+
+[node name="Title Screen" type="Node2D"]
+script = ExtResource("1_l4tom")
+
+[node name="BG" type="Node2D" parent="."]
+scale = Vector2(3, 3)
+
+[node name="Parallax2D" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(960, 540)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_wot2p")
+
+[node name="Parallax2D2" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.03, 0.03)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(-3, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D2"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_kvwfe")
+
+[node name="Parallax2D3" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.005, 0.005)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(-5, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D3"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_l4tom")
+
+[node name="Parallax2D4" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+scroll_scale = Vector2(0.008, 0.008)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(-8, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D4"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_y8ura")
+
+[node name="Parallax2D5" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.01, 0.01)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(-10, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D5"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_aav61")
+
+[node name="Parallax2D6" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.014, 0.014)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(-14, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D6"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_a64np")
+
+[node name="Parallax2D7" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.019, 0.019)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(-19, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D7"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_g2tdu")
+
+[node name="Parallax2D8" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.025, 0.025)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(-25, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D8"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("8_7yan6")
+
+[node name="Parallax2D9" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.032, 0.032)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(-32, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D9"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("9_4h4vs")
+
+[node name="Parallax2D10" type="Parallax2D" parent="BG"]
+texture_filter = 1
+scroll_scale = Vector2(0.04, 0.04)
+repeat_size = Vector2(960, 540)
+autoscroll = Vector2(-40, 0)
+repeat_times = 10
+
+[node name="Sprite2D" type="Sprite2D" parent="BG/Parallax2D10"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("10_fd0ao")
+
+[node name="Accretion Disk2" type="Node2D" parent="."]
+script = ExtResource("11_g3bb0")
+
+[node name="Underglow" type="Sprite2D" parent="Accretion Disk2"]
+modulate = Color(1, 1, 1, 0.2509804)
+texture_filter = 2
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("12_4crdw")
+
+[node name="BlackHole" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("13_r38mt")
+player = NodePath("")
+
+[node name="Warp" type="Sprite2D" parent="BlackHole"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_om8x3")
+scale = Vector2(30, 30)
+texture = ExtResource("15_pxij2")
+
+[node name="Hole" type="Sprite2D" parent="BlackHole"]
+z_index = 10
+texture_filter = 2
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("16_p4s5p")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1440, 0)
+zoom = Vector2(0.25, 0.25)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(750, 320)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("18_y8ura")
+theme_override_font_sizes/bold_font_size = 100
+bbcode_enabled = true
+text = "[center][wave amp=16.0 freq=4.0 connected=1][pulse freq=0.1 color=#ffffff00 ease=-2.0][b]Operation Drifter[/b][/pulse][/wave][/center]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 64)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(192, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("18_y8ura")
+text = "Begin?"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/MarginContainer2/PlayButton" to="." method="_on_play_button_pressed"]
