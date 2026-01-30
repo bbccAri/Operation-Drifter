@@ -44,6 +44,7 @@ var iframes: float = 0.0
 @export var damage_hud_fade_speed: float = 5.0
 var dead: bool = false
 @export var death_screen: Control
+var scanning: bool = false
 
 var suit_resilience_level: int = 0
 @export var suit_resilience_max_level: int = 5
@@ -151,6 +152,8 @@ func _process(delta: float) -> void:
 			pickup()
 		else:
 			drop_object()
+	if Input.is_action_just_pressed("Scan"):
+		scanning = !scanning
 	if input != Vector2.ZERO and current_state != CharState.GRAB and !dead:
 		current_state = CharState.MOVE
 	elif current_state != CharState.GRAB:
@@ -160,7 +163,7 @@ func _process(delta: float) -> void:
 	var prev_o2: float = o2_left
 	if !in_ship and !dead:
 		particle_trail.amount_ratio = max(abs(input.x), abs(input.y))
-		if o2_left > 0.0 and !in_safe_zone:
+		if o2_left > 0.0 and !in_safe_zone and !in_dialogue:
 			o2_left -= delta
 			if o2_left <= 0:
 				o2_left = 0.0

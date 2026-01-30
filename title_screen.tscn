@@ -157,9 +157,8 @@ texture_filter = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("12_4crdw")
 
-[node name="BlackHole" type="Node2D" parent="." node_paths=PackedStringArray("player")]
+[node name="BlackHole" type="Node2D" parent="."]
 script = ExtResource("13_r38mt")
-player = NodePath("")
 
 [node name="Warp" type="Sprite2D" parent="BlackHole"]
 texture_filter = 2

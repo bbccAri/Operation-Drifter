@@ -234,7 +234,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_iu0sx")
 
 [node name="Player" parent="." node_paths=PackedStringArray("black_hole", "health_bar", "o2_bar", "money_label", "HUD_image", "death_screen") instance=ExtResource("11_xfvwf")]
-position = Vector2(70000, 0)
+position = Vector2(71398, 43)
 black_hole = NodePath("../BlackHole")
 health_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/HP/HealthBar")
 o2_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/RightElements/VBoxContainer2/HP/O2Bar")
@@ -250,8 +250,11 @@ autoplay = true
 attenuation = 1e-05
 
 [node name="Ship" parent="." node_paths=PackedStringArray("player") instance=ExtResource("15_klri6")]
-position = Vector2(70000, -256)
+position = Vector2(71500, -402)
 player = NodePath("../Player")
+
+[node name="Ship" parent="Ship" index="0"]
+rotation = -0.77237904
 
 [node name="BHPointer" parent="." node_paths=PackedStringArray("target", "player") instance=ExtResource("15_aa0lp")]
 z_index = 9
@@ -281,8 +284,9 @@ icon_type = 3
 position = Vector2(70000, 0)
 player = NodePath("../Player")
 
-[node name="Shop" parent="." instance=ExtResource("18_ib7ph")]
+[node name="Shop" parent="." node_paths=PackedStringArray("player") instance=ExtResource("18_ib7ph")]
 position = Vector2(71500, 0)
+player = NodePath("../Player")
 
 [node name="DebrisSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target", "player")]
 script = ExtResource("12_dhpj7")

@@ -1,7 +1,7 @@
 extends Node2D
 
-var player: Player
-var player_in_range: bool = false
+@export var player: Player
+var player_in_range: bool = true
 @onready var label: RichTextLabel = $RichTextLabel
 @export var text_tags_start: String = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff80 ease=-2.0]"
 @export var text_tags_end: String = "[/pulse][/wave][/center]"
@@ -25,7 +25,8 @@ func _on_timeline_ended():
 	exit_shop()
 
 func enter_tutorial():
-	pass
+	run_dialogue("tutorial")
+	done_tutorial = true
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -59,8 +60,6 @@ func open_shop():
 		return
 	
 	in_shop = true
-	
-	done_tutorial = true #TEMP!!!!!
 	
 	if !done_tutorial:
 		enter_tutorial()

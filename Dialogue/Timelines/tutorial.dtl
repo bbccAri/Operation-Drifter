@@ -1,0 +1,41 @@
+R3Y6-1N41D (Talk): [mood=Bot]Hai!
+R3Y6-1N41D (Default): [mood=Bot]Welcome to your local [mood=System][Black Hole][mood=Bot]'s wecycawing center.
+R3Y6-1N41D: [mood=Bot]Would you wike an expwanation on how things work here?
+- Yes
+- No
+	jump 
+R3Y6-1N41D: [mood=Bot]My designation is R3Y6-1N41D, and I am the bot assigned to collect scwap for this awea.
+R3Y6-1N41D (Talk): [mood=Bot]I can also sell upgrades for your ship and your suit to help you stay awive!
+R3Y6-1N41D (Default): [mood=Bot]So that you can collect more scwap to sell to us!
+R3Y6-1N41D: [mood=Bot]So, what bwings you out here?
+- I received a distress signal.
+	R3Y6-1N41D (Sad): [mood=Bot]Oh no!
+	R3Y6-1N41D (Talk): [mood=Bot]Anyway!
+	R3Y6-1N41D: [mood=Bot]That might explain the abundance of vawuable scrap!
+	R3Y6-1N41D (Default): [mood=Bot]Thank you in advance for cowwecting it!
+- I want money.
+	R3Y6-1N41D (Talk): [mood=Bot]Oh no!
+	R3Y6-1N41D (What): [mood=Bot]Oops.
+	R3Y6-1N41D (Blank): [mood=System][Malfunction Logged For Review]
+	R3Y6-1N41D (Loading): [mood=System][Rebooting...]
+	R3Y6-1N41D (Default): [mood=Bot]Great! You can make pwenty of it here!
+	R3Y6-1N41D (Talk): [mood=System][Company Name Redacted][mood=Bot] will happiwy take the materials and components you scwounge up off your hands for pwoper compensation.
+R3Y6-1N41D (Default): [mood=Bot]You are currently floating awound in your [b]Space Suit[/b].
+R3Y6-1N41D: [mood=Bot]Change where you're facing with [b][A][/b] and [b][D][/b] and move with [b][W][/b] and [b][S][/b] on your suit's keypad! Or use the [b]Arrow Keys[b]!
+R3Y6-1N41D: [mood=Bot]When in fwoating awound in your suit, you can grab onto [b]Scrap[/b] that floats by with [b][E][/b] or [b][Z][/b]!
+R3Y6-1N41D (Sad): [mood=Bot]But be caweful! [b]Asteroids[/b] can hit you, your ship, or your scwap, damaging your suit or ship! Or worse, destwoying the scwap!
+R3Y6-1N41D (Talk): [mood=Bot]Bwing your scwap back to your [b]Ship[/b] to safely store it for sale later with [b][F][/b] or [b][C][/b], at the [b]Shop[/b] that I run here!
+R3Y6-1N41D (Default): [mood=Bot]Make sure to consider what you have room for in your ship! Some scwap is worth more despite being the same size!
+R3Y6-1N41D (Talk): [mood=Bot]Don't worry! You can upgwade your cargo space and many other things here at the shop! For a small price, of course.
+R3Y6-1N41D: [mood=Bot]You can [b]Scan[/b] the scwap nearest to you with your suit helmet's HUD!
+R3Y6-1N41D (Default): [mood=Bot]Just hit [b][Tab][/b] or [b][X][/b] to toggle both scans of scwap and pointers diwecting you to your ship, my shop, and the bwack hole!
+R3Y6-1N41D: [mood=Bot]You can also zoom in and out to get a better look at things with [b][I][/b] or [b][Scroll Up][/b] and [b][O][/b] and [b][Scroll Down][/b].
+R3Y6-1N41D: [mood=Bot]Scwap tends to be more pwentiful and vawuable near the [b]Black Hole[/b], but it's hard to resist the gwavity well!
+R3Y6-1N41D (Talk): [mood=Bot]Also, when you're not in the shop's force field or your ship, your suit's [b]Oxygen Supply[/b] will swowly depwete!
+R3Y6-1N41D (Default): [mood=Bot]If it wuns out, you will begin to suffocate!
+R3Y6-1N41D (Talk): [mood=Bot]But once again! We have many helpful upgwades! Like gwavity resistance and bigger O2 tanks!
+R3Y6-1N41D (Talk): [mood=Bot]Well! I hope that was hewpful!
+R3Y6-1N41D (Default): [mood=Bot]If you happen to discwover where any of the crew of the [mood=System][Ship Name Redacted][mood=Bot] are, send them my way for gweat deals!
+R3Y6-1N41D (Talk): [mood=Bot]And tell us if you see anything potentially profitable!
+label End
+R3Y6-1N41D (Talk): [mood=Bot]Bai! Happy scwap-hunting!

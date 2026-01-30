@@ -11,16 +11,13 @@ var target: Debris
 @onready var anim: AnimatedSprite2D = $Indicator/AnimatedSprite2D
 @export var player: Player
 @export var targeting_speed: float = 10.0
-var scanning: bool = false
 
 func _ready() -> void:
 	anim.play("default")
 
 func _process(delta: float) -> void:
 	global_position = lerp(global_position, player.global_position, targeting_speed * delta)
-	if Input.is_action_just_pressed("Scan"):
-		scanning = !scanning
-	if scanning and !overlapping.is_empty() and target != null:
+	if player.scanning and !overlapping.is_empty() and target != null:
 		update_target()
 		visible = true
 		indicator.global_position = target.global_position

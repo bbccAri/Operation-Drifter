@@ -36,7 +36,8 @@ directories/dch_directory={
 "R3Y6-1N41D": "res://Dialogue/Characters/R3Y6-1N41D.dch"
 }
 directories/dtl_directory={
-"shopNormal": "res://Dialogue/Timelines/shopNormal.dtl"
+"shopNormal": "res://Dialogue/Timelines/shopNormal.dtl",
+"tutorial": "res://Dialogue/Timelines/tutorial.dtl"
 }
 layout/style_directory={
 "": "res://Dialogue/Styles/Style_Portrait_Textbox.tres",

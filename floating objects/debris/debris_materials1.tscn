@@ -7,6 +7,7 @@
 
 [node name="Debris" type="RigidBody2D"]
 z_index = 1
+collision_mask = 3
 mass = 0.2
 freeze_mode = 1
 script = ExtResource("1_pv11m")

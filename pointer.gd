@@ -16,7 +16,6 @@ extends Node2D
 @onready var ship_icon: Node2D = $"Icons/Ship icon"
 @onready var warning_icon: AnimatedSprite2D = $"Icons/BH icon/SpriteWarning"
 @export var close_enough_distance: float = 256.0
-var scanning: bool = false
 
 enum IconType {
 	None,
@@ -56,9 +55,7 @@ func _process(_delta: float) -> void:
 		target = null
 		return
 	var distance = global_position.distance_to(target.global_position)
-	if Input.is_action_just_pressed("Scan"):
-		scanning = !scanning
-	if (scanning and distance > close_enough_distance) or (icon_type == IconType.BlackHole and distance <= player.warning_distance):
+	if (player.scanning and distance > close_enough_distance) or (icon_type == IconType.BlackHole and distance <= player.warning_distance):
 		visible = true
 	else:
 		visible = false
