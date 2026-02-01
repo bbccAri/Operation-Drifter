@@ -8,7 +8,7 @@ class_name Ship
 @export var text_tags_start: String = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff80 ease=-2.0]"
 @export var text_tags_end: String = "[/pulse][/wave][/center]"
 @onready var enter_hint_label: RichTextLabel = $RichTextLabel
-@export var enter_hint: String = "[E] Enter"
+@export var enter_hint: String = "[Q] Enter"
 @export var load_cargo_hint: String = "[F] Store Cargo"
 var playerClose: bool = false
 var playerInside: bool = false
@@ -72,7 +72,7 @@ func _process(delta: float) -> void:
 	if iframes > 0.0:
 		iframes -= delta
 	if playerClose and !playerInside:
-		if Input.is_action_just_pressed("Interact") and !player.near_shop:
+		if Input.is_action_just_pressed("Ship"):
 			enter_ship()
 		if Input.is_action_just_pressed("Confirm"):
 			if player.cargo_capacity - player.cargo_carrying >= player.grabbed_object.cargo_size:
@@ -89,7 +89,7 @@ func _process(delta: float) -> void:
 			if player.in_dialogue:
 				input = Vector2.ZERO
 			particle_trail.amount_ratio = max(abs(input.x), abs(input.y))
-			if Input.is_action_just_pressed("Interact") and !player.near_shop:
+			if Input.is_action_just_pressed("Ship") or (Input.is_action_just_pressed("Interact") and !player.near_shop):
 				exit_ship()
 		else:
 			particle_trail.amount_ratio = 0.0
