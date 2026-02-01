@@ -22,6 +22,7 @@ var playerInside: bool = false
 @export var gravity_resistance_price: int = 2500
 @export var exit_distance: float = 16.0
 @onready var particle_trail: GPUParticles2D = $Ship/TrailParticles
+@onready var load_cargo_particles: GPUParticles2D = $LoadCargoParticles
 var health: int = 5
 @export var maxHealth: int = 5
 var exploding: bool = false
@@ -71,35 +72,38 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	if iframes > 0.0:
 		iframes -= delta
-	if playerClose and !playerInside:
-		if Input.is_action_just_pressed("Ship"):
-			enter_ship()
-		if Input.is_action_just_pressed("Confirm"):
-			if player.cargo_capacity - player.cargo_carrying >= player.grabbed_object.cargo_size:
-				player.store_object()
-		if player.grabbed_object != null:
-			enter_hint_label.text = text_tags_start + enter_hint + "\n" + load_cargo_hint + "\n" + str(player.cargo_carrying) + "/" + str(player.cargo_capacity) + text_tags_end
+	if playerClose:
+		if !playerInside:
+			if Input.is_action_just_pressed("Ship"):
+				enter_ship()
+			if Input.is_action_just_pressed("Confirm") and player.grabbed_object != null:
+				if player.cargo_capacity - player.cargo_carrying >= player.grabbed_object.cargo_size:
+					player.store_object()
+			particle_trail.amount_ratio = 0.0
 		else:
-			enter_hint_label.text = text_tags_start + enter_hint + "\n" + str(player.cargo_carrying) + "/" + str(player.cargo_capacity) + text_tags_end
-		enter_hint_label.visible = true
-	else:
-		enter_hint_label.visible = false
-		if playerInside:
 			var input = get_movement_input()
 			if player.in_dialogue:
 				input = Vector2.ZERO
 			particle_trail.amount_ratio = max(abs(input.x), abs(input.y))
 			if Input.is_action_just_pressed("Ship") or (Input.is_action_just_pressed("Interact") and !player.near_shop):
 				exit_ship()
+		if player.grabbed_object != null and !playerInside:
+			enter_hint_label.text = text_tags_start + str(player.cargo_carrying) + "/" + str(player.cargo_capacity) + " Cargo Space\n" + str(roundi(health/float(maxHealth) * 100)) + "% Hull Integrity\n" + enter_hint + "\n" + load_cargo_hint + text_tags_end
+		elif !playerInside:
+			enter_hint_label.text = text_tags_start + str(player.cargo_carrying) + "/" + str(player.cargo_capacity) + " Cargo Space\n" + str(roundi(health/float(maxHealth) * 100)) + "% Hull Integrity\n" + enter_hint + text_tags_end
 		else:
-			particle_trail.amount_ratio = 0.0
+			enter_hint_label.text = text_tags_start + str(player.cargo_carrying) + "/" + str(player.cargo_capacity) + " Cargo Space\n" + str(roundi(health/float(maxHealth) * 100)) + "% Hull Integrity" + text_tags_end
+		enter_hint_label.visible = true
+	else:
+		enter_hint_label.visible = false
 
 func enter_ship():
 	ship_body.add_collision_exception_with(player)
 	player.enter_ship()
 	playerInside = true
 	if player.grabbed_object != null:
-		player.store_object()
+		if player.cargo_capacity - player.cargo_carrying >= player.grabbed_object.cargo_size:
+			player.store_object()
 
 func exit_ship():
 	playerInside = false

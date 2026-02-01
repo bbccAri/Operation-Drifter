@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cmfafxveywsoj"]
+[gd_scene load_steps=21 format=3 uid="uid://cmfafxveywsoj"]
 
 [ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="1_4cq66"]
 [ext_resource type="Script" uid="uid://btg33v8ti76cp" path="res://ship_container.gd" id="1_v4325"]
@@ -57,6 +57,53 @@ height = 128.0
 radius = 96.0
 height = 256.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pb2vj"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_xpsff"]
+offsets = PackedFloat32Array(0.5381166, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.8784314, 0.8784314, 0.8784314, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pb2vj"]
+gradient = SubResource("Gradient_xpsff")
+
+[sub_resource type="Curve" id="Curve_qxn0r"]
+_data = [Vector2(0, 0.5008532), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.4078488, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pmrbh"]
+curve = SubResource("Curve_qxn0r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_o1dwe"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 96.0
+angle_min = -9.9999895
+angle_max = 10.0000105
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = -10.0
+initial_velocity_max = 10.0
+angular_velocity_min = -30.000015
+angular_velocity_max = 29.999983
+orbit_velocity_min = -0.049999908
+orbit_velocity_max = 0.050000098
+radial_velocity_min = -5.0000224
+radial_velocity_max = 4.9999776
+gravity = Vector3(0, 0, 0)
+damping_max = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_pmrbh")
+scale_over_velocity_max = 1.0
+color_ramp = SubResource("GradientTexture1D_pb2vj")
+hue_variation_min = -0.100000024
+hue_variation_max = 0.09999997
+anim_offset_max = 1.0
+
 [node name="Ship Container" type="Node2D"]
 script = ExtResource("1_v4325")
 
@@ -92,11 +139,24 @@ shape = SubResource("CapsuleShape2D_4cq66")
 
 [node name="DebrisExplodeParticles" parent="Ship" instance=ExtResource("4_xpsff")]
 
+[node name="LoadCargoParticles" type="GPUParticles2D" parent="."]
+z_index = 1
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_pb2vj")
+emitting = false
+amount = 96
+texture = ExtResource("3_78o8j")
+lifetime = 1.5
+one_shot = true
+explosiveness = 0.8
+fixed_fps = 24
+process_material = SubResource("ParticleProcessMaterial_o1dwe")
+
 [node name="RichTextLabel" type="RichTextLabel" parent="." node_paths=PackedStringArray("target")]
 texture_filter = 1
-offset_left = -32.0
+offset_left = -64.0
 offset_top = 64.0
-offset_right = 608.0
+offset_right = 1216.0
 offset_bottom = 384.0
 scale = Vector2(0.1, 0.1)
 theme = ExtResource("1_4cq66")

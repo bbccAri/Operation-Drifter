@@ -9,6 +9,7 @@ var distance: float
 var perpendicular_direction: Vector2
 var undisturbed: bool = true
 @export var gravity_factor: float = 0.025
+@export var min_speed_for_damage: float = 5.0
 
 var asteroid_spawner: AsteroidSpawner
 var player: CharacterBody2D
@@ -70,6 +71,8 @@ func despawn():
 	queue_free()
 
 func _on_body_entered(body: Node) -> void:
+	if linear_velocity.length() <= min_speed_for_damage:
+		return
 	if body is Debris and damage >= 1:
 		body.explode()
 	elif body is Player and damage >= 1:

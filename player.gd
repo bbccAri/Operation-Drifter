@@ -23,6 +23,7 @@ var gravity_resistance_level: int = 0
 var debris_in_range: Array[Debris] = []
 var target_pickup_object: Node2D
 @onready var grabbed_position: Marker2D = $GrabbedPosition
+@export var ship: Ship
 var grabbed_object: Debris
 var money: int = 0 : set = _set_money
 var cargo_capacity: int = 50
@@ -279,6 +280,7 @@ func store_object():
 	cargo_value += grabbed_object.value
 	grabbed_object.store()
 	grabbed_object = null
+	ship.load_cargo_particles.restart()
 	current_state = CharState.IDLE
 
 func drop_object() -> void:
@@ -342,7 +344,6 @@ func upgrade_cargo_size():
 		cargo_capacity = cargo_space_level * cargo_space_amount
 
 func die():
-	#get_tree().quit() #TEMP!!! TODO: actual death
 	dead = true
 	death_screen.visible = true
 

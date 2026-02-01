@@ -47,7 +47,6 @@ func _process(_delta: float) -> void:
 		else:
 			label.text = text_tags_start + shop_hint + text_tags_end
 		label.visible = true
-		print("player in range")
 		if Input.is_action_just_pressed("Interact"):
 			open_shop()
 		if Input.is_action_just_pressed("Confirm") and player.cargo_carrying > 0:
@@ -80,6 +79,11 @@ func sell():
 		player.money += player.cargo_value
 		player.cargo_value = 0
 		player.cargo_carrying = 0
+		if player.grabbed_object != null:
+			player.money += player.grabbed_object.value
+			player.grabbed_object.store()
+			player.grabbed_object = null
+			player.current_state = player.CharState.IDLE
 
 
 func _on_area_2d_2_body_entered(body: Node2D) -> void:

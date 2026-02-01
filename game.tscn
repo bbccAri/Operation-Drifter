@@ -233,9 +233,10 @@ texture_filter = 2
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("17_iu0sx")
 
-[node name="Player" parent="." node_paths=PackedStringArray("black_hole", "health_bar", "o2_bar", "money_label", "HUD_image", "death_screen") instance=ExtResource("11_xfvwf")]
+[node name="Player" parent="." node_paths=PackedStringArray("black_hole", "ship", "health_bar", "o2_bar", "money_label", "HUD_image", "death_screen") instance=ExtResource("11_xfvwf")]
 position = Vector2(71398, 43)
 black_hole = NodePath("../BlackHole")
+ship = NodePath("../Ship")
 health_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/HP/HealthBar")
 o2_bar = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/RightElements/VBoxContainer2/HP/O2Bar")
 money_label = NodePath("../CanvasLayer/InGameUI/HelmetOverlay/NinePatchRect/HBoxContainer/LeftElements/VBoxContainer/MoneyLabel")
