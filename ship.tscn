@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="1_4cq66"]
 [ext_resource type="Script" uid="uid://btg33v8ti76cp" path="res://ship_container.gd" id="1_v4325"]
-[ext_resource type="Script" uid="uid://dsrno3f2va332" path="res://follow_text.gd" id="2_v4325"]
+[ext_resource type="Script" uid="uid://dsrno3f2va332" path="res://follow_at_offset.gd" id="2_v4325"]
 [ext_resource type="Texture2D" uid="uid://dt21jtdpy7hrm" path="res://sprites/operation-drifter_particletrailspritesheet.png" id="3_78o8j"]
 [ext_resource type="Texture2D" uid="uid://fii3f6bdf27j" path="res://sprites/playership.png" id="3_xpsff"]
 [ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="4_xpsff"]
@@ -139,7 +139,7 @@ shape = SubResource("CapsuleShape2D_4cq66")
 
 [node name="DebrisExplodeParticles" parent="Ship" instance=ExtResource("4_xpsff")]
 
-[node name="LoadCargoParticles" type="GPUParticles2D" parent="."]
+[node name="LoadCargoParticles" type="GPUParticles2D" parent="." node_paths=PackedStringArray("target")]
 z_index = 1
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_pb2vj")
@@ -151,6 +151,8 @@ one_shot = true
 explosiveness = 0.8
 fixed_fps = 24
 process_material = SubResource("ParticleProcessMaterial_o1dwe")
+script = ExtResource("2_v4325")
+target = NodePath("../Ship")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." node_paths=PackedStringArray("target")]
 texture_filter = 1

@@ -1,4 +1,4 @@
-extends RichTextLabel
+extends Node2D
 
 @export var target: Node2D
 @export var offset: Vector2 = Vector2(-64, 64)
