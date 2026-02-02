@@ -69,6 +69,10 @@ func ungrab():
 func despawn():
 	asteroid_spawner.asteroid_array.erase(self)
 	queue_free()
+	
+func explode():
+	asteroid_spawner.asteroid_array.erase(self)
+	queue_free()
 
 func _on_body_entered(body: Node) -> void:
 	if linear_velocity.length() <= min_speed_for_damage:
@@ -79,3 +83,6 @@ func _on_body_entered(body: Node) -> void:
 		body.take_damage(damage)
 	elif body.name == "Ship" and damage >= 1:
 		body.get_parent().take_damage(damage)
+	elif body is ShopShield:
+		if body.disintigrate_asteroid:
+			explode()

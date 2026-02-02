@@ -99,11 +99,13 @@ func _process(delta: float) -> void:
 
 func enter_ship():
 	ship_body.add_collision_exception_with(player)
-	player.enter_ship()
-	playerInside = true
 	if player.grabbed_object != null:
 		if player.cargo_capacity - player.cargo_carrying >= player.grabbed_object.cargo_size:
 			player.store_object()
+		else:
+			player.drop_object()
+	player.enter_ship()
+	playerInside = true
 
 func exit_ship():
 	playerInside = false

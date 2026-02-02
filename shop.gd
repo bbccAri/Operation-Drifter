@@ -1,4 +1,5 @@
 extends Node2D
+class_name Shop
 
 @export var player: Player
 var player_in_range: bool = true

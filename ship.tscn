@@ -1,11 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://cmfafxveywsoj"]
+[gd_scene load_steps=22 format=3 uid="uid://cmfafxveywsoj"]
 
 [ext_resource type="Theme" uid="uid://8l1lb48ylpmg" path="res://ui_theme.tres" id="1_4cq66"]
 [ext_resource type="Script" uid="uid://btg33v8ti76cp" path="res://ship_container.gd" id="1_v4325"]
-[ext_resource type="Script" uid="uid://dsrno3f2va332" path="res://follow_at_offset.gd" id="2_v4325"]
+[ext_resource type="Script" uid="uid://gksf1l1k0l5r" path="res://follow_at_offset.gd" id="2_v4325"]
 [ext_resource type="Texture2D" uid="uid://dt21jtdpy7hrm" path="res://sprites/operation-drifter_particletrailspritesheet.png" id="3_78o8j"]
 [ext_resource type="Texture2D" uid="uid://fii3f6bdf27j" path="res://sprites/playership.png" id="3_xpsff"]
 [ext_resource type="PackedScene" uid="uid://b2mbmtwxpg8qv" path="res://debris_explode_particles.tscn" id="4_xpsff"]
+[ext_resource type="Script" uid="uid://dsrno3f2va332" path="res://follow_at_offset_text.gd" id="7_pb2vj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xpsff"]
 particles_animation = true
@@ -153,6 +154,7 @@ fixed_fps = 24
 process_material = SubResource("ParticleProcessMaterial_o1dwe")
 script = ExtResource("2_v4325")
 target = NodePath("../Ship")
+offset = Vector2(0, 0)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="." node_paths=PackedStringArray("target")]
 texture_filter = 1
@@ -167,7 +169,7 @@ text = "[center][wave amp=8.0 freq=4.0 connected=1][pulse freq=0.5 color=#ffffff
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("2_v4325")
+script = ExtResource("7_pb2vj")
 target = NodePath("../Ship")
 
 [connection signal="body_entered" from="Ship/Area2D" to="." method="_on_area_2d_body_entered"]
