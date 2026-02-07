@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfke7uv2440xj"
+path="res://.godot/imported/dialogue_4 round high nya.wav-62f3ce72743ff67d295de368340e0565.sample"
+
+[deps]
+
+source_file="res://audio/dialogue/dialogue_4 round high nya.wav"
+dest_files=["res://.godot/imported/dialogue_4 round high nya.wav-62f3ce72743ff67d295de368340e0565.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
