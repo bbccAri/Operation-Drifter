@@ -7,6 +7,7 @@ enum CharState {
 	GRAB
 }
 
+var title_screen: PackedScene = preload("res://title_screen.tscn")
 @export var speed: float = 800
 @export var rotation_speed: float = 200
 @export var acceleration: float = 5
@@ -138,8 +139,10 @@ func _physics_process(delta):
 	move_and_slide()
 	
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("Pause"):
-		get_tree().quit() #TEMP TODO: PAUSE MENU!!!
+	if Input.is_action_just_pressed("Pause") and get_tree().get_current_scene().get_name() == "title_screen":
+		get_tree().quit()
+	elif Input.is_action_just_pressed("Pause"):
+		get_tree().change_scene_to_packed(title_screen)#TEMP TODO: PAUSE MENU!!!
 	if suffocating:
 		take_damage(1)
 	var bh_distance = global_position.distance_to(black_hole.global_position)
