@@ -43,14 +43,14 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 
 func _process(_delta: float) -> void:
 	if player_in_range:
-		if player.cargo_carrying > 0:
+		if player.cargo_carrying > 0 or player.grabbed_object != null:
 			label.text = text_tags_start + shop_hint + "\n" + sell_hint + text_tags_end
 		else:
 			label.text = text_tags_start + shop_hint + text_tags_end
 		label.visible = true
 		if Input.is_action_just_pressed("Interact"):
 			open_shop()
-		if Input.is_action_just_pressed("Confirm") and player.cargo_carrying > 0:
+		if Input.is_action_just_pressed("Confirm") and (player.cargo_carrying > 0 or player.grabbed_object != null):
 			sell()
 	else:
 		label.visible = false
