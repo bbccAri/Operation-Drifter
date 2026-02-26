@@ -173,14 +173,14 @@ func _process(delta: float) -> void:
 				o2_left = 0.0
 				suffocating = true
 		elif in_safe_zone:
-			o2_left += delta
+			o2_left += delta * o2_tank_size_level * 5
 			if o2_left > max_o2:
 				o2_left = max_o2
 			suffocating = false
 	else:
 		particle_trail.amount_ratio = 0.0
 		if o2_left < max_o2 and !dead:
-			o2_left += delta
+			o2_left += delta * o2_tank_size_level * 5
 			if o2_left > max_o2:
 				o2_left = max_o2
 		suffocating = false
